@@ -75,25 +75,25 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/felixu.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="平常项目中经常可能会有一些定时调度的需求，就会需要用到Quartz或者是Scheduled Tasks，Scheduled Tasks相比于Quartz，更为轻量，当然功能上也没有Quartz全面，对于需求不复杂的定时调度，用Schduled Tasks反而会更方便，今天就讲一下Spring Boot中使用Scheduled Tasks。关于Spring Boot中怎么去使用定时任务，官网这里有给">
+<meta name="description" content="Spring Boot中使用定时调度Scheduled Tasks">
 <meta name="keywords" content="Spring Boot,定时任务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Boot之定时调度Scheduled Tasks">
 <meta property="og:url" content="http://blog.felixu.top/2017/10/25/Spring Boot之定时调度Scheduled Tasks/index.html">
 <meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="平常项目中经常可能会有一些定时调度的需求，就会需要用到Quartz或者是Scheduled Tasks，Scheduled Tasks相比于Quartz，更为轻量，当然功能上也没有Quartz全面，对于需求不复杂的定时调度，用Schduled Tasks反而会更方便，今天就讲一下Spring Boot中使用Scheduled Tasks。关于Spring Boot中怎么去使用定时任务，官网这里有给">
+<meta property="og:description" content="Spring Boot中使用定时调度Scheduled Tasks">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-29T13:26:15.358Z">
+<meta property="og:updated_time" content="2018-03-29T06:33:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot之定时调度Scheduled Tasks">
-<meta name="twitter:description" content="平常项目中经常可能会有一些定时调度的需求，就会需要用到Quartz或者是Scheduled Tasks，Scheduled Tasks相比于Quartz，更为轻量，当然功能上也没有Quartz全面，对于需求不复杂的定时调度，用Schduled Tasks反而会更方便，今天就讲一下Spring Boot中使用Scheduled Tasks。关于Spring Boot中怎么去使用定时任务，官网这里有给">
+<meta name="twitter:description" content="Spring Boot中使用定时调度Scheduled Tasks">
 
 
 
@@ -265,7 +265,7 @@
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
     <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
+    <meta itemprop="image" content="/felixu.jpg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -295,7 +295,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-twitch"></i>
             </span>
-            <span class="post-meta-author">Felixu</span>
+            <span class="post-meta-author">felixu</span>
             <span class="post-meta-divider">|</span>
          
 
@@ -317,6 +317,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring-Boot/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring Boot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -340,6 +362,10 @@
 
           
 
+          
+              <div class="post-description">
+                  Spring Boot中使用定时调度Scheduled Tasks
+              </div>
           
 
         </div>
@@ -478,7 +504,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/felixu.jpg"
                alt="felixu" />
           <p class="site-author-name" itemprop="name">felixu</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -495,11 +521,18 @@
           
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -521,6 +554,24 @@
                 </a>
               </span>
             
+              <span class="links-of-author-item">
+                <a href="https://www.baidu.com" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="xufei_0320@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
           
         </div>
 
@@ -528,6 +579,20 @@
         
 
         
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
         

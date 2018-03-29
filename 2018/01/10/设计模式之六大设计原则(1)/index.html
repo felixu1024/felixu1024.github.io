@@ -66,6 +66,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="design pattern," />
 
 
 
@@ -73,24 +74,26 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="/felixu.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="layout: posttitle: 设计模式之六大设计原则(1)subtitle: single responsibility principle(SRP)date: 2018-01-10author: Felixuheader-img: img/post-bg-debug.pngcatalog: truetags:  - design pattern   设计模式（Design patter">
+<meta name="description" content="single responsibility principle(SRP)">
+<meta name="keywords" content="design pattern">
 <meta property="og:type" content="article">
-<meta property="og:title" content="felixu&#39;s blog">
+<meta property="og:title" content="设计模式之六大设计原则(1)">
 <meta property="og:url" content="http://blog.felixu.top/2018/01/10/设计模式之六大设计原则(1)/index.html">
 <meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="layout: posttitle: 设计模式之六大设计原则(1)subtitle: single responsibility principle(SRP)date: 2018-01-10author: Felixuheader-img: img/post-bg-debug.pngcatalog: truetags:  - design pattern   设计模式（Design patter">
+<meta property="og:description" content="single responsibility principle(SRP)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-06T09:56:51.219Z">
+<meta property="og:updated_time" content="2018-03-29T06:23:09.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="felixu&#39;s blog">
-<meta name="twitter:description" content="layout: posttitle: 设计模式之六大设计原则(1)subtitle: single responsibility principle(SRP)date: 2018-01-10author: Felixuheader-img: img/post-bg-debug.pngcatalog: truetags:  - design pattern   设计模式（Design patter">
+<meta name="twitter:title" content="设计模式之六大设计原则(1)">
+<meta name="twitter:description" content="single responsibility principle(SRP)">
 
 
 
@@ -124,7 +127,7 @@
 
 
 
-  <title>  | felixu's blog </title>
+  <title> 设计模式之六大设计原则(1) | felixu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +265,7 @@
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
     <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
+    <meta itemprop="image" content="/felixu.jpg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -281,7 +284,7 @@
             
             
               
-                
+                设计模式之六大设计原则(1)
               
             
           </h1>
@@ -289,6 +292,12 @@
 
         <div class="post-meta">
         
+            <span class="post-meta-item-icon">
+              <i class="fa fa-twitch"></i>
+            </span>
+            <span class="post-meta-author">felixu</span>
+            <span class="post-meta-divider">|</span>
+         
 
           <span class="post-time">
             
@@ -308,6 +317,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/design-pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">design pattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -332,6 +363,10 @@
           
 
           
+              <div class="post-description">
+                  single responsibility principle(SRP)
+              </div>
+          
 
         </div>
       </header>
@@ -344,11 +379,7 @@
       
 
       
-        <hr>
-<p>layout: post<br>title: 设计模式之六大设计原则(1)<br>subtitle: single responsibility principle(SRP)<br>date: 2018-01-10<br>author: Felixu<br>header-img: img/post-bg-debug.png<br>catalog: true<br>tags: </p>
-<pre><code>- design pattern
-</code></pre><hr>
-<blockquote>
+        <blockquote>
 <p>设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。只有精通了设计模式，才敢说真正理解了软件工程。可以说，设计模式是每一个架构师所必备的技能之一。想要精通设计模式，必须要先搞清楚设计模式的六大原则。</p>
 </blockquote>
 <p>所以开始设计模式之前，先来谈谈设计模式的六大设计原则，第一个便是单一职责原则<code>(Single Responsibility Principle)</code>了。</p>
@@ -390,13 +421,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/design-pattern/" rel="tag"><i class="fa fa-tag"></i> design pattern</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/04/JVM内存模型/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/01/04/JVM内存模型/" rel="next" title="JVM内存模型">
+                <i class="fa fa-chevron-left"></i> JVM内存模型
               </a>
             
           </div>
@@ -405,8 +442,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/16/23种设计模式之单例模式/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/16/23种设计模式之单例模式/" rel="prev" title="23种设计模式之单例模式">
+                23种设计模式之单例模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -469,7 +506,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/felixu.jpg"
                alt="felixu" />
           <p class="site-author-name" itemprop="name">felixu</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -486,11 +523,18 @@
           
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -512,6 +556,24 @@
                 </a>
               </span>
             
+              <span class="links-of-author-item">
+                <a href="https://www.baidu.com" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="xufei_0320@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
           
         </div>
 
@@ -519,6 +581,20 @@
         
 
         
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
         

@@ -66,6 +66,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="design pattern," />
 
 
 
@@ -73,27 +74,29 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+  <link rel="shortcut icon" type="image/x-icon" href="/felixu.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="layout: posttitle: 23种设计模式之原型模式subtitle: prototype patterndate: 2018-03-09author: Felixuheader-img: img/post-bg-debug.pngcatalog: truetags:  - design pattern  定义 Specify the kinds of objects to creat">
+<meta name="description" content="prototype pattern">
+<meta name="keywords" content="design pattern">
 <meta property="og:type" content="article">
-<meta property="og:title" content="felixu&#39;s blog">
+<meta property="og:title" content="23种设计模式之原型模式">
 <meta property="og:url" content="http://blog.felixu.top/2018/03/09/23种设计模式之原型模式/index.html">
 <meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="layout: posttitle: 23种设计模式之原型模式subtitle: prototype patterndate: 2018-03-09author: Felixuheader-img: img/post-bg-debug.pngcatalog: truetags:  - design pattern  定义 Specify the kinds of objects to creat">
+<meta property="og:description" content="prototype pattern">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/2018-03-13/%E5%BC%95%E7%94%A8%E5%A4%8D%E5%88%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%A4%8D%E5%88%B6.jpeg">
 <meta property="og:image" content="http://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/2018-03-13/%E6%B5%85%E6%8B%B7%E8%B4%9D.jpeg">
 <meta property="og:image" content="http://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/2018-03-13/%E6%B7%B1%E6%8B%B7%E8%B4%9D.jpeg">
-<meta property="og:updated_time" content="2018-03-13T15:17:13.896Z">
+<meta property="og:updated_time" content="2018-03-29T06:26:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="felixu&#39;s blog">
-<meta name="twitter:description" content="layout: posttitle: 23种设计模式之原型模式subtitle: prototype patterndate: 2018-03-09author: Felixuheader-img: img/post-bg-debug.pngcatalog: truetags:  - design pattern  定义 Specify the kinds of objects to creat">
+<meta name="twitter:title" content="23种设计模式之原型模式">
+<meta name="twitter:description" content="prototype pattern">
 <meta name="twitter:image" content="http://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/2018-03-13/%E5%BC%95%E7%94%A8%E5%A4%8D%E5%88%B6%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%A4%8D%E5%88%B6.jpeg">
 
 
@@ -128,7 +131,7 @@
 
 
 
-  <title>  | felixu's blog </title>
+  <title> 23种设计模式之原型模式 | felixu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +269,7 @@
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
     <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
+    <meta itemprop="image" content="/felixu.jpg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -285,7 +288,7 @@
             
             
               
-                
+                23种设计模式之原型模式
               
             
           </h1>
@@ -293,6 +296,12 @@
 
         <div class="post-meta">
         
+            <span class="post-meta-item-icon">
+              <i class="fa fa-twitch"></i>
+            </span>
+            <span class="post-meta-author">felixu</span>
+            <span class="post-meta-divider">|</span>
+         
 
           <span class="post-time">
             
@@ -312,6 +321,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/design-pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">design pattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -336,6 +367,10 @@
           
 
           
+              <div class="post-description">
+                  prototype pattern
+              </div>
+          
 
         </div>
       </header>
@@ -348,11 +383,7 @@
       
 
       
-        <hr>
-<p>layout: post<br>title: 23种设计模式之原型模式<br>subtitle: prototype pattern<br>date: 2018-03-09<br>author: Felixu<br>header-img: img/post-bg-debug.png<br>catalog: true<br>tags: </p>
-<pre><code>- design pattern
-</code></pre><hr>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
 <p>Specify the kinds of objects to create using a prototypical instance,and create new objects by copying this prototype.用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。       </p>
 </blockquote>
 <h2 id="复制对象和复制引用"><a href="#复制对象和复制引用" class="headerlink" title="复制对象和复制引用"></a>复制对象和复制引用</h2><p>对象是存储在堆中的，而引用是存储在栈中的，引用通过地址找到真实的对象<br>复制引用只是将对象的地址赋值给一个新的变量，完成引用的复制<br>而复制对象是需要在堆中重新分配一块与目标对象一模一样大小的空间，将其地址赋值给新的变量<br>举例说明：<br>先创建一个<code>Person</code>类       </p>
@@ -554,13 +585,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/design-pattern/" rel="tag"><i class="fa fa-tag"></i> design pattern</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/02/23种设计模式之代理模式/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/03/02/23种设计模式之代理模式/" rel="next" title="23种设计模式之代理模式">
+                <i class="fa fa-chevron-left"></i> 23种设计模式之代理模式
               </a>
             
           </div>
@@ -629,7 +666,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/felixu.jpg"
                alt="felixu" />
           <p class="site-author-name" itemprop="name">felixu</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -646,11 +683,18 @@
           
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -672,6 +716,24 @@
                 </a>
               </span>
             
+              <span class="links-of-author-item">
+                <a href="https://www.baidu.com" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="xufei_0320@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
           
         </div>
 
@@ -679,6 +741,20 @@
         
 
         
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
         
