@@ -1,0 +1,813 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/felixu.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="近几年的项目中，服务化呵微服务化渐渐成为中大型分布式系统架构的主流方式，而RPC在其中扮演着关键的作用。在平时的日常开发中我们都在隐式或显式的使用RPC，一些刚入行的程序员会感觉RPC比较神秘，而一些有多年使用RPC经验的程序员虽然使用经验丰富，但有些对其原理也不甚了解。缺乏对原理层的理解，往往也会造成开发中的一些误用。那么什么是RPC呢？ 定义RPC的全称是Remote Procedure Ca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="felixu&#39;s blog">
+<meta property="og:url" content="http://blog.felixu.top/2018/06/04/分布式-RPC的概念模型及实现解析/index.html">
+<meta property="og:site_name" content="felixu&#39;s blog">
+<meta property="og:description" content="近几年的项目中，服务化呵微服务化渐渐成为中大型分布式系统架构的主流方式，而RPC在其中扮演着关键的作用。在平时的日常开发中我们都在隐式或显式的使用RPC，一些刚入行的程序员会感觉RPC比较神秘，而一些有多年使用RPC经验的程序员虽然使用经验丰富，但有些对其原理也不甚了解。缺乏对原理层的理解，往往也会造成开发中的一些误用。那么什么是RPC呢？ 定义RPC的全称是Remote Procedure Ca">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-09T05:29:46.080Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="felixu&#39;s blog">
+<meta name="twitter:description" content="近几年的项目中，服务化呵微服务化渐渐成为中大型分布式系统架构的主流方式，而RPC在其中扮演着关键的作用。在平时的日常开发中我们都在隐式或显式的使用RPC，一些刚入行的程序员会感觉RPC比较神秘，而一些有多年使用RPC经验的程序员虽然使用经验丰富，但有些对其原理也不甚了解。缺乏对原理层的理解，往往也会造成开发中的一些误用。那么什么是RPC呢？ 定义RPC的全称是Remote Procedure Ca">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.felixu.top/2018/06/04/分布式-RPC的概念模型及实现解析/"/>
+
+
+
+
+
+  <title>  | felixu's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/Mr-Felixu" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">felixu's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></br><h6 style="color:red">只做个人学习记录，水平有限，如有错误，还望各位大佬可以指教一下，谢谢！！！</h6></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://blog.felixu.top/2018/06/04/分布式-RPC的概念模型及实现解析/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="felixu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/felixu.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="felixu's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="felixu's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+        
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T17:06:46+08:00">
+                2018-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2018/06/04/分布式-RPC的概念模型及实现解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>近几年的项目中，服务化呵微服务化渐渐成为中大型分布式系统架构的主流方式，而RPC在其中扮演着关键的作用。在平时的日常开发中我们都在隐式或显式的使用RPC，一些刚入行的程序员会感觉RPC比较神秘，而一些有多年使用RPC经验的程序员虽然使用经验丰富，但有些对其原理也不甚了解。缺乏对原理层的理解，往往也会造成开发中的一些误用。那么什么是RPC呢？</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>RPC的全称是Remote Procedure Call是一种进程间通信方式。它允许程序调用另一个地址空间(通常是共享网络的另一台机器上)的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。</p>
+<h1 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h1><p>RPC这个概念术语在上世纪80年代由Bruce Jay Nelson提出。这里我们追溯下当初开发RPC的原动机是什么？在Nelson的论文Implementing Remote Procedure Calls中也提到了几点：</p>
+<blockquote>
+<p>简单：RPC概念的语意十分清晰和简单，这样建立分布式计算就更容易。<br>高效：过程调用看起来十分简单而高效<br>通用：在单机计算中【过程】往往是不同算法部分间最重要的通信机制</p>
+</blockquote>
+<p>通俗一点说就是，一般程序员对于本地的过程调用很熟悉，那么我们把RPC做成和本地调用完全类似，那么就更容易被接受，使用起来毫无障碍。Nelson的论文发表于30年前，其观点今天看起来确实高瞻远瞩，今天我们使用的RPC框架基本就是按这个目标来实现的。</p>
+<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>RPC的主要目标是让分布式计算(应用)更容易，在提供强大的远程调用能力时不损失本地调用的语意简洁性。为实现该目标，RPC框架需提供一种透明调用机制让使用者不必显式的区分本地调用和远程调用。</p>
+<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>RPC调用分为以下两种：</p>
+<ol>
+<li>同步调用：客户端等待调用执行完并获取到执行结果。</li>
+<li>异步调用：客户端调用后不用等待执行结果返回，但依然可以通过回调通知等方式获取返回结果。若客户端不关心调用返回结果，则变成单向异步调用，单向调用不用返回结果。      </li>
+</ol>
+<p>异步和同步的区别在于是否等待服务端执行完成并返回结果。</p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p>下面我们对RPC的结构从理论模型到真实组件一步步抽丝剥茧。</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>最早在Nelson的论文中指出实现RPC的程序包括5个理论模型部分：</p>
+<blockquote>
+<p>User<br>User-stub<br>RPCRuntime<br>Server-stub<br>Server</p>
+</blockquote>
+<p>这5个部分的关系如下图所示：<br><img src="" alt="图片"><br>这里User就是Client端。当User想发起一个远程调用时，它实际是通过本地调用User-stub。User-stub负责将调用的接口、方法和参数通过约定的协议规范进行编码并通过本地的RPCRuntime实例传输到远端的实例。远端的RPCRuntime实例收到请求后交给Server-stub进行解码后发起向本地端Server的调用，调用结果再返回给User端。</p>
+<h2 id="拆解"><a href="#拆解" class="headerlink" title="拆解"></a>拆解</h2><p>上面给出了一个比较粗粒度的RPC实现理论模型概念结构，这里我们进一步细化它应该由哪些组件构成，如下图所示。<br><img src="" alt="图片"><br>RPC服务端通过<code>RpcServer</code>去导出(export)远程接口方法，而客户端通过<code>RpcClient</code>去导入(import)远程接口方法。客户端像调用本地方法一样去调用远程接口方法，RPC框架提供接口的代理实现，实际的调用将委托给代理<code>RpcProxy</code>。代理封装调用信息并将调用转交给<code>RpcInvoker</code>去实际执行。在客户端的<code>RpcInvoker</code>通过连接器<code>RpcConnector</code>去维持与服务端的通道<code>RpcChannel</code>，并使用<code>RpcProtocol</code>执行协议编码(encode)并将编码后的请求消息通过通道发送给服务端。<br>RPC服务端接收器<code>RpcAcceptor</code>接收客户端的调用请求，同样使用<code>RpcProtocol</code>执行协议解码(decode)。解码后的调用信息传递给<code>RpcProcessor</code>去控制处理调用过程，最后再委托调用给<code>RpcInvoker</code>去实际执行并返回调用结果。</p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>上面我们进一步拆解了RPC实现结构的各个组成部分，下面我们详细说明下每个组件的职责划分。</p>
+<ol>
+<li><strong>RpcServer</strong><br>负责导出(export)远程接口</li>
+<li><strong>RpcClient</strong><br>负责导入(import)远程接口的代理实现</li>
+<li><strong>RpcProxy</strong><br>远程接口的代理实现</li>
+<li><strong>RpcInvocker</strong><br>客户端：负责编码调用信息和发送调用请求到服务端并等待调用结果返回<br>服务端：负责调用服务端接口的具体实现并返回调用结果</li>
+<li><strong>RpcProtocol</strong><br>负责协议编/解码</li>
+<li><strong>RpcConnector</strong><br>负责维持客户端和服务端的连接通道和发送数据到服务端</li>
+<li><strong>RpcAcceptor</strong><br>负责接收客户端请求并返回请求结果</li>
+<li><strong>RpcProcessor</strong><br>负责在服务端控制调用过程，包括管理调用线程池、超时时间等</li>
+<li><strong>RpcChannel</strong><br>数据传输通道<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2>Nelson论文中给出的这个概念模型也成为后来大家参考的标准范本。十多年前，我最早接触分布式计算时使用的CORBAR来定义远程接口，并将其映射到特定的平台语言中。        </li>
+</ol>
+<p>后来大部分的跨语言平台RPC基本都采用了此类方式，比如我们熟悉的Web Service(SOAP)，近年开源的Thrift等。他们大部分都通过IDL定义，并提供工具来映射生成不同语言平台的User-stub和Server-stub，并通过框架库来提供RPCRuntime的支持。不过貌似每个不同的RPC框架都定义来各自不同的IDL格式，导致程序员的学习成本进一步上升。而Web Service尝试建立业界标准，无奈标准规范复杂而低效，否则Thrift等更高效的RPC框架就没必要出现了。      </p>
+<p>在上文进一步拆解了组件并划分了职责之后，下面就以在Java平台实现该RPC框架概念模型为例，详细分析下实现中需要考虑的因素。</p>
+<h2 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h2><p>导出是指暴露远程接口的意思，只有导出的接口可以远程调用，而未导出的接口则不能。在Java中导出接口的代码片段可能如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DemoService demo = <span class="keyword">new</span> ...;</span><br><span class="line">RpcServer server = <span class="keyword">new</span> ...;</span><br><span class="line">server.export(DemoService.class, demo, options);</span><br></pre></td></tr></table></figure></p>
+<p>我们可以导出整个接口，也可以更细粒度的一点只导出接口中的某些方法，如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只导出DemoService中签名为hi(String s)的方法</span></span><br><span class="line">server.export(DemoService.class, demo, <span class="string">"hi"</span>, <span class="keyword">new</span> Class&lt;?&gt;[] &#123;String.class&#125;, options);</span><br></pre></td></tr></table></figure></p>
+<p>Java中还有一种比较特殊的调用就是多态，也就是一个接口可能有多个实现，那么远程调用时到底调用哪个？这个本地调用的语意是通过JVM提供的引用多态性隐湿实现的，那么对于RPC来说跨进程的调用就没法隐式实现了。如果前面DemoService接口有2个实现，那么在导出接口时就需要特殊标记不同的实现，如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DemoService demo = <span class="keyword">new</span> ...;</span><br><span class="line">DemoService demo2 = <span class="keyword">new</span> ...;</span><br><span class="line">RpcService server = <span class="keyword">new</span> ...;</span><br><span class="line">server.export(DemoService.class, demo, options);</span><br><span class="line">server.export(<span class="string">"demo2"</span>, DemoService.class, demo2, options);</span><br></pre></td></tr></table></figure></p>
+<p>上面demo2是另一个实现，我们标记为demo2来导出，那么远程调用时也需要传递该标记才能调用到正确的实现类，这样就解决了多态调用的语意。</p>
+<h2 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h2><p>导入相对于导出而言，客户端代码为了能够发起调用必须要获得远程接口都方法或过程定义。目前，大部分跨语言平台RPC框架采用IDL定义通过code generator去生成User-stub代码，这种方式下实际导入的过程就是通过代码生成器在编译期完成的。我所使用过的一些跨语言平台RPC框架如CORBAR、WebService、ICE、Thrift均是此类方式。      </p>
+<p>代码生成的方式对跨语言平台RPC框架而言是必然的选择，而对于同一语言平台的RPC则可以通过共享接口定义来实现。<br>在Java中导入接口的代码片段可能如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RpcClient client = <span class="keyword">new</span> ...;</span><br><span class="line">DemoService demo = client.refer(DemoService.class);</span><br><span class="line">demo.hi(<span class="string">"how are you?"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>在Java中<code>import</code>是关键字，所以代码片段中我们用refer来表达导入接口的意思。这里的导入方式本质也是一种代码生成技术，只不过是在运行时生成，比静态编译期的代码看起来更简洁些。Java里至少提供了两种技术来提供动态代码生成，一种是JDK动态代理，另外一种是字节码生成。动态代理相比字节码生成使用起来更方便，但动态代理方式在性能上是要逊色于直接但字节码生成的，而字节码生成在代码可读性上要差很多。两者权衡起来，作为一种底层通用框架，个人更倾向于选择性能优先。</p>
+<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><p>协议指RPC调用在网络传输中约定的数据封装方式，包括三个部分：<strong>编解码</strong>、<strong>消息头</strong>和<strong>消息体</strong>。</p>
+<h3 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h3><p>客户端代理在发起调用前需要对调用信息进行编码，这就要考虑需要编码些什么信息并以什么格式传输到服务端才能让服务端完成调用。出于效率考虑，编码的信息越少越好(传输数据少)，编码的规则越简单越好(执行效率高)。       </p>
+<p>我们先看下需要编码些什么信息：      </p>
+<p>调用编码</p>
+<ol>
+<li>接口方法<br>包括接口名、方法名</li>
+<li>方法参数<br>包括参数类型、参数值</li>
+<li>调用属性<br>包括调用属性信息，例如调用附加的隐式参数、调用超时时间等</li>
+</ol>
+<p>返回编码</p>
+<ol>
+<li>返回结果<br>接口方法中定义等返回值</li>
+<li>返回码<br>异常返回码</li>
+<li>返回异常信息<br>调用异常信息</li>
+</ol>
+<h3 id="消息头"><a href="#消息头" class="headerlink" title="消息头"></a>消息头</h3><p>除了以上这些必须等调用信息，我们可能还需要一些元信息以方便程序编解码以及未来可能等扩展。这样我们的编码消息里面就分成了两部分，一部分是元信息，另一部分是调用等必要信息。如果设计一种RPC协议消息的话，元信息我们把它放在协议消息头中，而必要信息放在协议消息体中。下面给出一种概念上等RPC协议消息头设计格式：<br><img src="" alt="图片"></p>
+<ul>
+<li><code>magic</code><br>协议魔数，为解码设计</li>
+<li><code>header size</code><br>协议长度，为扩展设计</li>
+<li><code>version</code><br>协议版本，为兼容设计</li>
+<li><code>st</code><br>消息体序列化类型</li>
+<li><code>hb</code><br>心跳信息标记，为长链接传输层心跳设计</li>
+<li><code>ow</code><br>单向消息标记</li>
+<li><code>rp</code><br>响应消息标记，不置位默认是请求消息</li>
+<li><code>status code</code><br>响应消息状态码</li>
+<li><code>reserved</code><br>为字节对齐保留</li>
+<li><code>message id</code><br>消息id</li>
+<li><code>body size</code><br>消息体长度</li>
+</ul>
+<h3 id="消息体"><a href="#消息体" class="headerlink" title="消息体"></a>消息体</h3><p>消息体常采用序列化编码，常见有以下序列化方式：</p>
+<ul>
+<li>xml<br>如webservice SOAP</li>
+<li>json<br>如JSON-RPC</li>
+<li>biany<br>如thrife、hession、kryo等</li>
+</ul>
+<p>格式确定后编解码就简单了，由于头长度一定所以我们比较关心的就是消息体的序列化方式。序列化我们关心三个方面：</p>
+<ol>
+<li>效率：序列化和反序列化的效率，越快越好。</li>
+<li>长度：序列化后的字节长度，越小越好。</li>
+<li>兼容：序列化和反序列化的兼容性，接口参数对象若增加了字段，是否兼容。</li>
+</ol>
+<p>上面这三点有时是鱼与熊掌不可兼得，这里面涉及到具体的序列化库实现细节，就不在本文进一步展开分析了。</p>
+<h2 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h2><p>协议编码之后，自然就是需要将编码后的RPC请求消息传输到服务端，服务方执行后返回结果消息或确认消息给客户端。RPC的应用场景实质是一种可靠的请求应答消息流，这点和HTTP类似。因此选择长连接的TCP协议会更高效，与HTTP不同的是在协议层面我们定义了每个消息的唯一id，因此可以更容易的复用连接。      </p>
+<p>既然使用长连接，那么第一个问题是到底客户端和服务端之间需要多少根连接？实际上单连接和多连接在使用上没有区别，对于数据传输量较小的应用类型，单连接基本足够。单连接和多连接最大的区别在于，每根连接都有自己私有的发送和接收缓冲区，因此大数据量传输时分散在不同的连接缓冲区会得到更好的吞吐效率。     </p>
+<p>所以，如果你的数据传输量不足以让单连接的缓冲区一直处于饱和状态的话，那么使用多连接并不会产生任何明显的提升，反而会增加连接管理的开销。     </p>
+<p>连接是由客户端发起建立并维持的，如果客户端和服务端之间是直连的，那么连接一般不会中断(当然物理链路故障除外)。如果客户端和服务端连接经过一些负载中转设备，有可能连接一段时间不活跃时会被这些中间设备中断。为了保持连接有必要定时为每个连接发送心跳数据以维持连接不中断。心跳消息是RPC框架库使用的内部消息，在前文协议头结构中也有一个专门的心跳位，就是用来标记心跳消息的，它对业务应用透明。  </p>
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>客户端stub所做的事情仅仅是编码消息并传输给服务方，而真正调用过程发生服务端。服务端stub从前文的结构拆解中我们细分了<code>RpcProcessor</code>和<code>RpcInvoker</code>两个组件，一个负责控制调用过程，一个负责真正调用。这里我们还是以Java中实现这两个组件为例分析下它们到底需要做什么？       </p>
+<p>Java中实现代码的动态接口调用目前一般通过反射调用。除了原生JDK自带的反射，一些第三方库也提供了性能更优的反射调用，因此<code>RpcInvoker</code>就是封装了反射调用的实现细节。       </p>
+<p>调用过程的控制需要考虑哪些因素，<code>RpcProcessor</code>需要提供什么样地调用控制服务呢？下面提出几点以启发思考：</p>
+<ol>
+<li>效率提升<br>每个请求应该尽快被执行，因此我们不能每请求来再创建线程去执行，需要提供线程池服务。</li>
+<li>资源隔离<br>当我们导出多个远程接口时，如何避免单一接口调用占据所有线程资源，而引发其他接口执行阻塞。</li>
+<li>超时控制<br>当某个接口执行缓慢，而客户端已经超时放弃等待后，服务端的线程继续执行此时显得毫无意义。<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2>无论RPC怎样努力把远程调用伪装的像本地调用，但他们依然有很大的不同点，而且有一些异常情况是在本地调用时绝对不会碰到的。在说异常处理之前，我们先比较下本地调用和RPC调用的一些差异：</li>
+<li>本地调用一定会执行，而远程调用则不一定，调用消息可能因为网络原因并未发送到服务方。</li>
+<li>本地调用只会抛出接口声明的异常，而远程调用还会跑出RPC框架运行时的其他异常。</li>
+<li>本地调用和远程调用的性能可能差距很大，这取决于RPC固有消耗所占的比重。     </li>
+</ol>
+<p>正是这些区别决定了使用RPC时需要更多考量。当调用远程接口抛出异常时，异常可能是一个业务异常，也可能是RPC框架抛出当运行时异常(如：网络中断等)。业务异常表明服务方已经执行了调用，可能因为某些原因导致未能正常执行，而RPC运行时异常则有可能服务方根本没有执行，对调用方而言的异常处理策略自然需要区分。     </p>
+<p>由于RPC固有的消耗相对本地调用高出几个数量级，本地调用的固有消耗是纳米级，而RPC的固有消耗是在毫秒级。那么对于过于轻量的计算任务就并不适合导出远程接口由独立的进程提供服务，只有花在计算任务上的时间远远高于RPC的固有消耗才值得导出为远程接口提供服务。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>至此我们提出了一个RPC实现的概念框架，并详细分析了需要考虑的一些实现细节。无论RPC的概念是如何优雅，但是“草丛中依然有几条蛇隐藏着”，只有深刻理解了RPC的本质，才能更好地应用。    </p>
+<p>转自<a href="https://blog.csdn.net/mindfloating/article/details/51477557" target="_blank" rel="noopener">大佬的RPC的概念模型与实现解析</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/04/分布式-分布式消息通信框架RMI原理/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/04/分布式-分布式协调服务-初识ZooKeeper/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/felixu.jpg"
+               alt="felixu" />
+          <p class="site-author-name" itemprop="name">felixu</p>
+          <p class="site-description motion-element" itemprop="description">我很想飞，多远都不会累！！！</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://www.baidu.com" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.baidu.com" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="xufei_0320@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#起源"><span class="nav-number">2.</span> <span class="nav-text">起源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目标"><span class="nav-number">3.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类"><span class="nav-number">4.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构"><span class="nav-number">5.</span> <span class="nav-text">结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型"><span class="nav-number">5.1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拆解"><span class="nav-number">5.2.</span> <span class="nav-text">拆解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件"><span class="nav-number">5.3.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">5.4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导出"><span class="nav-number">5.5.</span> <span class="nav-text">导出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入"><span class="nav-number">5.6.</span> <span class="nav-text">导入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议"><span class="nav-number">5.7.</span> <span class="nav-text">协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编解码"><span class="nav-number">5.7.1.</span> <span class="nav-text">编解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息头"><span class="nav-number">5.7.2.</span> <span class="nav-text">消息头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息体"><span class="nav-number">5.7.3.</span> <span class="nav-text">消息体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输"><span class="nav-number">5.8.</span> <span class="nav-text">传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行"><span class="nav-number">5.9.</span> <span class="nav-text">执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">5.10.</span> <span class="nav-text">异常</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="text-align: center">
+  <span>Copyright </span>
+  
+  &copy; 
+  <span class="author" itemprop="copyrightHolder">felixu </span>
+  <span itemprop="copyrightYear">2018</span>
+  </br>
+  <span>备案号:<a href="http://www.miitbeian.gov.cn/">粤ICP备16122004-1号</a></span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "919edcac58da40668557c8f024fd3f16",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
