@@ -1143,6 +1143,10 @@ pre .javascript .function {
 .v .vwrap .vcontrol .col-20 a {
   display: none;
 }
+.v .power,
+.v .power a {
+  display: none;
+}
 .posts-expand {
   padding-top: 40px;
 }
@@ -1683,7 +1687,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #086953;
+  background: #6fbefb;
 }
 .links-of-blogroll {
   font-size: 13px;
