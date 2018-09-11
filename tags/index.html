@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="felixu&#39;s blog">
 <meta property="og:description" content="我很想飞，多远都不会累！！！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-29T04:34:39.000Z">
+<meta property="og:updated_time" content="2018-09-10T11:16:00.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tags">
 <meta name="twitter:description" content="我很想飞，多远都不会累！！！">
@@ -147,6 +147,16 @@
   
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c25e27a133f11c09b138e9743b51da9b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -275,10 +285,10 @@
     
       <div class="tag-cloud">
         <div class="tag-cloud-title">
-            目前共计 3 个标签
+            目前共计 5 个标签
         </div>
         <div class="tag-cloud-tags">
-          <a href="/tags/Activiti/" style="font-size: 12px; color: #ccc">Activiti</a> <a href="/tags/Design-Pattern/" style="font-size: 30px; color: #111">Design Pattern</a> <a href="/tags/Spring-Boot/" style="font-size: 12px; color: #ccc">Spring Boot</a>
+          <a href="/tags/Activiti/" style="font-size: 18px; color: #8e8e8e">Activiti</a> <a href="/tags/Design-Pattern/" style="font-size: 30px; color: #111">Design Pattern</a> <a href="/tags/Java8/" style="font-size: 12px; color: #ccc">Java8</a> <a href="/tags/MyBatis/" style="font-size: 24px; color: #4f4f4f">MyBatis</a> <a href="/tags/Spring-Boot/" style="font-size: 18px; color: #8e8e8e">Spring Boot</a>
         </div>
       </div>
     
@@ -290,12 +300,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-    
-  </div>
-
 
         </div>
         
@@ -329,7 +333,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -338,7 +342,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -347,7 +351,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -538,6 +542,29 @@
   
 
 
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'E2JGmp4KuG1EPkynH4i8ywtU-gzGzoHsz',
+        appKey: 'RdEmEsul2CMMMUQWwFFo0dNL',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
   

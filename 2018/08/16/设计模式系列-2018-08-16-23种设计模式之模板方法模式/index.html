@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Spring Boot,Activiti," />
+  <meta name="keywords" content="Design Pattern," />
 
 
 
@@ -91,21 +91,18 @@
 
 
 
-<meta name="description" content="Spring Boot集成Activiti工作流">
-<meta name="keywords" content="Spring Boot,Activiti">
+<meta name="description" content="Template Method Pattern">
+<meta name="keywords" content="Design Pattern">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring Boot集成Activiti工作流">
-<meta property="og:url" content="http://blog.felixu.top/2017/09/27/工作流-2017-09-27-Spring-Boot集成Activiti工作流/index.html">
+<meta property="og:title" content="23种设计模式之模板方法模式">
+<meta property="og:url" content="http://blog.felixu.top/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/index.html">
 <meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="Spring Boot集成Activiti工作流">
+<meta property="og:description" content="Template Method Pattern">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E5%9F%BA%E7%A1%80%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg">
-<meta property="og:image" content="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8.jpg">
-<meta property="og:updated_time" content="2018-05-25T07:56:29.543Z">
+<meta property="og:updated_time" content="2018-08-16T03:01:59.958Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring Boot集成Activiti工作流">
-<meta name="twitter:description" content="Spring Boot集成Activiti工作流">
-<meta name="twitter:image" content="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E5%9F%BA%E7%A1%80%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg">
+<meta name="twitter:title" content="23种设计模式之模板方法模式">
+<meta name="twitter:description" content="Template Method Pattern">
 
 
 
@@ -133,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.felixu.top/2017/09/27/工作流-2017-09-27-Spring-Boot集成Activiti工作流/"/>
+  <link rel="canonical" href="http://blog.felixu.top/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/"/>
 
 
 
 
 
-  <title> Spring Boot集成Activiti工作流 | felixu's blog </title>
+  <title> 23种设计模式之模板方法模式 | felixu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -147,6 +144,16 @@
   
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c25e27a133f11c09b138e9743b51da9b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -272,7 +279,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://blog.felixu.top/2017/09/27/工作流-2017-09-27-Spring-Boot集成Activiti工作流/">
+  <link itemprop="mainEntityOfPage" href="http://blog.felixu.top/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
@@ -296,7 +303,7 @@
             
             
               
-                Spring Boot集成Activiti工作流
+                23种设计模式之模板方法模式
               
             
           </h1>
@@ -319,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-27T00:00:00+08:00">
-                2017-09-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-16T00:00:00+08:00">
+                2018-08-16
               </time>
             
 
@@ -342,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activiti/" itemprop="url" rel="index">
-                    <span itemprop="name">Activiti</span>
+                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Design Pattern</span>
                   </a>
                 </span>
 
@@ -360,10 +367,21 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/09/27/工作流-2017-09-27-Spring-Boot集成Activiti工作流/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                <a href="/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/" itemprop="commentCount"></span>
                 </a>
               </span>
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
             
           
 
@@ -376,7 +394,7 @@
 
           
               <div class="post-description">
-                  Spring Boot集成Activiti工作流
+                  Template Method Pattern
               </div>
           
 
@@ -391,27 +409,53 @@
       
 
       
-        <h2 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h2><ul>
-<li>使用IDE或者在<a href="http://start.spring.io上创建一个SpringBoot的基础项目，差不多是这样的目录结构" target="_blank" rel="noopener">http://start.spring.io上创建一个SpringBoot的基础项目，差不多是这样的目录结构</a><br><img src="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E5%9F%BA%E7%A1%80%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg" alt="目录结构"></li>
-</ul>
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><blockquote>
+<p>Define the skeleton of an algorithm in an operation,deferring some steps to subclasses.Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
+</blockquote>
+<p>这个定义，相对来说已经比较容易理解了，如果还不理解，我们可以这样来想。银行的账单就可以理解为一个模板，它将公共的内容都已经定义好了，只有少量的地方，需要根据客户的不同，来去填充，这其实就是模板方法模式的思想。在定义中说<strong>定义一个操作中的算法的框架</strong>其实就是抽象出算法的固定逻辑或者步骤，放到抽象类中，也就是账单中的固定内容，<strong>而将一些步骤延迟到子类中</strong>便是说将某些步骤由子类根据其需要去个性化实现，但是整体算法的结构是没有改变过的，而这些子类就是对应使用账单的不同客户。</p>
+<h1 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h1><p><img src="" alt=""></p>
+<p>图中参与者：</p>
 <ul>
-<li><p>引入相关依赖 </p>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- activiti --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activiti-spring-boot-starter-basic&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activiti-modeler&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activiti-diagram-rest&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- db --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.3.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.github.drtrang&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatisplus-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0.4&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-</li>
+<li><code>AbstractClass</code>：抽象模板，也就是定义中的算法框架。</li>
+<li><code>ConcreteClass</code>：具体模版，继承自抽象模版，根据需要具体实现抽象模板中的抽象方法。</li>
 </ul>
-<p>这样基本的东西也就差不多了</p>
-<h2 id="配置activiti"><a href="#配置activiti" class="headerlink" title="配置activiti"></a>配置activiti</h2><ul>
-<li><p>我这里将application.properties改成了yml格式(个人比较喜欢吧)，配置文件如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: spring-boot-activiti</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql://localhost:3306/activiti_learning?useUnicode=true&amp;characterEncoding=utf8</span><br><span class="line">    username: root</span><br><span class="line">    password: </span><br><span class="line">    druid:</span><br><span class="line">      validationQuery: SELECT 1</span><br><span class="line">      initialSize: 10</span><br><span class="line">      minIdle: 10</span><br><span class="line">      maxActive: 200</span><br><span class="line">      minEvictableIdleTimeMillis: 180000</span><br><span class="line">      testOnBorrow: false</span><br><span class="line">      testWhileIdle: true</span><br><span class="line">      removeAbandoned: true</span><br><span class="line">      removeAbandonedTimeout: 1800</span><br><span class="line">      logAbandoned: true</span><br><span class="line">      poolPreparedStatements: true</span><br><span class="line">      maxOpenPreparedStatements: 100</span><br><span class="line">  activiti:</span><br><span class="line">    check-process-definitions: false</span><br><span class="line">  mvc:</span><br><span class="line">    static-path-pattern: /**</span><br><span class="line">security:</span><br><span class="line">  basic:</span><br><span class="line">    enabled: false</span><br><span class="line">server:</span><br><span class="line">  port: 6000</span><br><span class="line">mybatis-plus:</span><br><span class="line">  mapper-locations: classpath:mapper/*Mapper.xml</span><br><span class="line">  typeAliasesPackage: com.xiaoantimes.taichi.entity</span><br><span class="line">  global-config:</span><br><span class="line">    id-type: 2</span><br><span class="line">    field-strategy: 2</span><br><span class="line">    auto-set-db-type: true</span><br><span class="line">    db-column-underline: true</span><br><span class="line">    refresh-mapper: true</span><br><span class="line">  configuration:</span><br><span class="line">    map-underscore-to-camel-case: true</span><br><span class="line">    cache-enabled: false</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置activiti的SpringProcessEngineConfiguration</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class ActivitiConfig &#123;</span><br><span class="line"></span><br><span class="line">  @Autowired</span><br><span class="line">  PlatformTransactionManager transactionManager;</span><br><span class="line"></span><br><span class="line">  @Autowired</span><br><span class="line">  DruidDataSource druidDataSource;</span><br><span class="line"></span><br><span class="line">  @Bean</span><br><span class="line">  public SpringProcessEngineConfiguration getProcessEngineConfiguration()&#123;</span><br><span class="line">      SpringProcessEngineConfiguration config =  </span><br><span class="line">						     new SpringProcessEngineConfiguration();</span><br><span class="line">      config.setDataSource(druidDataSource);</span><br><span class="line">      config.setTransactionManager(transactionManager);</span><br><span class="line">      config.setDatabaseType("mysql");</span><br><span class="line">      config.setDatabaseSchemaUpdate("true");</span><br><span class="line">      return config;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>到这里SpringBoot已经集成好了Activiti</p>
-</li>
+<p>在抽象模版中有两类方法：</p>
+<ul>
+<li><strong>基本方法</strong>：是由子类实现，并在模板方法中被调用的方法。</li>
+<li><strong>模板方法</strong>：算法框架中实现对基本方法的调度，完成固定的逻辑，一般为<code>final</code>。</li>
 </ul>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>我们启动我们到程序，这时候，你可以在数据库中看到生成了Activiti相关到表，说明我们集成成功了<br> <img src="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8.jpg" alt="activiti数据库表"></p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
-<li>看到有的人是在配置的时候，还配置了八大接口，其实不需要，用起步依赖，这些都不需要我们来做了，需要用的时候直接注入就行</li>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><p>抽象模板</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Bill</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> String <span class="title">getCustomerType</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">double</span> <span class="title">getMoney</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getBill</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> String.format(<span class="string">"尊贵的"</span> + getCustomerType() + <span class="string">"客户，您本月的账单金额为：%.2f元"</span>, getMoney());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>子类实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PlatinumCardBill</span> <span class="keyword">extends</span> <span class="title">Bill</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> String <span class="title">getCustomerType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"白金卡"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">double</span> <span class="title">getMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1000.34</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>子类实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlackCardBill</span> <span class="keyword">extends</span> <span class="title">Bill</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> String <span class="title">getCustomerType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"黑卡"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">double</span> <span class="title">getMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">234567.89</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用方</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> BlackCardBill().getBill());</span><br><span class="line">        System.out.println(<span class="keyword">new</span> PlatinumCardBill().getBill());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">尊贵的黑卡客户，您本月的账单金额为：234567.89元</span><br><span class="line">尊贵的白金卡客户，您本月的账单金额为：1000.34元</span><br></pre></td></tr></table></figure>
+<p>这里以最简单的例子描述了模板方法模式的过程</p>
+<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p><strong>优点</strong>：</p>
+<ol>
+<li>封装公共不变部分的代码，扩展可变部分，便于维护。</li>
+<li>由父类控制其算法的行为，由子类去具体实现。</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li>提高了代码的复杂度，阅读难度加大。因为正常是抽象类负责最抽象的部分，由子类实现调用父类的方法，完成调用逻辑。而模板方法模式则是相反，子类实现影响父类模板方法的调用结果。正是这种倒置行为导致了代码复杂度增加。</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li><strong>使用场景</strong><ol>
+<li>多个类的逻辑基本相同，可以抽取其公共部分，差异化部分由子类实现。</li>
+<li>模板方法模式中，模板方法部分是稳定不变的，基本方法是各子类的扩展点。</li>
+<li>重构代码时，可以将相同代码抽取到模板中，然后通过钩子方法(Hook Method)来控制其模板行为。</li>
+</ol>
+</li>
+<li><strong>特点</strong><ol>
+<li>模板方法通过扩展子类来增加其行为，是符合开闭原则的。</li>
+<li>基本方法应该用<code>protected</code>修饰，保证只有子类可以访问。</li>
+</ol>
+</li>
 </ul>
 
       
@@ -436,9 +480,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring-Boot/" rel="tag"><i class="fa fa-tag"></i> Spring Boot</a>
-          
-            <a href="/tags/Activiti/" rel="tag"><i class="fa fa-tag"></i> Activiti</a>
+            <a href="/tags/Design-Pattern/" rel="tag"><i class="fa fa-tag"></i> Design Pattern</a>
           
         </div>
       
@@ -447,14 +489,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/08/16/设计模式系列-2018-08-16-23种设计模式之适配器模式/" rel="next" title="23种设计模式之适配器模式">
+                <i class="fa fa-chevron-left"></i> 23种设计模式之适配器模式
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/29/工作流-2017-09-29-Spring-Boot集成官方的Modeler设计器/" rel="prev" title="Spring Boot集成官方的Modeler设计器">
-                Spring Boot集成官方的Modeler设计器 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/20/MyBatis系列-2018-08-20-MyBatis简单使用与配置简介/" rel="prev" title="MyBatis简介与部分配置">
+                MyBatis简介与部分配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -527,7 +573,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -536,7 +582,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -545,7 +591,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -623,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目搭建"><span class="nav-number">1.</span> <span class="nav-text">项目搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置activiti"><span class="nav-number">2.</span> <span class="nav-text">配置activiti</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">3.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构图"><span class="nav-number">2.</span> <span class="nav-text">结构图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优缺点"><span class="nav-number">4.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -756,6 +802,29 @@
   
 
 
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'E2JGmp4KuG1EPkynH4i8ywtU-gzGzoHsz',
+        appKey: 'RdEmEsul2CMMMUQWwFFo0dNL',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
   

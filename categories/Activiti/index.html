@@ -141,6 +141,16 @@
 
 
 
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c25e27a133f11c09b138e9743b51da9b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
 
 
 
@@ -271,7 +281,7 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2017/09/29/工作流-2017-09-29-Spring-Boot集成官方的Modeler设计器/" itemprop="url">
+            <a class="post-title-link" href="/2017/09/29/工作流系列-2017-09-29-Spring-Boot集成官方的Modeler设计器/" itemprop="url">
               
                 <span itemprop="name">Spring Boot集成官方的Modeler设计器</span>
               
@@ -299,7 +309,7 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2017/09/27/工作流-2017-09-27-Spring-Boot集成Activiti工作流/" itemprop="url">
+            <a class="post-title-link" href="/2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/" itemprop="url">
               
                 <span itemprop="name">Spring Boot集成Activiti工作流</span>
               
@@ -364,7 +374,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -373,7 +383,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -382,7 +392,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -573,6 +583,29 @@
   
 
 
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'E2JGmp4KuG1EPkynH4i8ywtU-gzGzoHsz',
+        appKey: 'RdEmEsul2CMMMUQWwFFo0dNL',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
   
