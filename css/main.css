@@ -668,9 +668,11 @@ pre .javascript .function {
 .page-post-detail .post-type-quote blockquote {
   position: relative;
   margin: 40px 0;
-  padding: 0;
+  padding: 5;
   border-left: none;
-  text-align: center;
+  text-align: left;
+  border: 1px solid #ddd;
+  border-radius: 0.5em;
 }
 .blockquote-center::before,
 .page-home .post-type-quote blockquote::before,
@@ -681,7 +683,6 @@ pre .javascript .function {
   position: absolute;
   content: ' ';
   display: block;
-  width: 100%;
   height: 24px;
   opacity: 0.2;
   background-repeat: no-repeat;
@@ -1802,7 +1803,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5505ff;
+  background: #db8b49;
 }
 .links-of-blogroll {
   font-size: 13px;

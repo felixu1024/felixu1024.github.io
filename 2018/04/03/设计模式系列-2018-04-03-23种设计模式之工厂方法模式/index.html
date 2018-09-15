@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Spring Boot,Activiti," />
+  <meta name="keywords" content="Design Pattern," />
 
 
 
@@ -100,21 +100,21 @@
 
 
 
-<meta name="description" content="Spring Boot集成Activiti工作流">
-<meta name="keywords" content="Spring Boot,Activiti">
+<meta name="description" content="factory method pattern">
+<meta name="keywords" content="Design Pattern">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring Boot集成Activiti工作流">
-<meta property="og:url" content="https://blogs.felixu.top/2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/index.html">
+<meta property="og:title" content="23种设计模式之工厂方法模式">
+<meta property="og:url" content="https://blogs.felixu.top/2018/04/03/设计模式系列-2018-04-03-23种设计模式之工厂方法模式/index.html">
 <meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="Spring Boot集成Activiti工作流">
+<meta property="og:description" content="factory method pattern">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E5%9F%BA%E7%A1%80%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg">
-<meta property="og:image" content="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8.jpg">
-<meta property="og:updated_time" content="2018-09-15T02:19:03.857Z">
+<meta property="og:image" content="http://oss-blog.felixu.top/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.jpg">
+<meta property="og:updated_time" content="2018-09-15T02:40:22.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring Boot集成Activiti工作流">
-<meta name="twitter:description" content="Spring Boot集成Activiti工作流">
-<meta name="twitter:image" content="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E5%9F%BA%E7%A1%80%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg">
+<meta name="twitter:title" content="23种设计模式之工厂方法模式">
+<meta name="twitter:description" content="factory method pattern">
+<meta name="twitter:image" content="http://oss-blog.felixu.top/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.jpg">
 
 
 
@@ -142,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="https://blogs.felixu.top/2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/"/>
+  <link rel="canonical" href="https://blogs.felixu.top/2018/04/03/设计模式系列-2018-04-03-23种设计模式之工厂方法模式/"/>
 
 
 
 
 
-  <title> Spring Boot集成Activiti工作流 | felixu's blog </title>
+  <title> 23种设计模式之工厂方法模式 | felixu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -423,7 +423,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/">
+  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2018/04/03/设计模式系列-2018-04-03-23种设计模式之工厂方法模式/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
@@ -447,7 +447,7 @@
             
             
               
-                Spring Boot集成Activiti工作流
+                23种设计模式之工厂方法模式
               
             
           </h1>
@@ -470,8 +470,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-27T00:00:00+08:00">
-                2017-09-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-03T00:00:00+08:00">
+                2018-04-03
               </time>
             
 
@@ -493,8 +493,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activiti/" itemprop="url" rel="index">
-                    <span itemprop="name">Activiti</span>
+                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Design Pattern</span>
                   </a>
                 </span>
 
@@ -511,8 +511,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/" itemprop="commentCount"></span>
+                <a href="/2018/04/03/设计模式系列-2018-04-03-23种设计模式之工厂方法模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/04/03/设计模式系列-2018-04-03-23种设计模式之工厂方法模式/" itemprop="commentCount"></span>
                 </a>
               </span>
             <!--noindex-->
@@ -521,8 +521,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/" itemprop="commentsCount"></span>
+                <a href="/2018/04/03/设计模式系列-2018-04-03-23种设计模式之工厂方法模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/04/03/设计模式系列-2018-04-03-23种设计模式之工厂方法模式/" itemprop="commentsCount"></span>
                 </a>
               </span> -->
               <!--/noindex-->
@@ -533,7 +533,7 @@
 
           
           
-             <span id="/2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/" class="leancloud_visitors" data-flag-title="Spring Boot集成Activiti工作流">
+             <span id="/2018/04/03/设计模式系列-2018-04-03-23种设计模式之工厂方法模式/" class="leancloud_visitors" data-flag-title="23种设计模式之工厂方法模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -549,10 +549,10 @@
 
           
               <div class="post-description">
-                  Spring Boot集成Activiti工作流
+                  factory method pattern
                   
                     </br>
-                    转载请注明出处：https://blogs.felixu.top/2017/09/27/工作流系列-2017-09-27-Spring-Boot集成Activiti工作流/
+                    转载请注明出处：https://blogs.felixu.top/2018/04/03/设计模式系列-2018-04-03-23种设计模式之工厂方法模式/
                   
               </div>
           
@@ -568,27 +568,73 @@
       
 
       
-        <h2 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h2><ul>
-<li>使用IDE或者在<a href="http://start.spring.io" target="_blank" rel="noopener">start.spring.io</a>上创建一个SpringBoot的基础项目，差不多是这样的目录结构<br><img src="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E5%9F%BA%E7%A1%80%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.jpg" alt="目录结构"></li>
-</ul>
+        <p>工厂方法模式总体来说就是，屏蔽了产品创建的细节，只操作工厂，从工厂中获得想要的产品。</p>
+<p>工厂模式有三种：</p>
+<ol>
+<li><strong>简单工厂模式</strong></li>
+<li><strong>工厂方法模式</strong></li>
+<li><strong>抽象工厂模式</strong></li>
+</ol>
+<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>这种模式，并不属于23种设计模式，它是工厂方法模式的简化，也称作是静态工厂模式(Static Factory Pattern)。简单工厂模式的实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类。</p>
+<h2 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h2><p><img src="http://oss-blog.felixu.top/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.jpg" alt="简单工厂模式"></p>
+<p>图中的参与者：</p>
 <ul>
-<li><p>引入相关依赖 </p>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- activiti --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activiti-spring-boot-starter-basic&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activiti-modeler&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activiti-diagram-rest&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- db --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.3.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.github.drtrang&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatisplus-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0.4&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-</li>
+<li><code>IProduct</code>：产品抽象类。</li>
+<li><code>ProductA</code>：具体实现类A。</li>
+<li><code>ProductB</code>： 具体实现类B。</li>
+<li><code>Factory</code>：工厂类，用于创建产品。</li>
+<li><code>Client</code>： 客户端，调用工厂创建产品的。</li>
 </ul>
-<p>这样基本的东西也就差不多了</p>
-<h2 id="配置activiti"><a href="#配置activiti" class="headerlink" title="配置activiti"></a>配置activiti</h2><ul>
-<li><p>我这里将application.properties改成了yml格式(个人比较喜欢吧)，配置文件如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: spring-boot-activiti</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql://localhost:3306/activiti_learning?useUnicode=true&amp;characterEncoding=utf8</span><br><span class="line">    username: root</span><br><span class="line">    password: </span><br><span class="line">    druid:</span><br><span class="line">      validationQuery: SELECT 1</span><br><span class="line">      initialSize: 10</span><br><span class="line">      minIdle: 10</span><br><span class="line">      maxActive: 200</span><br><span class="line">      minEvictableIdleTimeMillis: 180000</span><br><span class="line">      testOnBorrow: false</span><br><span class="line">      testWhileIdle: true</span><br><span class="line">      removeAbandoned: true</span><br><span class="line">      removeAbandonedTimeout: 1800</span><br><span class="line">      logAbandoned: true</span><br><span class="line">      poolPreparedStatements: true</span><br><span class="line">      maxOpenPreparedStatements: 100</span><br><span class="line">  activiti:</span><br><span class="line">    check-process-definitions: false</span><br><span class="line">  mvc:</span><br><span class="line">    static-path-pattern: /**</span><br><span class="line">security:</span><br><span class="line">  basic:</span><br><span class="line">    enabled: false</span><br><span class="line">server:</span><br><span class="line">  port: 6000</span><br><span class="line">mybatis-plus:</span><br><span class="line">  mapper-locations: classpath:mapper/*Mapper.xml</span><br><span class="line">  typeAliasesPackage: com.xiaoantimes.taichi.entity</span><br><span class="line">  global-config:</span><br><span class="line">    id-type: 2</span><br><span class="line">    field-strategy: 2</span><br><span class="line">    auto-set-db-type: true</span><br><span class="line">    db-column-underline: true</span><br><span class="line">    refresh-mapper: true</span><br><span class="line">  configuration:</span><br><span class="line">    map-underscore-to-camel-case: true</span><br><span class="line">    cache-enabled: false</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置activiti的SpringProcessEngineConfiguration</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class ActivitiConfig &#123;</span><br><span class="line"></span><br><span class="line">  @Autowired</span><br><span class="line">  PlatformTransactionManager transactionManager;</span><br><span class="line"></span><br><span class="line">  @Autowired</span><br><span class="line">  DruidDataSource druidDataSource;</span><br><span class="line"></span><br><span class="line">  @Bean</span><br><span class="line">  public SpringProcessEngineConfiguration getProcessEngineConfiguration()&#123;</span><br><span class="line">      SpringProcessEngineConfiguration config =  </span><br><span class="line">						     new SpringProcessEngineConfiguration();</span><br><span class="line">      config.setDataSource(druidDataSource);</span><br><span class="line">      config.setTransactionManager(transactionManager);</span><br><span class="line">      config.setDatabaseType("mysql");</span><br><span class="line">      config.setDatabaseSchemaUpdate("true");</span><br><span class="line">      return config;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>到这里SpringBoot已经集成好了Activiti</p>
-</li>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>以车为上图中的<code>IProduct</code>来做个简单的演示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 车的抽象接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICar</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 车的具体实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Benz</span> <span class="keyword">implements</span> <span class="title">ICar</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Benz"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 车的具体实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BMW</span> <span class="keyword">implements</span> <span class="title">ICar</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"BMW"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们知道在不使用工厂的情况下，我们创建车的实例，需要这么做：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 不使用工厂的情况下</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ICar car = <span class="keyword">new</span> Benz();</span><br><span class="line">        System.out.println(<span class="string">"没有工厂时，我们造了一辆车，它是："</span> + car.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">没有工厂时，我们造了一辆车，它是：Benz</span><br></pre></td></tr></table></figure>
+<p>在使用简单工厂模式的情况下，我们需要增加工厂实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 工厂实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ICar <span class="title">getCar</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"BMW"</span>.equals(name)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BMW();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"Benz"</span>.equals(name)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Benz();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"car's name is not exist"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用工厂</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Clinet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Car car = SimpleFactory.getCar(<span class="string">"BMW"</span>);</span><br><span class="line">        System.out.println(<span class="string">"通过工厂，我们得到一辆想要的车，它是："</span> + car.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过工厂，我们得到一辆想要的车，它是：BWM</span><br></pre></td></tr></table></figure>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p><strong>优点</strong>：隔离创建和使用，屏蔽了对象创建的细节。</p>
+<p><strong>缺点</strong>：违反了<a href="www.baidu.com">开闭原则</a>，不利于扩展。</p>
+<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>工厂方法模式是由接口定义创建对象的方法，而具体实现延迟到子类中去实现</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构<img src="http://oss-blog.felixu.top/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.jpg" alt="工厂方法模式"></h2><p>图上参与者：</p>
+<ul>
+<li><code>IProduct</code>：产品抽象类。</li>
+<li><code>ProductA</code>： 具体产品实现A。</li>
+<li><code>ProdcutB</code>：具体产品实现B。</li>
+<li><code>AbstractFactory</code>： 抽象工厂，定义创建接口的方法，具体由其子类去实现。</li>
+<li><code>Factory</code>：工厂实现，具体创建产品的方法。</li>
+<li><code>Clent</code>： 调用方。</li>
 </ul>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>我们启动我们到程序，这时候，你可以在数据库中看到生成了Activiti相关到表，说明我们集成成功了<br> <img src="http://felix-blog.oss-cn-hangzhou.aliyuncs.com/activiti/2017-9-27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8.jpg" alt="activiti数据库表"></p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
-<li>看到有的人是在配置的时候，还配置了八大接口，其实不需要，用起步依赖，这些都不需要我们来做了，需要用的时候直接注入就行</li>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><p>同样我们还以之前车的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 车的抽象接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICar</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 车的具体实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Benz</span> <span class="keyword">implements</span> <span class="title">ICar</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Benz"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 车的具体实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BMW</span> <span class="keyword">implements</span> <span class="title">ICar</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"BMW"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建工厂：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 工厂的接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICarFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ICar <span class="title">getCar</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 工厂的实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarFactoryImpl</span> <span class="keyword">implements</span> <span class="title">ICarFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T extends ICar&gt; <span class="function">T <span class="title">createCar</span><span class="params">(Class&lt;T&gt; clazz)</span> </span>&#123;</span><br><span class="line">        T instance = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            instance = clazz.newInstance();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;   </span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用工厂</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ICarFactory carFactory = <span class="keyword">new</span> CarFactoryImpl();</span><br><span class="line">        ICar car = carFactory.createCar(Benz.class);</span><br><span class="line">        System.out.println(<span class="string">"使用工厂方法模式，我们得到一辆想要的车，它是："</span> + car.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用工厂方法模式，我们得到一辆想要的车，它是：Benz</span><br></pre></td></tr></table></figure>
+<h2 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h2><p><strong>优点</strong>：</p>
+<ol>
+<li>优秀的拓展性。</li>
+<li>良好的封装性。</li>
+<li>屏蔽具体产品类。</li>
+<li>解耦合。</li>
+</ol>
+<p><strong>缺点</strong>：增加了代码的复杂度。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li><p><strong>工厂方法模式和简单工厂模式</strong>     </p>
+<p>简单工厂模式是工厂方法模式的弱化，因为简单，所以叫做简单工厂模式，也叫做静态工厂模式。它就是去掉了抽象工厂，把创建实例对象的方法变为静态方法。但它其实是不符合开闭原则的，不难想象，这样的工厂其实是很难去扩展的，当然，在产品部分它是符合开闭原则的，而工厂方法模式是符合开闭原则的，但是会增加代码的复杂度。现实中其实简单工厂模式是很少会被使用的。</p>
+</li>
+<li><p><strong>使用场景</strong>  </p>
+<p>既然工厂方法模式有这么多的好处，那我们是不是就要经常去使用它呢，也不完全是这样的，因为通过上面的案例也可以看到，它相比我们直接<code>new</code>对象，明显多了一些类，增加了代码的复杂度。所以我们也需要考虑它的使用场景：</p>
+<ol>
+<li>需要灵活可扩展的框架时，比如<code>JDBC</code>连接数据库，我们可能用<code>Mysql</code>也可能用<code>Oracle</code>，只需要切换驱动就行了</li>
+<li>当调用方不需要知道对象创建过程 </li>
+</ol>
+</li>
+<li><p><strong>拓展</strong></p>
+<p>工厂模式会有多种形态，不必去拘泥小节，比如，不在工厂实现中使用反射，而是每个产品对应一个自己的工厂，这种也同样是工厂方法模式，也有人称之为多工厂模式，但总归是工厂方法模式的一种类型。</p>
+</li>
 </ul>
 
       
@@ -642,9 +688,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring-Boot/" rel="tag"><i class="fa fa-tag"></i> Spring Boot</a>
-          
-            <a href="/tags/Activiti/" rel="tag"><i class="fa fa-tag"></i> Activiti</a>
+            <a href="/tags/Design-Pattern/" rel="tag"><i class="fa fa-tag"></i> Design Pattern</a>
           
         </div>
       
@@ -653,14 +697,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/03/09/设计模式系列-2018-03-09-23种设计模式之原型模式/" rel="next" title="23种设计模式之原型模式">
+                <i class="fa fa-chevron-left"></i> 23种设计模式之原型模式
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/29/工作流系列-2017-09-29-Spring-Boot集成官方的Modeler设计器/" rel="prev" title="Spring Boot集成官方的Modeler设计器">
-                Spring Boot集成官方的Modeler设计器 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/04/设计模式系列-2018-04-04-23种设计模式之抽象工厂模式/" rel="prev" title="23种设计模式之抽象工厂模式">
+                23种设计模式之抽象工厂模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -820,7 +868,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目搭建"><span class="nav-number">1.</span> <span class="nav-text">项目搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置activiti"><span class="nav-number">2.</span> <span class="nav-text">配置activiti</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">3.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">1.</span> <span class="nav-text">简单工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构图"><span class="nav-number">1.2.</span> <span class="nav-text">结构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-number">1.4.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">2.</span> <span class="nav-text">工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构"><span class="nav-number">2.2.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点-1"><span class="nav-number">2.4.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
