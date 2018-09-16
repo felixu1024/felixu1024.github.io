@@ -550,14 +550,28 @@
                   
                     </br>
                     转载请注明出处：https://blogs.felixu.top/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/
+                    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/"  aria-label="复制成功！"></i></span>
                   
               </div>
           
-
         </div>
+        <script type="text/javascript" src="/js/src/clipboard.min.js"></script> 
+        <script> 
+          var clipboard = new ClipboardJS('.fa-clipboard');
+          clipboard.on('success', $(function(){
+            $(".fa-clipboard").click(function(){
+              swal({   
+                title: "",   
+                text: '复制成功',   
+                html: false,
+                timer: 500,   
+                showConfirmButton: false
+              });
+            });
+          }));  
+      </script>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -1148,3 +1162,6 @@
 </html>
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>

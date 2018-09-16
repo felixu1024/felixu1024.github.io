@@ -108,10 +108,15 @@
 <meta property="og:site_name" content="felixu&#39;s blog">
 <meta property="og:description" content="从总体上介绍一下MyBatis执行的流程，不去过多的分析细节，其他留待后面有时间再说。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-27T09:43:02.843Z">
+<meta property="og:image" content="http://oss-blog.felixu.top/MyBatis%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84%E5%9B%BE.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/MyBatis%E8%8E%B7%E5%8F%96SqlSession%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/MyBatis%E8%8E%B7%E5%8F%96Mapper%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/MyBatis%E7%9A%84Sql%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg">
+<meta property="og:updated_time" content="2018-09-15T07:00:22.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis源码分析之总体流程">
 <meta name="twitter:description" content="从总体上介绍一下MyBatis执行的流程，不去过多的分析细节，其他留待后面有时间再说。">
+<meta name="twitter:image" content="http://oss-blog.felixu.top/MyBatis%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84%E5%9B%BE.jpg">
 
 
 
@@ -550,14 +555,28 @@
                   
                     </br>
                     转载请注明出处：https://blogs.felixu.top/2018/08/22/MyBatis系列-2018-08-22-MyBatis源码分析之总体流程/
+                    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2018/08/22/MyBatis系列-2018-08-22-MyBatis源码分析之总体流程/"  aria-label="复制成功！"></i></span>
                   
               </div>
           
-
         </div>
+        <script type="text/javascript" src="/js/src/clipboard.min.js"></script> 
+        <script> 
+          var clipboard = new ClipboardJS('.fa-clipboard');
+          clipboard.on('success', $(function(){
+            $(".fa-clipboard").click(function(){
+              swal({   
+                title: "",   
+                text: '复制成功',   
+                html: false,
+                timer: 500,   
+                showConfirmButton: false
+              });
+            });
+          }));  
+      </script>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -568,7 +587,7 @@
         <h1 id="写在开始"><a href="#写在开始" class="headerlink" title="写在开始"></a>写在开始</h1><p>前面简单的说了下MyBatis要怎么去用，说的比较乱，也比较简单，但是大致也是可以用起来了。关于怎么使用怎么整合，网上也是一堆教程，就不去过多的介绍了。这里开始，我们从源码层面去更深层次的了解一下Mybatis。</p>
 <p>从前面的使用中我们可以看出，要使用MyBatis，首先我们需要获取SqlSession，之后用SqlSession去获取需要使用的Mapper，最后，使用Mapper去调用方法，得到我们想要的结果。这也正是源码执行的流程。</p>
 <p>这里使用的源码版本是3.4.2，它的源码从结构上来说，大致可以分为以下部分，它们的层次是越往下越底层，而巧的是，这样的结构恰巧跟源码的分包十分相似</p>
-<p><img src="" alt="源码分层图"></p>
+<p><img src="http://oss-blog.felixu.top/MyBatis%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84%E5%9B%BE.jpg" alt="源码分层图"></p>
 <p>接下来便开始来Debug走完一个执行流程吧。</p>
 <h1 id="SqlSession"><a href="#SqlSession" class="headerlink" title="SqlSession"></a>SqlSession</h1><p>在前面我的demo中有这样一段代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> SqlSession <span class="title">getSqlSession</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String resource = <span class="string">"/Users/top/github/felixu1024/GP/MyBatisLearning/MyBatis/src/main/java/top/top/config/mybatis-config.xml"</span>;</span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = <span class="keyword">new</span> FileInputStream(resource);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        SqlSessionFactory build = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is, <span class="string">""</span>);</span><br><span class="line">        <span class="keyword">return</span> build.openSession(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -580,7 +599,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultSqlSessionFactory</span> <span class="keyword">implements</span> <span class="title">SqlSessionFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    . . . . . .省略部分代码</span><br><span class="line">  <span class="comment">// 经过一系列调用，最后调用到这里，那一系列重载就不贴出来了🤦‍♂️</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> SqlSession <span class="title">openSessionFromDataSource</span><span class="params">(ExecutorType execType, TransactionIsolationLevel level, <span class="keyword">boolean</span> autoCommit)</span> </span>&#123;</span><br><span class="line">    Transaction tx = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">final</span> Environment environment = configuration.getEnvironment();</span><br><span class="line">      <span class="keyword">final</span> TransactionFactory transactionFactory = getTransactionFactoryFromEnvironment(environment);</span><br><span class="line">      tx = transactionFactory.newTransaction(environment.getDataSource(), level, autoCommit);</span><br><span class="line">      <span class="keyword">final</span> Executor executor = configuration.newExecutor(tx, execType);</span><br><span class="line">      <span class="comment">// 在这里返回我们需要的SqlSession，同时持有Configuration和Executor</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> DefaultSqlSession(configuration, executor, autoCommit);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">      closeTransaction(tx); <span class="comment">// may have fetched a connection so lets call close()</span></span><br><span class="line">      <span class="keyword">throw</span> ExceptionFactory.wrapException(<span class="string">"Error opening session.  Cause: "</span> + e, e);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      ErrorContext.instance().reset();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的这段源码在这里就不过多的去关注细节了，我们只需要知道，最终返回了需要用的<code>DefaultSqlSession</code>，同时它持有了<code>Configuration</code>和<code>Executor</code>。</p>
 <p>这整个获取<code>SqlSession</code>的过程，可以用如下流程图表示：</p>
-<p><img src="" alt="获取SqlSession的过程"></p>
+<p><img src="http://oss-blog.felixu.top/MyBatis%E8%8E%B7%E5%8F%96SqlSession%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg" alt="获取SqlSession的过程"></p>
 <h1 id="Mapper"><a href="#Mapper" class="headerlink" title="Mapper"></a>Mapper</h1><p>在拿到<code>SqlSession</code>之后，我们做了如下动作：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Person <span class="title">queryPersonById</span><span class="params">(SqlSession sqlSession, <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    PersonMapper mapper = sqlSession.getMapper(PersonMapper.class);</span><br><span class="line">    <span class="keyword">return</span> mapper.selectByPrimaryKey(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用<code>SqlSession</code>去得到一个需要使用的一个<code>Mapper</code>，然后使用<code>Mapper</code>去调用方法，得到我们想要的结果。这里难道你不会好奇，<code>Mapper</code>明明都是<code>interface</code>的，为什么它们可以调用方法呢？接下来我们去看一下具体第得到<code>Mapper</code>的源码，或许能找到答案。首先我们从<code>DefaultSqlSession</code>的<code>getMapper(Class&lt;T&gt; type)</code>方法开始往下看：</p>
@@ -602,7 +621,7 @@
 </li>
 </ol>
 <p>同样，我们也用一个流程图来表示一下这整个流程：</p>
-<p><img src="" alt="获取Mapper的流程"></p>
+<p><img src="http://oss-blog.felixu.top/MyBatis%E8%8E%B7%E5%8F%96Mapper%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg" alt="获取Mapper的流程"></p>
 <h1 id="执行SQL"><a href="#执行SQL" class="headerlink" title="执行SQL"></a>执行SQL</h1><p>通过上面的一系列步骤，我们终于拿到了<code>Mapper</code>，也知道了这个<code>Mapper</code>它已经不是原来的接口了，而是一个代理后的<code>MapperProxy</code>对象，所以，当我们用<code>Mapper</code>来调用方法时，必然是进入了<code>MapperProxy</code>的<code>invoke()</code>方法。所以我们从<code>MapperProxy</code>开始：</p>
 <ol>
 <li><p>首先是<code>Mapper</code>调用方法，进入<code>invoke()</code>方法。</p>
@@ -640,7 +659,7 @@
 </li>
 </ol>
 <p>经过漫长的调用，我们终于是执行完了<code>SQL</code>，拿到了想要的结果。但是整个过程中，有一些细节部分我们还是省去了没有说。有兴趣可以自己去看看。那么执行SQL的流程图又是怎样的呢：</p>
-<p><img src="" alt="SQL执行流程图"></p>
+<p><img src="http://oss-blog.felixu.top/MyBatis%E7%9A%84Sql%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg" alt="SQL执行流程图"></p>
 <h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>使用<code>MyBatis</code>做一次查询，它完整的源码流程就是这样子啦。它的源码从结构和层次上来说，还是比<code>Spring</code>要好看懂很多的。这里有必要提一下的是<code>Mapper</code>的代理，这并不是一个完整的，或者说标准的动态代理，为什么这么说呢，看下面的图就明白了：</p>
 <p><img src="" alt="代理图"></p>
 <p>好啦，就说这么多吧。</p>
@@ -1179,3 +1198,6 @@
 </html>
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
