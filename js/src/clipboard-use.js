@@ -4,7 +4,7 @@
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-globe"></i><span>copy</span>';
+      copyHtml += '  <i class="fa fa-globe"></i><span id="sp-copy">点我复制哦～</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var result = new ClipboardJS('.btn-copy', {
@@ -16,7 +16,8 @@
         console.log(e);
         result.destroy;
         e.clearSelection();
-        showTooltip(e.trigger, 'Copied!');
+        // document.getElementById("sp-copy").innerHTML = "已复制～";
+        // showTooltip(e.trigger, 'Copied!');
     });
     }
     initCopyCode();

@@ -11,7 +11,7 @@
 <script>
     (function(){
         if(''){
-            if (prompt('请输入文章密码') !== ''){
+            if (prompt('可能由于文章尚未完成等原因，请输入文章密码访问') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -108,10 +108,12 @@
 <meta property="og:site_name" content="felixu&#39;s blog">
 <meta property="og:description" content="Template Method Pattern">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-16T03:01:59.958Z">
+<meta property="og:image" content="http://oss-blog.felixu.top/%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.jpg">
+<meta property="og:updated_time" content="2018-09-16T13:10:07.574Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="23种设计模式之模板方法模式">
 <meta name="twitter:description" content="Template Method Pattern">
+<meta name="twitter:image" content="http://oss-blog.felixu.top/%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.jpg">
 
 
 
@@ -550,7 +552,7 @@
                   
                     </br>
                     转载请注明出处：https://blogs.felixu.top/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/
-                    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/"  aria-label="复制成功！"></i></span>
+                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2018/08/16/设计模式系列-2018-08-16-23种设计模式之模板方法模式/"  aria-label="复制成功！"></i></span>
                   
               </div>
           
@@ -560,13 +562,7 @@
           var clipboard = new ClipboardJS('.fa-clipboard');
           clipboard.on('success', $(function(){
             $(".fa-clipboard").click(function(){
-              swal({   
-                title: "",   
-                text: '复制成功',   
-                html: false,
-                timer: 500,   
-                showConfirmButton: false
-              });
+              
             });
           }));  
       </script>
@@ -583,7 +579,7 @@
 <p>Define the skeleton of an algorithm in an operation,deferring some steps to subclasses.Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
 </blockquote>
 <p>这个定义，相对来说已经比较容易理解了，如果还不理解，我们可以这样来想。银行的账单就可以理解为一个模板，它将公共的内容都已经定义好了，只有少量的地方，需要根据客户的不同，来去填充，这其实就是模板方法模式的思想。在定义中说<strong>定义一个操作中的算法的框架</strong>其实就是抽象出算法的固定逻辑或者步骤，放到抽象类中，也就是账单中的固定内容，<strong>而将一些步骤延迟到子类中</strong>便是说将某些步骤由子类根据其需要去个性化实现，但是整体算法的结构是没有改变过的，而这些子类就是对应使用账单的不同客户。</p>
-<h1 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h1><p><img src="" alt=""></p>
+<h1 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h1><p><img src="http://oss-blog.felixu.top/%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.jpg" alt="模版方法模式结构图"></p>
 <p>图中参与者：</p>
 <ul>
 <li><code>AbstractClass</code>：抽象模板，也就是定义中的算法框架。</li>
@@ -772,7 +768,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

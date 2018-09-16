@@ -11,7 +11,7 @@
 <script>
     (function(){
         if(''){
-            if (prompt('请输入文章密码') !== ''){
+            if (prompt('可能由于文章尚未完成等原因，请输入文章密码访问') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -108,10 +108,13 @@
 <meta property="og:site_name" content="felixu&#39;s blog">
 <meta property="og:description" content="Strategy Pattern">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-10T04:46:40.265Z">
+<meta property="og:image" content="http://oss-blog.felixu.top/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E6%94%AF%E4%BB%98%E6%A8%A1%E6%8B%9F.jpg">
+<meta property="og:updated_time" content="2018-09-16T13:09:23.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="23种设计模式之策略模式">
 <meta name="twitter:description" content="Strategy Pattern">
+<meta name="twitter:image" content="http://oss-blog.felixu.top/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.jpg">
 
 
 
@@ -550,7 +553,7 @@
                   
                     </br>
                     转载请注明出处：https://blogs.felixu.top/2018/08/08/设计模式系列-2018-08-08-23种设计模式之策略模式/
-                    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2018/08/08/设计模式系列-2018-08-08-23种设计模式之策略模式/"  aria-label="复制成功！"></i></span>
+                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2018/08/08/设计模式系列-2018-08-08-23种设计模式之策略模式/"  aria-label="复制成功！"></i></span>
                   
               </div>
           
@@ -560,13 +563,7 @@
           var clipboard = new ClipboardJS('.fa-clipboard');
           clipboard.on('success', $(function(){
             $(".fa-clipboard").click(function(){
-              swal({   
-                title: "",   
-                text: '复制成功',   
-                html: false,
-                timer: 500,   
-                showConfirmButton: false
-              });
+              
             });
           }));  
       </script>
@@ -583,7 +580,7 @@
 <p>Define a family of algorithms,encapsulate each one,and make them interchangeable.定义一组算法，将每个算法都封装起来，并且使它们之间可以互换。</p>
 </blockquote>
 <p>从策略模式的定义来说，可能不那么好理解，其实策略模式可以说是为达到某一目的，而采取不同的手段，其本质是目标与手段分离，使用者只关注结果，而不关注具体实现过程，具体使用哪个实现会依据场景来选择。举例来说就比如我们的网上购物的支付方式、去某地旅游的不同出行方式等等，都可以认为是策略模式。</p>
-<h1 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h1><p><img src="" alt=""></p>
+<h1 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h1><p><img src="http://oss-blog.felixu.top/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.jpg" alt="策略模式结构图"></p>
 <p>图中的参与者：</p>
 <ul>
 <li><code>Strategy</code>：抽象的策略接口</li>
@@ -610,7 +607,7 @@
 <p>运行结果：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用微信支付 --&gt; 使用微信支付了23.45元，支付成功！</span><br><span class="line">使用支付宝支付 --&gt; 使用支付宝支付了23.45元，支付成功！</span><br></pre></td></tr></table></figure>
 <p>简单的认为购物整个过程是像下图这样的，策略模式则是支付这一环节，我们封装了具体的支付细节，根据用户的相关参数，相关场景去动态选择真正的支付逻辑。</p>
-<p><img src="" alt=""></p>
+<p><img src="http://oss-blog.felixu.top/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E6%94%AF%E4%BB%98%E6%A8%A1%E6%8B%9F.jpg" alt="支付模拟"></p>
 <h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p><strong>优点</strong>：</p>
 <ol>
 <li>基于继承实现，部分通用代码可以共用，减少重复代码。</li>
@@ -775,7 +772,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
