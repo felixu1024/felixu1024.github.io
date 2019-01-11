@@ -84,6 +84,8 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="Concurrrnt Programming," />
+
 
 
 
@@ -98,16 +100,18 @@
 
 
 
-<meta name="description" content="而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="felixu&#39;s blog">
-<meta property="og:url" content="https://blogs.felixu.top/page/2/index.html">
+<meta name="description" content="一个线程它也是有生命周期的，那么它从生到死的过程都会经历哪些过程呢。">
+<meta name="keywords" content="Concurrrnt Programming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程的生命周期">
+<meta property="og:url" content="https://blogs.felixu.top/2019/01/11/Concurrency-2019-01-11-线程的生命周期/index.html">
 <meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。">
+<meta property="og:description" content="一个线程它也是有生命周期的，那么它从生到死的过程都会经历哪些过程呢。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-11T08:02:27.913Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="felixu&#39;s blog">
-<meta name="twitter:description" content="而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。">
+<meta name="twitter:title" content="线程的生命周期">
+<meta name="twitter:description" content="一个线程它也是有生命周期的，那么它从生到死的过程都会经历哪些过程呢。">
 
 
 
@@ -135,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="https://blogs.felixu.top/page/2/"/>
+  <link rel="canonical" href="https://blogs.felixu.top/2019/01/11/Concurrency-2019-01-11-线程的生命周期/"/>
 
 
 
 
 
-  <title> felixu's blog </title>
+  <title> 线程的生命周期 | felixu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -281,9 +285,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
     <a href="https://github.com/felixu1992" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -407,10 +409,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand posts-list">
-    <div>
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -418,10 +419,9 @@
   
   
 
-  <article class="post post-type-normal post-for-index" itemscope itemtype="http://schema.org/Article">
-  <div>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2019/01/11/Concurrency-2019-01-11-线程的生命周期/">
 
-  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2018/12/08/Essay-2018-12-08-开启我的博客/">
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
     <meta itemprop="description" content="">
@@ -438,26 +438,28 @@
     
       <header class="post-header">
 
-        <h1 class="post-title">
         
-            <a class="post-title-link" href="/2018/12/08/Essay-2018-12-08-开启我的博客/" itemprop="url">
-              
-                <span itemprop="name">开启我的博客</span>
-              
-            </a>
         
-      </h1>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                线程的生命周期
+              
+            
+          </h1>
+        
 
       <div class="post-meta">
-       
-          <span class="post-meta-item-icon">
-            <i class="fa fa-twitch"></i>
-          </span>
-          <span class="post-meta-author">felixu</span>
-          <span class="post-meta-divider">|</span>
-       
+        
+            <span class="post-meta-item-icon">
+              <i class="fa fa-twitch"></i>
+            </span>
+            <span class="post-meta-author">felixu</span>
+            <span class="post-meta-divider">|</span>
+         
 
-        <span class="post-time">
+          <span class="post-time">
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -465,8 +467,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-08T00:00:00+08:00">
-                2018-12-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-11T00:00:00+08:00">
+                2019-01-11
               </time>
             
 
@@ -488,8 +490,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Essay/" itemprop="url" rel="index">
-                    <span itemprop="name">Essay</span>
+                  <a href="/categories/Concurrrnt-Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Concurrrnt Programming</span>
                   </a>
                 </span>
 
@@ -500,36 +502,205 @@
           
 
           
-          <div class="post-description">
-            工作也好，生活也罢，总需要有个地方来记录一些东西，那么就从这里开始自己的博客吧。
-          </div>
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/11/Concurrency-2019-01-11-线程的生命周期/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/11/Concurrency-2019-01-11-线程的生命周期/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            <!--noindex-->
+              <!-- <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/11/Concurrency-2019-01-11-线程的生命周期/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/01/11/Concurrency-2019-01-11-线程的生命周期/" itemprop="commentsCount"></span>
+                </a>
+              </span> -->
+              <!--/noindex-->
+            
           
 
           
-            <div class="post-tags">
-              
-                <a href="/tags/About-Me/" rel="tag"><i class="fa fa-tag"></i> About Me</a>
-              
-            </div>
+
+          
+          
+             <span id="/2019/01/11/Concurrency-2019-01-11-线程的生命周期/" class="leancloud_visitors" data-flag-title="线程的生命周期">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
+          
+
+          
+              <div class="post-description">
+                  一个线程它也是有生命周期的，那么它从生到死的过程都会经历哪些过程呢。
+                  
+                    </br>
+                    转载请注明出处：https://blogs.felixu.top/2019/01/11/Concurrency-2019-01-11-线程的生命周期/
+                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2019/01/11/Concurrency-2019-01-11-线程的生命周期/"  aria-label="复制成功！"></i></span>
+                  
+              </div>
+          
         </div>
+        <script type="text/javascript" src="/js/src/clipboard.min.js"></script> 
+        <script> 
+          var clipboard = new ClipboardJS('.fa-clipboard');
+          clipboard.on('success', $(function(){
+            $(".fa-clipboard").click(function(){
+              
+            });
+          }));  
+      </script>
       </header>
     
 
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面介绍了线程相关的一些基本概念，也说了一个线程的创建以及销毁，那么一个线程应该是有生命周期的。这里就来看一下，一个线程一生可能会经历哪些阶段。</p>
+<h1 id="线程的六种状态"><a href="#线程的六种状态" class="headerlink" title="线程的六种状态"></a>线程的六种状态</h1><p>线程的一生可能会经过以下6种状态：</p>
+<ul>
+<li><p><code>NEW</code></p>
+<p>初始化状态，线程被创建，但是还没有调用<code>start</code>方法。</p>
+<p>线程的创建过程其实在前面<a href="https://blogs.felixu.top/2019/01/10/Concurrency-2019-01-10-%E4%BB%8E%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">从线程说起并发问题</a>介绍线程创建的时候已经说过了，这里就不再上代码了，简单说一下创建线程的三种方式：</p>
+<ul>
+<li>实现<code>Runnable</code>接口，重写<code>run</code>方法。</li>
+<li>继承<code>Thread</code>类，重写<code>run</code>方法。</li>
+<li>实现<code>Callable</code>接口，重写<code>call</code>方法，实现带返回值的线程。</li>
+</ul>
+</li>
+<li><p><code>RUNNABLE</code></p>
+<p>运行中状态，其实这里应该是包含两种状态的，一种是就绪状态(即线程调用了<code>start</code>方法，但是不一定会立马运行，还需要等待系统<code>OS</code>的调度)，另一种是运行状态(即正在执行中)。</p>
+</li>
+<li><p><code>BLOCKED</code></p>
+<p>阻塞状态，线程进入等待状态。而阻塞又分为多种情况。</p>
+<ul>
+<li>等待阻塞：线程执行<code>wait</code>方法，<code>JVM</code>将当前线程加入等待队列。</li>
+<li>同步阻塞：与其他线程竞争同步锁时，由于锁已被其他线程获取，进而被<code>JVM</code>加入同步队列。</li>
+<li>其他阻塞：<code>Thread.sleep()</code>、<code>join</code>、<code>IO</code>等操作时，<code>JVM</code>会阻塞直至上述操作结束才会恢复线程。</li>
+</ul>
+</li>
+<li><p><code>WAITTING</code></p>
+<p>等待状态，线程进入等待，需要被唤醒。</p>
+</li>
+<li><p><code>TIME_WAITTING</code></p>
+<p>等待状态，超时以后自动返回。</p>
+</li>
+<li><p><code>TERMINATED</code></p>
+<p>终止状态，线程执行完毕退出。</p>
+</li>
+</ul>
+<h1 id="线程状态的转换"><a href="#线程状态的转换" class="headerlink" title="线程状态的转换"></a>线程状态的转换</h1><p>线程的一生可能会经过以上六个阶段，那么它们之间又是怎么转换的呢，这里贴上流程转换的图：</p>
+<p><img src="" alt=""></p>
+<p>在图上可以看到一些操作，等到后面再慢慢介绍这些都是干嘛用的。</p>
+<p>我们也可以通过以下代码来演示一下线程的相关状态：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadStatus</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">"time-waiting"</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">synchronized</span> (ThreadStatus.class) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        ThreadStatus.class.wait();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">"waiting"</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Block(),<span class="string">"Block-01"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Block(),<span class="string">"Block-02"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Block</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Block.class)&#123;</span><br><span class="line">                <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        TimeUnit.SECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码运行起来之后，我们打开控制台，执行<code>jps</code>命令，这个命令可以获得相应<code>Java</code>进程的<code>PID</code>。</p>
+<p>在执行<code>jstack PID</code>(<code>PID</code>是我们上一步拿到的)可以得到下面的<code>dump</code>信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">. . . . . .省略部分信息</span><br><span class="line">"Block-02" #16 prio=5 os_prio=31 tid=0x00007ffe1683e000 nid=0xa303 waiting for monitor entry [0x0000700006b83000]</span><br><span class="line">   java.lang.Thread.State: BLOCKED (on object monitor)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus$Block.run(ThreadStatus.java:44)</span><br><span class="line">        - waiting to lock &lt;0x000000076b0cdb00&gt; (a java.lang.Class for top.felixu.chapter1.lifecycle.ThreadStatus$Block)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line"></span><br><span class="line">"Block-01" #14 prio=5 os_prio=31 tid=0x00007ffe1683a000 nid=0xa503 waiting on condition [0x0000700006a80000]</span><br><span class="line">   java.lang.Thread.State: TIMED_WAITING (sleeping)</span><br><span class="line">        at java.lang.Thread.sleep(Native Method)</span><br><span class="line">        at java.lang.Thread.sleep(Thread.java:340)</span><br><span class="line">        at java.util.concurrent.TimeUnit.sleep(TimeUnit.java:386)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus$Block.run(ThreadStatus.java:44)</span><br><span class="line">        - locked &lt;0x000000076b0cdb00&gt; (a java.lang.Class for top.felixu.chapter1.lifecycle.ThreadStatus$Block)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line"></span><br><span class="line">"waiting" #12 prio=5 os_prio=31 tid=0x00007ffe13089000 nid=0xa603 in Object.wait() [0x000070000697d000]</span><br><span class="line">   java.lang.Thread.State: WAITING (on object monitor)</span><br><span class="line">        at java.lang.Object.wait(Native Method)</span><br><span class="line">        - waiting on &lt;0x000000076aeed260&gt; (a java.lang.Class for top.felixu.chapter1.lifecycle.ThreadStatus)</span><br><span class="line">        at java.lang.Object.wait(Object.java:502)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus.lambda$main$1(ThreadStatus.java:26)</span><br><span class="line">        - locked &lt;0x000000076aeed260&gt; (a java.lang.Class for top.felixu.chapter1.lifecycle.ThreadStatus)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus$$Lambda$2/668386784.run(Unknown Source)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line"></span><br><span class="line">"time-waiting" #11 prio=5 os_prio=31 tid=0x00007ffe16839000 nid=0xa803 waiting on condition [0x000070000687a000]</span><br><span class="line">   java.lang.Thread.State: TIMED_WAITING (sleeping)</span><br><span class="line">        at java.lang.Thread.sleep(Native Method)</span><br><span class="line">        at java.lang.Thread.sleep(Thread.java:340)</span><br><span class="line">        at java.util.concurrent.TimeUnit.sleep(TimeUnit.java:386)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus.lambda$main$0(ThreadStatus.java:15)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus$$Lambda$1/764977973.run(Unknown Source)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line">. . . . . .省略部分信息</span><br></pre></td></tr></table></figure>
+<p>从上面的<code>dump</code>可以看到线程的大部分状态了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--------------------------到底啦<i class="fa fa-paw"></i>感谢您的阅读--------------------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>请杯咖啡</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/wxpay.jpg" alt="felixu WeChat Pay"/>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/alipay.jpg" alt="felixu Alipay"/>
+        </div>
+      
+    </div>
   </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Concurrrnt-Programming/" rel="tag"><i class="fa fa-tag"></i> Concurrrnt Programming</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/10/Concurrency-2019-01-10-从线程到并发编程/" rel="next" title="从线程到并发编程">
+                <i class="fa fa-chevron-left"></i> 从线程到并发编程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
+
+    <div class="post-spread">
+      
     </div>
-  </section>
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
-
+  </div>
 
 
           </div>
@@ -537,6 +708,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="vcomments"></div>
+    
+  </div>
+
 
         </div>
         
@@ -556,8 +733,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/felixu.jpg"
@@ -647,6 +833,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程的六种状态"><span class="nav-number">1.</span> <span class="nav-text">线程的六种状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程状态的转换"><span class="nav-number">2.</span> <span class="nav-text">线程状态的转换</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -750,13 +952,9 @@
   
 
   
-  <script>(function($){
-  $("#content").delegate(".post>div", "click", function(e){
-      if(!$(e.target).closest("a")[0]){
-        window.location.href = $(this).find(".post-title-link").attr("href");
-      }
-  });
-  })(window.jQuery)</script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
