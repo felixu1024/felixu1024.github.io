@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Design Pattern," />
+  <meta name="keywords" content="Concurrrnt Programming," />
 
 
 
@@ -100,18 +100,22 @@
 
 
 
-<meta name="description" content="单一职责原则(Single Responsibility Principle(SRP))">
-<meta name="keywords" content="Design Pattern">
+<meta name="description" content="要搞清楚多线程，要正确的并发编程，绕不开需要了解JMM(即Java Memory Model Java内存模型)，这里简单的介绍一下。">
+<meta name="keywords" content="Concurrrnt Programming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单一职责原则">
-<meta property="og:url" content="https://blogs.felixu.top/2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/index.html">
+<meta property="og:title" content="Java内存模型">
+<meta property="og:url" content="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java内存模型/index.html">
 <meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="单一职责原则(Single Responsibility Principle(SRP))">
+<meta property="og:description" content="要搞清楚多线程，要正确的并发编程，绕不开需要了解JMM(即Java Memory Model Java内存模型)，这里简单的介绍一下。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-08T12:14:15.950Z">
+<meta property="og:image" content="http://oss-blog.felixu.top/%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%86%85%E5%AD%98%E4%BA%A4%E4%BA%92.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/%E6%BA%90%E7%A0%81%E7%BB%8F%E9%87%8D%E6%8E%92%E5%BA%8F%E5%88%B0%E6%8C%87%E4%BB%A4%E9%9B%86.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/happens-before%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta property="og:updated_time" content="2019-01-17T11:34:04.050Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单一职责原则">
-<meta name="twitter:description" content="单一职责原则(Single Responsibility Principle(SRP))">
+<meta name="twitter:title" content="Java内存模型">
+<meta name="twitter:description" content="要搞清楚多线程，要正确的并发编程，绕不开需要了解JMM(即Java Memory Model Java内存模型)，这里简单的介绍一下。">
+<meta name="twitter:image" content="http://oss-blog.felixu.top/%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%86%85%E5%AD%98%E4%BA%A4%E4%BA%92.jpg">
 
 
 
@@ -139,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="https://blogs.felixu.top/2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/"/>
+  <link rel="canonical" href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java内存模型/"/>
 
 
 
 
 
-  <title> 单一职责原则 | felixu's blog </title>
+  <title> Java内存模型 | felixu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -420,7 +424,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/">
+  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java内存模型/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
@@ -444,7 +448,7 @@
             
             
               
-                单一职责原则
+                Java内存模型
               
             
           </h1>
@@ -467,8 +471,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-08T00:00:00+08:00">
-                2019-01-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-17T00:00:00+08:00">
+                2019-01-17
               </time>
             
 
@@ -490,8 +494,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Design Pattern</span>
+                  <a href="/categories/Concurrrnt-Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Concurrrnt Programming</span>
                   </a>
                 </span>
 
@@ -508,8 +512,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/" itemprop="commentCount"></span>
+                <a href="/2019/01/17/Concurrency-2019-01-17-Java内存模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/17/Concurrency-2019-01-17-Java内存模型/" itemprop="commentCount"></span>
                 </a>
               </span>
             <!--noindex-->
@@ -518,8 +522,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/" itemprop="commentsCount"></span>
+                <a href="/2019/01/17/Concurrency-2019-01-17-Java内存模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/01/17/Concurrency-2019-01-17-Java内存模型/" itemprop="commentsCount"></span>
                 </a>
               </span> -->
               <!--/noindex-->
@@ -530,7 +534,7 @@
 
           
           
-             <span id="/2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/" class="leancloud_visitors" data-flag-title="单一职责原则">
+             <span id="/2019/01/17/Concurrency-2019-01-17-Java内存模型/" class="leancloud_visitors" data-flag-title="Java内存模型">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -546,11 +550,11 @@
 
           
               <div class="post-description">
-                  单一职责原则(Single Responsibility Principle(SRP))
+                  要搞清楚多线程，要正确的并发编程，绕不开需要了解JMM(即Java Memory Model Java内存模型)，这里简单的介绍一下。
                   
                     </br>
-                    转载请注明出处：https://blogs.felixu.top/2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/
-                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2019/01/08/DesignPattern-2019-01-02-设计模式之单一职责/"  aria-label="复制成功！"></i></span>
+                    转载请注明出处：https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java内存模型/
+                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java内存模型/"  aria-label="复制成功！"></i></span>
                   
               </div>
           
@@ -573,31 +577,93 @@
       
 
       
-        <blockquote>
-<p>想要精通设计模式，必须要先搞清楚设计模式的六大原则。</p>
+        <p>在并发编程中，需要处理两个关键问题：线程之间如何通信以及线程之间如何同步。</p>
+<ul>
+<li>通信：是指线程之间以何种机制来进行信息交换。在命令式编程中有两种方式进行通信，即共享内存和消息传递。共享内存是通过内存中的共享状态来进行隐式通信，而消息传递是通过发消息来进行显式通信。</li>
+<li>同步：是指程序中用于控制不同线程执行顺序的机制。在共享内存的并发模型中，线程同步是显式进行的，需要程序员指定方法或代码块在线程间互斥执行，在消息通信的并发模型中，同步是隐式进行的，因为发消息必然要在收消息之前。</li>
+</ul>
+<p><code>Java</code>的并发采用的是共享内存模型。</p>
+<h1 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h1><p><code>JMM(Java Memory Model)</code>内存模型定义了共享内存系统中多线程程序读写操作的行为规范，来屏蔽各种和操作系统内存访问的差异，来实现<code>Java</code>程序在各个平台下都能达到一致性的内存访问效果。<code>JMM</code>的主要目标是定义程序中各个变量的访问规则，也就是在虚拟机中将变量(这里的变量是指共享变量，即实例域，静态域和数组元素，局部变量是线程私有的，不会共享，也不受<code>Java</code>内存模型的影响)存储到内存以及从内存中取出变量这类的底层细节。通过这些规则来规范对内存的读写操作，从而保证指令执行的正确性。它与处理器有关、与缓存有关、与并发有关、与编译器也有关。它解决了<code>CPU</code>多级缓存、处理器优化、指令重排等导致的内存访问问题，保证了并发场景下的可见性、原子性和有序性。内存模型解决并发问题主要采用两种方式：限制处理器优化和使用内存屏障。</p>
+<p><code>JMM</code>定义了线程和内存的交互方式，在<code>JMM</code>抽象模型中，分为主内存、工作内存。主内存是所有线程共享的，工作内存是每个线程独有的。线程对变量的所有操作(读取、赋值)都必须在工作内存中进行，不能直接读写主内存中的变量。并且不同的线程之间无法访问对方工作内存中的变量，线程间的变量值的传递都需要通过主内存来完成，他们三者的交互关系如下：</p>
+<p><img src="http://oss-blog.felixu.top/%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%86%85%E5%AD%98%E4%BA%A4%E4%BA%92.jpg" alt="JMM"></p>
+<p>总的来说，<code>JMM</code>是一种规范，目的是解决由于多线程通过共享内存进行通信时，存在的本地内存数据不一致、编译器会对代码指令重排序、处理器会 对代码乱序执行等带来的问题。目的是保证并发编程场景中的原子性、可见性和有序性。</p>
+<h1 id="重排序"><a href="#重排序" class="headerlink" title="重排序"></a>重排序</h1><p>很多时候，指令执行的顺序并不是按照我们写代码的顺序执行的，在单线程下语义不变情况下，为了提高性能，处理器，编译器等都会对指令进行重新排序，让我们觉得指令是按照顺序执行的。重排序分为三种：</p>
+<ul>
+<li>编译器优化的重排序。编译器在不改变单线程语义的前提下，可以重新安排语句的执行顺序。</li>
+<li>指令集并行的重排序。现代计算机多采用了指令集并行技术来将多条指令并行执行，如果不存在数据依赖，处理器可以改变语句对应处理器指令的执行顺序。</li>
+<li>内存系统的重排序。由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是乱序的。</li>
+</ul>
+<p>从<code>Java</code>源代码到最终执行的指令集，可能会经历如下步骤：</p>
+<p><img src="http://oss-blog.felixu.top/%E6%BA%90%E7%A0%81%E7%BB%8F%E9%87%8D%E6%8E%92%E5%BA%8F%E5%88%B0%E6%8C%87%E4%BB%A4%E9%9B%86.jpg" alt="Java源代码到指令集"></p>
+<p>这三种重排序，第一种为编译器的重排序，后两种属于处理器的重排序，<code>JMM</code>对于这两种类型的重排序分别有对应的策略，对于编译器的重排序，<code>JMM</code>的编译器重排序规则会禁止特定类型的编译器重排序(并不是所有)，而对于处理器的重排序，则<code>JMM</code>规则会在编译器生成指令序列的时候，插入内存屏障(<code>Memory Barriers</code>或<code>Memory Fence</code>)，通过内存屏障来禁止特定类型的处理器重排序。</p>
+<p><code>JMM</code>是语言级别的内存模型，它保证了在不同的编译器和不同的处理器上，通过禁止特定类型的编译器和处理器重排序，为程序员提供一致的内存可见性保证。</p>
+<h1 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h1><p>现代计算机多采用多核心处理器，且每个处理器有自己的高速缓冲区，由于<code>CPU</code>处理速度与主存处理速度存在巨大差距，所以采用多级缓存来提高性能，保证指令流水线可以持续执行，避免处理器停顿下来等待与主存交换数据。这样做的弊端也很明显，即缓存并不是实时与主存发生交互，可能出现多个缓存不一致的问题，从而给程序带来一些问题。而内存屏障正是用来解决这一问题的。</p>
+<p>硬件层面内存屏障分为两种：<code>Load Barriers</code>和<code>Store Barriers</code>，<code>Load</code>顾名思义加载，<code>Store</code>储存，也就是读屏障和写屏障。读屏障可以使缓存失效，强制从主存重新<code>Load</code>数据。写屏障是强制将更新的数据<code>Store</code>入主存，使其他缓存无效，可以看到新的值。</p>
+<p>内存屏障一方面通过禁止屏障前后的指令重排序，另一方面可以通过强制<code>Load</code>和<code>Store</code>来保证可见性。</p>
+<p>在<code>JMM</code>中一共有四种类型的屏障，其实也是通过以上两种屏障组合而来：</p>
+<ul>
+<li><p><strong>LoadLoad Barriers</strong>：<code>Load1 | LoadLoad | Load2</code></p>
+<p><code>Load2</code>及后续读取的操作必须等待<code>Load1</code>读取数据完成。</p>
+</li>
+<li><p><strong>StoreStore Barriers</strong>：<code>Store1 | StoreStore | Store2</code></p>
+<p><code>Store2</code>及后续写入的操作必须等待<code>Store1</code>写入完成，保证<code>Store1</code>写入结果对其他线程可见。</p>
+</li>
+<li><p><strong>LoadStore Barriers</strong>：<code>Load1 | LoadStore | Store2</code></p>
+<p><code>Store2</code>及后续写入的操作必须等待<code>Load1</code>读取数据完成。</p>
+</li>
+<li><p><strong>StoreLoad Barriers</strong>：<code>Store1 | StoreLoad | Load2</code></p>
+<p><code>Load2</code>及后续读取的操作必须等待<code>Store1</code>写入完成，保证<code>Store1</code>写入结果对其他线程可见。该屏障会使屏障前所有的内存指令执行完毕之后才会允许屏障之后的操作执行，且会将屏障前操作的结果全部从高速缓存区刷新到主存中。</p>
+</li>
+</ul>
+<p><code>StoreLoad Barriers</code>是一个全能屏障，兼具其他3种屏障的功能，也是大多数处理器所支持的一种屏障。使用该屏障需要高昂的开销，因为这个屏障前所有操作的结果都要对屏障后可见，即会将屏障前操作的结果全部刷新到主存，操作结果对屏障后的相关操作可见。</p>
+<p><code>Java</code>代码中一般不会主动使用内存屏障，主要用到内存屏障的地方在三个关键字上，即<code>synchronized</code>、<code>volatile</code>、<code>final</code>(后续会单独介绍这三个关键字)。当然实在要自己加也是有办法的，那就是<code>Java</code>的<code>Unsafe</code>类，这个类提供了一些和硬件交互的一些本地方法，这里不再展开，需要了解可<code>Google</code>。</p>
+<h1 id="happens-before"><a href="#happens-before" class="headerlink" title="happens-before"></a>happens-before</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><code>happens-before</code>是<code>JMM</code>最核心的概念，理解<code>happens-before</code>也是理解<code>JMM</code>的核心。那么什么是<code>happens-before</code>呢，<code>happens-before</code>的概念最初由<code>Leslie Lamport</code>在其一篇影响深远的论文《Time，Clocks and the Ordering of Events in a Distributed System》中提出的，<code>JSR-133</code>中使用<code>happens-before</code>来阐述操作之间的内存可见性，如果一个操作的执行结果需要对另一个操作可见，那么这两个这两个操作就必须存在<code>happens-before</code>的关系，两个操作可以在同一个线程内，也可以在不同线程之间，其次，<code>happens-before</code>仅仅是要求前一个操作的结果对后一个操作可见，并不是说前一个操作一定要先于后一个操作发生。</p>
+<p><code>JMM</code>在设计时关键需要考虑两点：</p>
+<ul>
+<li><p>程序员对内存模型的使用。</p>
+<p>程序员希望内存模型是易于理解、易于编程的，程序员希望基于一个强内存模型来编写代码。</p>
+</li>
+<li><p>编译器和处理器对内存模型的实现。</p>
+<p>编译器和处理器是希望内存模型对它们的束缚越少越好，这样它们就可以尽可能的优化来提升效率，编译器和处理器希望实现一个弱内存模型。</p>
+</li>
+</ul>
+<p><code>JMM</code>将重排序分为两种情况：</p>
+<ul>
+<li><p>会改变程序运行结果的重排序。</p>
+<p>对于这类重排序，<code>JMM</code>要求编译器和处理器必须禁止重排序。</p>
+</li>
+<li><p>不会改变程序运行结果的重排序。</p>
+<p>对于这类重排序，<code>JMM</code>则不做要求(即<code>JMM</code>允许此类重排序)。</p>
+</li>
+</ul>
+<p>下面是<code>JMM</code>设计示意图：</p>
+<p><img src="http://oss-blog.felixu.top/happens-before%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="JMM设计示意图"></p>
+<p>不难理解<code>JMM</code>在设计时关键需要考虑两点是互相矛盾的，那么<code>JMM</code>是如何平衡这两点的呢。从图中可以看到<code>JMM</code>为程序员提供了易于理解的<code>happens-before</code>规则，同时也为程序员提供了足够的内存可见性保证。同时，<code>JMM</code>也尽可能少的对编译器和处理器进行限制。</p>
+<p><code>JMM</code>其实一直都是在遵循一个原则：只要不改变程序的执行结果(指单线程程序和正确同步的多线程程序)，编译器和处理器怎么优化都可以(其实<code>as-if-serial</code>语义也是这样的)。例如，如果编译器经过细致的分析后，认定一个锁只会被单个 线程访问，那么这个锁可以被消除。再如，如果编译器经过细致的分析后，认定一个volatile变 量只会被单个线程访问，那么编译器可以把这个volatile变量当作一个普通变量来对待。这些 优化既不会改变程序的执行结果，又能提高程序的执行效率。</p>
+<p><code>JSR-133</code>对<code>happens-before</code>有如下定义：</p>
+<ul>
+<li>如果一个操作<code>happens-before</code>另一个操作，那么第一个操作的执行结果将对第二个操作 可见，而且第一个操作的执行顺序排在第二个操作之前。</li>
+<li>两个操作之间存在<code>happens-before</code>关系，并不意味着<code>Java</code>平台的具体实现必须要按照<code>happens-before</code>关系指定的顺序来执行。如果重排序之后的执行结果，与按<code>happens-before</code>关系来执行的结果一致，那么这种重排序并不非法（也就是说，JMM允许这种重排序）。</li>
+</ul>
+<p>上面两点同样还是对应于程序员和处理器、编译器双方的矛盾作出的平衡。第一点是对程序员的保证，从程序员的角度来说，可以这样理解<code>happens-before</code>关系：如果<code>A happens-before B</code>，那么<code>Java</code>内存模型将向程序员保证——A操作的结果将对B可见， 且A的执行顺序排在B之前。注意，这只是Java内存模型向程序员做出的保证！而第二点则是<code>JMM</code>对处理器、编译器的让步，<code>JMM</code>其实是在遵循一个基本原则：只要不改变程序的执行结果(指的是单线程程序和正确同步的多线程程序)， 编译器和处理器怎么优化都行。JMM这么做的原因是：程序员对于这两个操作是否真的被重 排序并不关心，程序员关心的是程序执行时的语义不能被改变(即执行结果不能被改变)。因 此，<code>happens-before</code>关系本质上和<code>as-if-serial</code>语义是一回事。</p>
+<h2 id="对比as-if-serial"><a href="#对比as-if-serial" class="headerlink" title="对比as-if-serial"></a>对比as-if-serial</h2><p>对比<code>happens-before</code>和<code>as-if-serial</code>：</p>
+<ul>
+<li><code>as-if-serial</code>语义保证单线程内程序的执行结果不被改变，<code>happens-before</code>关系保证正确同步的多线程程序的执行结果不被改变。</li>
+<li><code>as-if-serial</code>语义给编写单线程程序的程序员创造了一个幻境：单线程程序是按程序的顺 序来执行的。<code>happens-before</code>关系给编写正确同步的多线程程序的程序员创造了一个幻境：正 确同步的多线程程序是按<code>happens-before</code>指定的顺序来执行的。</li>
+<li><code>as-if-serial</code>语义和<code>happens-before</code>这么做的目的，都是为了在不改变程序执行结果的前提 下，尽可能地提高程序执行的并行度。</li>
+</ul>
+<h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><p>在<code>JSR-133</code>中定义了如下规则：</p>
+<ul>
+<li>程序顺序规则：一个线程中的每个操作，<code>happens-before</code>于该线程中的任意后续操作。</li>
+<li>监视器锁规则：对一个锁的解锁，<code>happens-before</code>于随后对这个锁的加锁。</li>
+<li><code>volatile</code>变量规则：对一个<code>volatile</code>域的写，<code>happens-before</code>于任意后续对这个<code>volatile</code>域的读。 </li>
+<li>传递性：如果<code>A happens-before B</code>，且<code>B happens-before C</code>，那么<code>A happens-before C</code>。 </li>
+<li><code>start()</code>规则：如果线程A执行操作<code>ThreadB.start()</code>(启动线程B)，那么A线程的 <code>ThreadB.start()</code>操作<code>happens-before</code>于线程B中的任意操作。</li>
+<li><code>join()</code>规则：如果线程A执行操作<code>ThreadB.join()</code>并成功返回，那么线程B中的任意操作 <code>happens-before</code>于线程A从<code>ThreadB.join()</code>操作成功返回。</li>
+</ul>
+<blockquote>
+<p>参考自《Java并发编程的艺术》</p>
 </blockquote>
-<p>在开始设计模式之前，先来谈谈设计模式的六大设计原则，第一个便是单一职责原则<code>(Single Responsibility Principle)</code>了。</p>
-<h2 id="单一职责原则定义"><a href="#单一职责原则定义" class="headerlink" title="单一职责原则定义"></a>单一职责原则定义</h2><blockquote>
-<p>There should never be more than one reason for a class to change.   </p>
-</blockquote>
-<p>这句话意思很简单，不应该存在多于一个导致类变更的原因。通俗来说就是，一个类应该只有一项职责，不会有多个原因导致类发生变更。</p>
-<h2 id="问题由来"><a href="#问题由来" class="headerlink" title="问题由来"></a>问题由来</h2><p>我们设计这样一个接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IUserInfo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setUsername</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">changePassword</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>很明显看到这样一个接口，谁都会觉得有问题，用户属性怎么可以和用户行为放在一起。肯定应该是用户属性放一起，用户行为放一起啊。</p>
-<h2 id="单一职责解决问题"><a href="#单一职责解决问题" class="headerlink" title="单一职责解决问题"></a>单一职责解决问题</h2><p>对啊，根据这样的想法，我们把刚刚的接口拆成两个接口。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IUserInfo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setUsername</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IUserBiz</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">changePassword</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其实这就是单一职责原则。<br>有人可能就要说了，这也太简单了吧。对啊，对于一个从未接触过设计模式的小白来说，在设计接口的时候，都会去这么设计的。<br>是啊，真的很简单，可是有时候却又十分的难去实现，因为职责的划分很难，就比如手机打电话来说<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iphone</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dial</span><span class="params">(String phoneNumber)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">chat</span><span class="params">(Object o)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hangup</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里我们定义一个手机接口，我们来划分职责，接通和挂断应该是通信协议上的，而聊电话则是数据传输。那按照单一原则来说，我们应该给它们也拆到两个接口中去，但是拆开之后呢，我们会发现，当我想打电话的时候我需要将他们再组装到一起，这样反而是增加了系统的复杂度，我想平时遇到类似情况的时候，我们都是放在一个接口中的。</p>
-<p>另一方面，职责扩散，就是由于某种原因，导致原来单一的职责变成了若干了更细粒度的职责。这时候如果再去拆分，代价还是比较高的。</p>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>单一职责原则会有以下优点：</p>
-<ol>
-<li>降低了类的复杂度，实现什么职责都有清晰明确的定义。</li>
-<li>提高了可读性。</li>
-<li>提高了可维护性。</li>
-<li>变更引起的风险降低，变更是必不可少的，如果接口的单一职责做得好，一个接口修改只对相应的实现类有影响，对其他的接口无影响，这对系统的扩展性、维护性都有非常大的帮助。</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>看到过大佬有这样的说法，只有逻辑足够简单，才可以在方法级别上违反单一职责原则，只有类中方法数量足够少，才可以在类级别上违反单一职责原则。     </p>
-<p>单一职责原则看起来很简单，做起来却很难，单一职责原则提出了一个编写程序的标准，用“职责”或“变化原因”来衡量接口或类的设计是否优良，但是“职责”和“变化原因”都是不可度量的，因项目而异，因环境而异。       </p>
-<p>因此对于单一职责原则，我的建议是接口一定要做到单一职责，类的设计尽量做到只有一个原因引起变化。</p>
 
       
     </div>
@@ -650,7 +716,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Design-Pattern/" rel="tag"><i class="fa fa-tag"></i> Design Pattern</a>
+            <a href="/tags/Concurrrnt-Programming/" rel="tag"><i class="fa fa-tag"></i> Concurrrnt Programming</a>
           
         </div>
       
@@ -659,8 +725,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/02/IDE-2019-01-02-IDEA常用快捷键-Mac版/" rel="next" title="IDEA常用快捷键(Mac版)">
-                <i class="fa fa-chevron-left"></i> IDEA常用快捷键(Mac版)
+              <a href="/2019/01/11/Concurrency-2019-01-11-线程的生命周期/" rel="next" title="线程的生命周期">
+                <i class="fa fa-chevron-left"></i> 线程的生命周期
               </a>
             
           </div>
@@ -668,10 +734,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/10/Concurrency-2019-01-10-从线程到并发编程/" rel="prev" title="从线程到并发编程">
-                从线程到并发编程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -830,7 +892,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责原则定义"><span class="nav-number">1.</span> <span class="nav-text">单一职责原则定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题由来"><span class="nav-number">2.</span> <span class="nav-text">问题由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责解决问题"><span class="nav-number">3.</span> <span class="nav-text">单一职责解决问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">4.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JMM"><span class="nav-number">1.</span> <span class="nav-text">JMM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重排序"><span class="nav-number">2.</span> <span class="nav-text">重排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存屏障"><span class="nav-number">3.</span> <span class="nav-text">内存屏障</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#happens-before"><span class="nav-number">4.</span> <span class="nav-text">happens-before</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比as-if-serial"><span class="nav-number">4.2.</span> <span class="nav-text">对比as-if-serial</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规则"><span class="nav-number">4.3.</span> <span class="nav-text">规则</span></a></li></ol></li></ol></div>
             
 
           </div>
