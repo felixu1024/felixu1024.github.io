@@ -1,0 +1,1238 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('可能由于文章尚未完成等原因，请输入文章密码访问') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "edd4aae5"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Concurrrnt Programming," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/felixu.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="volatile这个关键字想必很多人都听过，也是面试常被问到一个点。在Java 5对volatile语义作了增强之后，它才得以重获生机，那么它到底是何方神圣呢。">
+<meta name="keywords" content="Concurrrnt Programming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解volatile">
+<meta property="og:url" content="https://blogs.felixu.top/2019/01/23/Concurrency-2019-01-23-深入理解volatile/index.html">
+<meta property="og:site_name" content="felixu&#39;s blog">
+<meta property="og:description" content="volatile这个关键字想必很多人都听过，也是面试常被问到一个点。在Java 5对volatile语义作了增强之后，它才得以重获生机，那么它到底是何方神圣呢。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oss-blog.felixu.top/CPU3%E7%BA%A7%E7%BC%93%E5%AD%98.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/volatile%E5%86%99%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/volatile%E8%AF%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/volatile%10%E8%AF%BB%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg">
+<meta property="og:image" content="http://oss-blog.felixu.top/volatile%E5%86%99%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg">
+<meta property="og:updated_time" content="2019-01-23T07:59:00.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解volatile">
+<meta name="twitter:description" content="volatile这个关键字想必很多人都听过，也是面试常被问到一个点。在Java 5对volatile语义作了增强之后，它才得以重获生机，那么它到底是何方神圣呢。">
+<meta name="twitter:image" content="http://oss-blog.felixu.top/CPU3%E7%BA%A7%E7%BC%93%E5%AD%98.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for thhee search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blogs.felixu.top/2019/01/23/Concurrency-2019-01-23-深入理解volatile/"/>
+
+
+
+
+
+  <title> 深入理解volatile | felixu's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c25e27a133f11c09b138e9743b51da9b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("E2JGmp4KuG1EPkynH4i8ywtU-gzGzoHsz", "RdEmEsul2CMMMUQWwFFo0dNL");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/felixu1992" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">felixu's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2019/01/23/Concurrency-2019-01-23-深入理解volatile/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="felixu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/felixu.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="felixu's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="felixu's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入理解volatile
+              
+            
+          </h1>
+        
+
+      <div class="post-meta">
+        
+            <span class="post-meta-item-icon">
+              <i class="fa fa-twitch"></i>
+            </span>
+            <span class="post-meta-author">felixu</span>
+            <span class="post-meta-divider">|</span>
+         
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-23T00:00:00+08:00">
+                2019-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Concurrrnt-Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Concurrrnt Programming</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/23/Concurrency-2019-01-23-深入理解volatile/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/23/Concurrency-2019-01-23-深入理解volatile/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            <!--noindex-->
+              <!-- <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/23/Concurrency-2019-01-23-深入理解volatile/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/01/23/Concurrency-2019-01-23-深入理解volatile/" itemprop="commentsCount"></span>
+                </a>
+              </span> -->
+              <!--/noindex-->
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/01/23/Concurrency-2019-01-23-深入理解volatile/" class="leancloud_visitors" data-flag-title="深入理解volatile">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  volatile这个关键字想必很多人都听过，也是面试常被问到一个点。在Java 5对volatile语义作了增强之后，它才得以重获生机，那么它到底是何方神圣呢。
+                  
+                    </br>
+                    转载请注明出处：https://blogs.felixu.top/2019/01/23/Concurrency-2019-01-23-深入理解volatile/
+                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2019/01/23/Concurrency-2019-01-23-深入理解volatile/"  aria-label="复制成功！"></i></span>
+                  
+              </div>
+          
+        </div>
+        <script type="text/javascript" src="/js/src/clipboard.min.js"></script> 
+        <script> 
+          var clipboard = new ClipboardJS('.fa-clipboard');
+          clipboard.on('success', $(function(){
+            $(".fa-clipboard").click(function(){
+              
+            });
+          }));  
+      </script>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="硬件问题"><a href="#硬件问题" class="headerlink" title="硬件问题"></a>硬件问题</h1><p>前面说了一些<a href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/"><code>JMM</code></a>中的一些基本的概念，为了便于后面的理解，再补充一点别的知识(感觉有个大致印象就够用了)。</p>
+<h2 id="CPU高速缓存"><a href="#CPU高速缓存" class="headerlink" title="CPU高速缓存"></a>CPU高速缓存</h2><p>我们都知道，计算机处理一个问题多数情况下，总是需要与内存交互的，这一部分的<code>I/O</code>操作是很难被消除的，而计算机处理器和存储设备之间的运算速度差距是十分巨大的。为了解决这一问题，现代计算机都会在他们二者之间加上一层高速缓存，用以将需要计算的数据复制缓存到高速缓存中，计算完成后，再将结果刷新回内存。高速缓存越接近<code>CPU</code>速度越快，但其容量也越小，现代计算机一般设3级缓存。</p>
+<p>可以用下图来表述：</p>
+<p><img src="http://oss-blog.felixu.top/CPU3%E7%BA%A7%E7%BC%93%E5%AD%98.jpg" alt="CPU3级缓存"></p>
+<ul>
+<li><code>L1 Cache</code>，一级缓存，本地<code>core</code>的缓存，分成<code>32K</code>的数据缓存<code>L1d</code>和<code>32k</code>指令缓存<code>L1i</code>，访问<code>L1</code>需要 <code>3cycles</code>，耗时大约<code>1ns</code>；</li>
+<li><code>L2 Cache</code>，二级缓存，本地<code>core</code>的缓存，被设计为<code>L1</code>缓存与共享的<code>L3</code>缓存之间的缓冲，大小为<code>256K</code>，访问<code>L2</code>需要<code>12cycles</code>，耗时大约<code>3ns</code>；</li>
+<li><code>L3 Cache</code>，三级缓存，在同插槽的所有<code>core</code>共享<code>L3</code>缓存，分为多个<code>2M</code>的段，访问<code>L3</code>需要<code>38cycles</code>，耗时大约<code>12ns</code>；</li>
+</ul>
+<p>由于<code>CPU</code>高速缓存的存在，虽然在速度上带来了很大的提升，但是多级多核心缓存也带来了另一个问题，即缓存一致性问题，比如多个核心缓存了同样的数据，其中一个将其值修改了，没有及时刷新到主内存，进而也导致后续其他操作有可能出现错误。</p>
+<p>为了解决缓存一致性带来的问题，<code>CPU</code>提供了对应的解决方案：</p>
+<ul>
+<li><p>总线锁</p>
+<p>在多核<code>CPU</code>中，当其中一个核心在操作数据时，会像总线发送一个<code>LOCK#</code>信号，当其他核心再请求时，会被阻塞，此时在处理中的核心独占共享内存。总线锁相当于是锁住<code>CPU</code>与总线的通信，所以效率上会有很大影响。</p>
+</li>
+<li><p>缓存锁</p>
+<p>如果缓存在处理器缓存行中的内存区域在<code>LOCK</code>操作期间被锁定，当它执行锁操作回写内存时，处理不在总线上声明<code>LOCK#</code>信号，而是修改内部的缓存地址，然后通过缓存一致性机制来保证操作的原子性，因为缓存一致性机制会阻止同时修改被两个以上处理器缓存的内存区域的数据，当其他处理器回写已经被锁定的缓存行的数据时会导致该缓存行无效。所以如果声明了 CPU 的锁机制，会生成一个<code>LOCK</code>指令，会产生两个作用：</p>
+<ol>
+<li><p><code>Lock</code>前缀指令会引起引起处理器缓存回写到内存，在<code>P6</code>以后的处理器中， <code>LOCK</code>信号一般不锁总线，而是锁缓存。</p>
+</li>
+<li><p>一个处理器的缓存回写到内存会导致其他处理器的缓存无效。</p>
+</li>
+</ol>
+</li>
+<li><p>缓存一致性协议</p>
+<p>处理器定义一套完整的协议用于保证缓存的一致性，比如经典的<code>MESI</code>协议，它是给缓存设置一个标记，共四种：</p>
+<ul>
+<li><code>M(Modified)</code>：修改缓存，表示当前缓存已经被修改，跟内存中的不一样了</li>
+<li><code>E(Exclusive)</code>：独占缓存，表示当前缓存与内存中一致，并且其他核心没有缓存</li>
+<li><code>S(Shared)</code>：共享缓存，表示当前缓存和内存中一致，并且有多个核心也缓存了</li>
+<li><code>I(Invaild)</code>：失效缓存，表示当前缓存已经失效</li>
+</ul>
+<p><code>CPU</code>通过嗅探(snooping)协议，每个核心的缓存控制器不仅仅控制自己核心的读写，同时也会嗅探其他核心的读写操作。</p>
+<ol>
+<li>如果当前缓存状态是<code>I</code>，就从内存中读取，否则直接使用高速缓存。</li>
+<li>如果缓存状态是<code>E</code>或者<code>M</code>的核心嗅探到其他核心有读操作，则会将自己更新后到值刷新到内存，并将缓存状态设置为<code>S</code>。</li>
+</ol>
+</li>
+</ul>
+<h2 id="CPU优化"><a href="#CPU优化" class="headerlink" title="CPU优化"></a>CPU优化</h2><p>除了使用高速缓存来提升性能以外，为了更充分的利用处理器内部的运算单元，处理器可能会对输入的指令进行乱序执行优化，处理器会在执行之后将乱序执行的结果重组，保证该结果与顺序执行的结果一致，但并不保证程序中各个语句执行先后顺序与输入代码中的顺序一致，这个是处理器的优化执行；还有一个就是编程语言的编译器也会有类似的优化，比如指令重排来提升性能。</p>
+<h1 id="Volatile"><a href="#Volatile" class="headerlink" title="Volatile"></a>Volatile</h1><p>在<code>Java 5</code>以前，<code>volatile</code>是一个备受争议的关键字，因为使用它总会出现一些出乎意料的结果，直到<code>Java 5</code>之后，对<code>volatile</code>做了优化，它才得以重获新生。</p>
+<h2 id="内存语义"><a href="#内存语义" class="headerlink" title="内存语义"></a>内存语义</h2><p>当一个变量被<code>volatile</code>关键字修饰之后，会在其汇编指令加上一个<code>lock</code>前缀。而<code>lock</code>指令在多核<code>CPU</code>中出触发如下动作：</p>
+<ol>
+<li><p><code>lock</code>指令会引起处理器将缓存回写到内存。</p>
+<p><code>lock</code>前缀的指令在执行时，会声言处理器的<code>LOCK#</code>信号。如果是多处理器的情况下，当前处理器会独占共享内存。这种情况是锁总线，而现在更多的采取锁缓存的方式，即不在总线上声言<code>LOCK#</code>信号，而是，锁定内存在处理器中被缓存的区块，并回写到主存，使用缓存一致性机制来保证修改的原子性。缓存一致性机制会禁止同时修改两个及以上处理缓存的内存区域数据。</p>
+</li>
+<li><p>缓存回写到内存之后会导致其他处理器的缓存失效。</p>
+<p>处理器使用<code>MESI</code>协议维护处理器内的缓存和其他处理器缓存的一致性，通过嗅探技术，保证自己的缓存、其他处理器的缓存、主存的数据在总线上保持一致。比如通过嗅探发现有别的处理器打算写内存地址，而这个地址属于共享状态，那么当前处理器会使自己的缓存行无效，下次访问相同内存地址时，强制填充缓存行。</p>
+</li>
+</ol>
+<h2 id="happens-before规则"><a href="#happens-before规则" class="headerlink" title="happens-before规则"></a>happens-before规则</h2><p>前面在说到<a href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/"><code>JMM</code></a>的<code>happens-before</code>规则时曾提到过一条规则：<code>volatile</code>变量规则：对一个<code>volatile</code>域的写，<code>happens-before</code>于任意后续对这个<code>volatile</code>域的读。 我们来看下面的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        a = <span class="number">1</span>;				<span class="comment">// 1</span></span><br><span class="line">        flag = <span class="keyword">true</span>;		<span class="comment">// 2</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;			<span class="comment">// 3</span></span><br><span class="line">            <span class="keyword">int</span> i = a;		<span class="comment">// 4</span></span><br><span class="line">            . . .</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当A线程执行<code>writer()</code>之后，B线程执行<code>read()</code>，根据<code>happens-before</code>规则可以建立如下关系：</p>
+<ul>
+<li>根据程序次序规则：1 <code>happens-before</code> 2，3 <code>happens-before</code> 4。</li>
+<li>根据<code>volatile</code>规则：2 <code>happens-before</code> 3。</li>
+<li>根据<code>happens-before</code>的传递性：1 <code>happens-before</code> 4。</li>
+</ul>
+<p>由执行结果可知，A执行的结果对B是可见的。</p>
+<h2 id="volatile的读-写"><a href="#volatile的读-写" class="headerlink" title="volatile的读-写"></a>volatile的读-写</h2><p>当写一个<code>volatile</code>变量时，<code>JMM</code>会把该线程工作内存中共享变量的值刷新到主存中，我们以上面代码为例，来看写一个<code>volatile</code>变量的示意图：</p>
+<p><img src="http://oss-blog.felixu.top/volatile%E5%86%99%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="volatile写示意图"></p>
+<p>如图所示，当A线程执行之后，会讲执行结果刷新到主存，此时主存与A线程工作内存中共享变量的值是一样的。</p>
+<p>当读一个<code>volatile</code>变量时，<code>JMM</code>会把该线程对应的本地内存置为无效。线程接下来将从主内存中读取共享变量。</p>
+<p><img src="http://oss-blog.felixu.top/volatile%E8%AF%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="volatile读示意图"></p>
+<p>如图所示，当B线程在读<code>flag</code>变量后，本地内存B包含的值已经被置为无效。此时，线程B必须从主内存中读取共享变量。线程B的读取操作将导致本地内存B与主内存中的共享变量的值变成一 致。</p>
+<p>综合来看也就是<code>volatile</code>变量的写操作结果将对后续<code>volatile</code>读操作可见。总结如下：</p>
+<ul>
+<li>在<a href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/"><code>JMM</code></a>中说过，<code>Java</code>的线程通信是基于共享内存模型的，线程A写一个<code>volatile</code>变量，线程B读这个<code>volatile</code>变量，等价于A线程给B线程发消息告诉其共享变量已经被修改。</li>
+<li>线程A写一个<code>volatile</code>变量，本质是向后续要读这个<code>volatile</code>变量发送消息，告诉其当前共享变量已发生改变。</li>
+<li>线程B读一个<code>volatile</code>变量，本质是接收到了前面某个线程对共享变量进行修改的消息。</li>
+</ul>
+<h2 id="原子性、可见性、顺序性"><a href="#原子性、可见性、顺序性" class="headerlink" title="原子性、可见性、顺序性"></a>原子性、可见性、顺序性</h2><p>前面已经解释过原子性、可见性、有序性的概念，不知道的可以<a href="https://blogs.felixu.top/2019/01/18/Concurrency-2019-01-18-%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E3%80%81%E6%9C%89%E5%BA%8F%E6%80%A7/">戳这里</a>。</p>
+<p>经常听到有同行小伙伴问这样一个问题：<code>volatile</code>为啥保证不了原子性或者说<code>volatile</code>为什么不能保证线程安全。要搞清楚这个问题，首先的搞清楚原子性的概念，其次需要理解<code>volatile</code>的特性。要理解<code>volatile</code>的特性，我们不妨认为其是对单个读写操作做了同步(加锁)，比如以下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileDemo</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">long</span> a = <span class="number">0L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">(<span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">        a = b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        a++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在多线程环境下，其效果等价于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileDemo</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">long</span> a = <span class="number">0L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">(<span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">        a = b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">long</span> <span class="title">getA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">inc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> temp = getA();</span><br><span class="line">        temp += <span class="number">1L</span>;</span><br><span class="line">        setA(temp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>锁的<code>happens-before</code>规则保证释放锁和获取锁之间的内存可见性，这也对应着<code>volatile</code>变量的读总会读到上次写的结果。</p>
+<p>锁的语义决定了临界区代码执行具有原子性，所以即便是64位的<code>long</code>类型或者是<code>double</code>类型，它们也是具有原子性的。但是<code>volatile</code>只是相当于对变量加锁，只是原子操作具有原子性，而对于非原子操作，比如典型的<code>a++</code>，我们看下面的等效代码就可以知道，其是不具有原子性的。所以多线程执行<code>a++</code>时，还是会出现线程安全问题。</p>
+<p><code>volatile</code>通过插入特定的屏障，来禁止编译器和处理器的一些重排序，来保证顺序性。比如单例模式中的<code>Double Check</code></p>
+<p>所以总的来说：</p>
+<ul>
+<li>具有可见性。<code>volatile</code>读操作总能看到对<code>volatile</code>变量最后的写入。</li>
+<li>具有一定的原子性。对原子操作是具有原子性的，但对于复合操作不具有原子性，这也回答了这段开始那个问题。</li>
+<li>具有顺序性。通过特定的屏障禁用了一些处理器和编译器的重排序，保证了多线程环境下，由于重排序带来的程序错误。</li>
+</ul>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>为了实现<code>volatile</code>的内存语义，编译器在生成字节码时，会在指令序列中插入内存屏障用以禁止特定类型的重排序。<code>JMM</code>基于保守策略来插入屏障，策略如下：</p>
+<ul>
+<li>在每个<code>volatile</code>写操作前面插入一个<code>StoreStore</code>屏障。</li>
+<li>在每个<code>volatile</code>写操作后面插入一个<code>StoreLoad</code>屏障。</li>
+<li>在每个<code>volatile</code>读操作前面插入一个<code>LoadLoad</code>屏障。</li>
+<li>在每个<code>volatile</code>读操作后面插入一个<code>LoadStore</code>屏障。</li>
+</ul>
+<p>正是通过这种保守的策略，保证在任意处理器平台，任意的程序中都能得到正确的<code>volatile</code>内存语义。</p>
+<p>由于这些屏障的存在，<code>volatile</code>可以禁止以下重排序：</p>
+<table align="center"><br>    <tr><br>        <td>是否能重排序</td><br>        <td colspan="3">第二个操作</td><br>   </tr><br>    <tr><br>        <td>第一个操作</td><br>        <td>普通读/写</td><br>        <td>volatile读</td><br>        <td>volatile写</td><br>    </tr><br>    <tr><br>        <td>普通读/写</td><br>        <td></td><br>        <td></td><br>        <td>NO</td><br>    </tr><br>    <tr><br>        <td>volatile读</td><br>        <td>NO</td><br>        <td>NO</td><br>        <td>NO</td><br>    </tr><br>    <tr><br>        <td>volatile写</td><br>        <td></td><br>        <td>NO</td><br>        <td>NO</td><br>    </tr><br></table>
+
+<p>从表中可以得到如下结论：</p>
+<ul>
+<li>当后一个操作是<code>volatile</code>写时，无论前面是什么操作都不可以发生重排序，这个规则保证了<code>volatile</code>写之前的操作不会被重排序到<code>volatile</code>写之后。</li>
+<li>当前一个操作是<code>volatile</code>读时，无论后面是什么操作都不可以发生重排序，这个规则保证了<code>volatile</code>读之后的操作不会被重排序到<code>volatile</code>读之前。</li>
+<li>当前一个操作是<code>volatile</code>写，后一个操作是<code>volatile</code>读时，不能重排序。</li>
+</ul>
+<p>我们来看一下<code>volatile</code>读/写插入屏障的示意图：</p>
+<p><img src="http://oss-blog.felixu.top/volatile%10%E8%AF%BB%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg" alt="volatile读指令序列"></p>
+<p>以上就是<code>volatile</code>读的指令执行序列，下面我们再来看看写：</p>
+<p><img src="http://oss-blog.felixu.top/volatile%E5%86%99%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg" alt="volatile写指令序列"></p>
+<p>这里比较有意思的是，volatile写后面的StoreLoad屏障。此屏障的作用是避免volatile写与 后面可能有的volatile读/写操作重排序。因为编译器常常无法准确判断在一个volatile写的后面 是否需要插入一个StoreLoad屏障（比如，一个volatile写之后方法立即return）。为了保证能正确 实现volatile的内存语义，JMM在采取了保守策略：在每个volatile写的后面，或者在每个volatile 读的前面插入一个StoreLoad屏障。从整体执行效率的角度考虑，JMM最终选择了在每个 volatile写的后面插入一个StoreLoad屏障。因为volatile写-读内存语义的常见使用模式是：一个 写线程写volatile变量，多个读线程读同一个volatile变量。当读线程的数量大大超过写线程时， 选择在volatile写之后插入StoreLoad屏障将带来可观的执行效率的提升。从这里可以看到JMM 在实现上的一个特点：首先确保正确性，然后再去追求执行效率。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>使用<code>volatile</code>应满足以下条件：</p>
+<ol>
+<li>对变量的写操作不依赖当前值。</li>
+<li>该变量没有包含在具有其他变量的不变式中。</li>
+</ol>
+<p>我们常用的<code>volatile</code>的地方有两个地方，比如前面介绍<a href="https://blogs.felixu.top/2019/01/10/Concurrency-2019-01-10-%E4%BB%8E%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">线程</a>的时候提到的中断标志，还有单例模式中的<code>Double Check</code>。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><code>volatile</code>仅仅保证了单个变量的读/写具有原子性，而锁(synchronized)的互斥执行的特性可以保证整个临界区(临界区用来表示一种公共资源或者说是共享数据，可以被多个线程使用。但是每个线程使用时，一旦临界区资源被一个线程占有，那么其他线程必须等待。)代码的执行具有原子性。</p>
+<p>从功能上讲，锁的功能比<code>volatile</code>更加强大，但从性能上讲，<code>volatile</code>更有优势。</p>
+<ul>
+<li>具有可见性</li>
+<li>具有有序性</li>
+<li>具有一定的原子性(对单个变量而言)</li>
+</ul>
+<blockquote>
+<p>参考自《Java并发编程的艺术》</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--------------------------到底啦<i class="fa fa-paw"></i>感谢您的阅读--------------------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>请杯咖啡</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/wxpay.jpg" alt="felixu WeChat Pay"/>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/alipay.jpg" alt="felixu Alipay"/>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Concurrrnt-Programming/" rel="tag"><i class="fa fa-tag"></i> Concurrrnt Programming</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/" rel="next" title="原子性、可见性、有序性">
+                <i class="fa fa-chevron-left"></i> 原子性、可见性、有序性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="vcomments"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/felixu.jpg"
+               alt="felixu" />
+          <p class="site-author-name" itemprop="name">felixu</p>
+          <p class="site-description motion-element" itemprop="description">而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:xufei_0320@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://blog.csdn.net/xufei_0320" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-contao"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.csdn.net/xufei_0320" title="我的CSDN" target="_blank">我的CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#硬件问题"><span class="nav-number">1.</span> <span class="nav-text">硬件问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU高速缓存"><span class="nav-number">1.1.</span> <span class="nav-text">CPU高速缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU优化"><span class="nav-number">1.2.</span> <span class="nav-text">CPU优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volatile"><span class="nav-number">2.</span> <span class="nav-text">Volatile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存语义"><span class="nav-number">2.1.</span> <span class="nav-text">内存语义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#happens-before规则"><span class="nav-number">2.2.</span> <span class="nav-text">happens-before规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile的读-写"><span class="nav-number">2.3.</span> <span class="nav-text">volatile的读-写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原子性、可见性、顺序性"><span class="nav-number">2.4.</span> <span class="nav-text">原子性、可见性、顺序性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现原理"><span class="nav-number">2.5.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">2.6.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style="text-align: center">
+  <span>Copyright </span>
+  
+  &copy; 
+  <span class="author" itemprop="copyrightHolder">felixu </span>
+  <span itemprop="copyrightYear">2019</span>
+  </br>
+  <span>备案号:<a href="http://www.miitbeian.gov.cn/">粤ICP备16122004-1号</a></span>
+</div>
+
+
+
+        
+
+<div class="busuanzi-count" style="text-align: center">
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数:<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量:<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'E2JGmp4KuG1EPkynH4i8ywtU-gzGzoHsz',
+        appKey: 'RdEmEsul2CMMMUQWwFFo0dNL',
+        placeholder: '小菜鸡,让我来指点你一下(昵称:是评论所用的昵称，邮箱:是回复通知到你的邮箱)',
+        avatar:'monsterid',
+        guest_info:guest,
+        visitor: true,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
