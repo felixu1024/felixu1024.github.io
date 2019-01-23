@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://oss-blog.felixu.top/volatile%E8%AF%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://oss-blog.felixu.top/volatile%10%E8%AF%BB%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg">
 <meta property="og:image" content="http://oss-blog.felixu.top/volatile%E5%86%99%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg">
-<meta property="og:updated_time" content="2019-01-23T07:59:00.548Z">
+<meta property="og:updated_time" content="2019-01-23T08:08:24.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解volatile">
 <meta name="twitter:description" content="volatile这个关键字想必很多人都听过，也是面试常被问到一个点。在Java 5对volatile语义作了增强之后，它才得以重获生机，那么它到底是何方神圣呢。">
@@ -685,7 +685,7 @@
 <p><img src="http://oss-blog.felixu.top/volatile%10%E8%AF%BB%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg" alt="volatile读指令序列"></p>
 <p>以上就是<code>volatile</code>读的指令执行序列，下面我们再来看看写：</p>
 <p><img src="http://oss-blog.felixu.top/volatile%E5%86%99%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg" alt="volatile写指令序列"></p>
-<p>这里比较有意思的是，volatile写后面的StoreLoad屏障。此屏障的作用是避免volatile写与 后面可能有的volatile读/写操作重排序。因为编译器常常无法准确判断在一个volatile写的后面 是否需要插入一个StoreLoad屏障（比如，一个volatile写之后方法立即return）。为了保证能正确 实现volatile的内存语义，JMM在采取了保守策略：在每个volatile写的后面，或者在每个volatile 读的前面插入一个StoreLoad屏障。从整体执行效率的角度考虑，JMM最终选择了在每个 volatile写的后面插入一个StoreLoad屏障。因为volatile写-读内存语义的常见使用模式是：一个 写线程写volatile变量，多个读线程读同一个volatile变量。当读线程的数量大大超过写线程时， 选择在volatile写之后插入StoreLoad屏障将带来可观的执行效率的提升。从这里可以看到JMM 在实现上的一个特点：首先确保正确性，然后再去追求执行效率。</p>
+<p>这里<code>volatile</code>写后面的<code>StoreLoad</code>作用是避免<code>volatile</code>写与后面可能有的<code>volatile</code>读/写操作重排序。因为编译器常常无法准确判断在一个<code>volatile</code>写的后面是否需要插入一个<code>StoreLoad</code>屏障(比如，一个<code>volatile</code>写之后方法立即<code>return</code>)。为了保证能正确实现<code>volatile</code>的内存语义，<code>JMM</code>在采取了保守策略：在每个<code>volatile</code>写的后面，或者在每个<code>volatile</code> 读的前面插入一个<code>StoreLoad</code>屏障。从整体执行效率的角度考虑，<code>JMM</code>最终选择了在每个<code>volatile</code>写的后面插入一个<code>StoreLoad</code>屏障。因为<code>volatile</code>写-读内存语义的常见使用模式是：一个写线程写<code>volatile</code>变量，多个读线程读同一个<code>volatile</code>变量。当读线程的数量大大超过写线程时， 选择在<code>volatile</code>写之后插入<code>StoreLoad</code>屏障将带来可观的执行效率的提升。从这里可以看到<code>JMM</code>在实现上的一个特点：首先确保正确性，然后再去追求执行效率。</p>
 <h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>使用<code>volatile</code>应满足以下条件：</p>
 <ol>
 <li>对变量的写操作不依赖当前值。</li>
