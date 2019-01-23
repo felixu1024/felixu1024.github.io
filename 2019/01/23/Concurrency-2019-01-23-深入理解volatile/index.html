@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://oss-blog.felixu.top/volatile%E8%AF%BB%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 <meta property="og:image" content="http://oss-blog.felixu.top/volatile%10%E8%AF%BB%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg">
 <meta property="og:image" content="http://oss-blog.felixu.top/volatile%E5%86%99%E6%8C%87%E4%BB%A4%E5%BA%8F%E5%88%97.jpg">
-<meta property="og:updated_time" content="2019-01-23T08:08:24.816Z">
+<meta property="og:updated_time" content="2019-01-23T08:12:30.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解volatile">
 <meta name="twitter:description" content="volatile这个关键字想必很多人都听过，也是面试常被问到一个点。在Java 5对volatile语义作了增强之后，它才得以重获生机，那么它到底是何方神圣呢。">
@@ -579,7 +579,7 @@
       
 
       
-        <h1 id="硬件问题"><a href="#硬件问题" class="headerlink" title="硬件问题"></a>硬件问题</h1><p>前面说了一些<a href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/"><code>JMM</code></a>中的一些基本的概念，为了便于后面的理解，再补充一点别的知识(感觉有个大致印象就够用了)。</p>
+        <h1 id="硬件问题"><a href="#硬件问题" class="headerlink" title="硬件问题"></a>硬件问题</h1><p>前面说了一些<a href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/">JMM</a>中的一些基本的概念，为了便于后面的理解，再补充一点别的知识(感觉有个大致印象就够用了)。</p>
 <h2 id="CPU高速缓存"><a href="#CPU高速缓存" class="headerlink" title="CPU高速缓存"></a>CPU高速缓存</h2><p>我们都知道，计算机处理一个问题多数情况下，总是需要与内存交互的，这一部分的<code>I/O</code>操作是很难被消除的，而计算机处理器和存储设备之间的运算速度差距是十分巨大的。为了解决这一问题，现代计算机都会在他们二者之间加上一层高速缓存，用以将需要计算的数据复制缓存到高速缓存中，计算完成后，再将结果刷新回内存。高速缓存越接近<code>CPU</code>速度越快，但其容量也越小，现代计算机一般设3级缓存。</p>
 <p>可以用下图来表述：</p>
 <p><img src="http://oss-blog.felixu.top/CPU3%E7%BA%A7%E7%BC%93%E5%AD%98.jpg" alt="CPU3级缓存"></p>
@@ -646,7 +646,7 @@
 <p>如图所示，当B线程在读<code>flag</code>变量后，本地内存B包含的值已经被置为无效。此时，线程B必须从主内存中读取共享变量。线程B的读取操作将导致本地内存B与主内存中的共享变量的值变成一 致。</p>
 <p>综合来看也就是<code>volatile</code>变量的写操作结果将对后续<code>volatile</code>读操作可见。总结如下：</p>
 <ul>
-<li>在<a href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/"><code>JMM</code></a>中说过，<code>Java</code>的线程通信是基于共享内存模型的，线程A写一个<code>volatile</code>变量，线程B读这个<code>volatile</code>变量，等价于A线程给B线程发消息告诉其共享变量已经被修改。</li>
+<li>在<a href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/">JMM</a>中说过，<code>Java</code>的线程通信是基于共享内存模型的，线程A写一个<code>volatile</code>变量，线程B读这个<code>volatile</code>变量，等价于A线程给B线程发消息告诉其共享变量已经被修改。</li>
 <li>线程A写一个<code>volatile</code>变量，本质是向后续要读这个<code>volatile</code>变量发送消息，告诉其当前共享变量已发生改变。</li>
 <li>线程B读一个<code>volatile</code>变量，本质是接收到了前面某个线程对共享变量进行修改的消息。</li>
 </ul>
