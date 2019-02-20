@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Design Pattern," />
 
 
 
@@ -100,20 +100,18 @@
 
 
 
-<meta name="description" content="对于Java中异常以及其处理，想必都不会陌生，然后有一些小细节是否又真的了解呢。这里就记录一下我对Java中异常体系的浅薄认识。">
-<meta name="keywords" content="Java">
+<meta name="description" content="里氏替换原则(Liskov Substitution Principle(LSP))">
+<meta name="keywords" content="Design Pattern">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java异常处理体系">
-<meta property="og:url" content="https://blogs.felixu.top/2018/12/13/Java-2018-12-13-Java异常体系/index.html">
+<meta property="og:title" content="里氏替换原则">
+<meta property="og:url" content="https://blogs.felixu.top/2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/index.html">
 <meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="对于Java中异常以及其处理，想必都不会陌生，然后有一些小细节是否又真的了解呢。这里就记录一下我对Java中异常体系的浅薄认识。">
+<meta property="og:description" content="里氏替换原则(Liskov Substitution Principle(LSP))">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/%E5%BC%82%E5%B8%B8%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
-<meta property="og:updated_time" content="2018-12-13T12:38:01.376Z">
+<meta property="og:updated_time" content="2019-01-25T07:47:09.264Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java异常处理体系">
-<meta name="twitter:description" content="对于Java中异常以及其处理，想必都不会陌生，然后有一些小细节是否又真的了解呢。这里就记录一下我对Java中异常体系的浅薄认识。">
-<meta name="twitter:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/%E5%BC%82%E5%B8%B8%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
+<meta name="twitter:title" content="里氏替换原则">
+<meta name="twitter:description" content="里氏替换原则(Liskov Substitution Principle(LSP))">
 
 
 
@@ -141,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="https://blogs.felixu.top/2018/12/13/Java-2018-12-13-Java异常体系/"/>
+  <link rel="canonical" href="https://blogs.felixu.top/2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/"/>
 
 
 
 
 
-  <title> Java异常处理体系 | felixu's blog </title>
+  <title> 里氏替换原则 | felixu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -422,7 +420,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2018/12/13/Java-2018-12-13-Java异常体系/">
+  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
@@ -446,7 +444,7 @@
             
             
               
-                Java异常处理体系
+                里氏替换原则
               
             
           </h1>
@@ -469,8 +467,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-13T00:00:00+08:00">
-                2018-12-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-25T00:00:00+08:00">
+                2019-01-25
               </time>
             
 
@@ -492,8 +490,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Design Pattern</span>
                   </a>
                 </span>
 
@@ -510,8 +508,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/13/Java-2018-12-13-Java异常体系/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/13/Java-2018-12-13-Java异常体系/" itemprop="commentCount"></span>
+                <a href="/2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/" itemprop="commentCount"></span>
                 </a>
               </span>
             <!--noindex-->
@@ -520,8 +518,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/13/Java-2018-12-13-Java异常体系/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/12/13/Java-2018-12-13-Java异常体系/" itemprop="commentsCount"></span>
+                <a href="/2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/" itemprop="commentsCount"></span>
                 </a>
               </span> -->
               <!--/noindex-->
@@ -532,7 +530,7 @@
 
           
           
-             <span id="/2018/12/13/Java-2018-12-13-Java异常体系/" class="leancloud_visitors" data-flag-title="Java异常处理体系">
+             <span id="/2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/" class="leancloud_visitors" data-flag-title="里氏替换原则">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -548,11 +546,11 @@
 
           
               <div class="post-description">
-                  对于Java中异常以及其处理，想必都不会陌生，然后有一些小细节是否又真的了解呢。这里就记录一下我对Java中异常体系的浅薄认识。
+                  里氏替换原则(Liskov Substitution Principle(LSP))
                   
                     </br>
-                    转载请注明出处：https://blogs.felixu.top/2018/12/13/Java-2018-12-13-Java异常体系/
-                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2018/12/13/Java-2018-12-13-Java异常体系/"  aria-label="复制成功！"></i></span>
+                    转载请注明出处：https://blogs.felixu.top/2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/
+                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2019/01/25/DesignPattern-2019-01-25-设计模式之里氏替换职责/"  aria-label="复制成功！"></i></span>
                   
               </div>
           
@@ -575,40 +573,74 @@
       
 
       
-        <p>吹逼两小时，代码五分钟。平常写代码中异常无处不在，早就练就了我们<code>try{...} actch(){...}finally{...}</code>一把梭的深厚功力。毕竟它看起来真的很简单，我们用着也蛮顺心，但是你真的了解它吗，真的不会出错吗？</p>
-<h1 id="Java异常体系"><a href="#Java异常体系" class="headerlink" title="Java异常体系"></a>Java异常体系</h1><p>下面是Java中的异常继承图：</p>
-<p><img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/%E5%BC%82%E5%B8%B8%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt=""></p>
-<p><code>Throwable</code>是整个异常体系中的顶级父类，它拥有两个子类，分别是<code>Error</code>和<code>Exception</code>。</p>
-<p><code>Error</code>是由机器底层抛出的错误，我们无法处理的，比如<code>OutOfMemoryError</code>，当遇到这类错误时，<code>JVM</code>会直接终止进程，应用终止。此类异常我们不要去捕获，因为捕获了也处理不了。</p>
-<p><code>Exception</code>是程序可以处理的错误，主要分为运行时异常，和非运行时异常。或者叫做受检异常和非受检异常。</p>
-<p>运行时异常都是<code>RuntimeException</code>及其子类，比如，<code>NullPointException</code>、<code>ArrayIndexOutOfBoundsException</code>等等，这类的异常属于非受检异常(<code>UnChecked</code>)，我们可以对其捕获处理，也可以不处理，而我们一般也不会做处理的，因为这类错误通常是我们逻辑错误所导致的，我们应该尽量避免此类<code>Bug</code>。</p>
-<p>而非运行时异常，比如<code>IOException</code>、<code>EOFException</code>等等所有非<code>RuntimeException</code>及其子类，都是非运行时异常，也就是受检异常(<code>Checked</code>)，当方法抛出了这类异常，则调用者必须在调用该方法时对其进行处理，否则将无法编译。</p>
-<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><p>那么我们该怎么去处理异常呢，这时候自然而然会想到<code>try-catch-finally</code>，我们来下面的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(test1());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            flag = test2();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"[test1] catch exception result="</span> + flag);</span><br><span class="line">            flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"[test1] finally result="</span> + flag);</span><br><span class="line">            <span class="keyword">return</span> flag;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 分别调用test3()和test4()</span></span><br><span class="line">            flag = test4();</span><br><span class="line">            <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"[test2] result="</span> + flag);</span><br><span class="line">            <span class="keyword">return</span> flag;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"[test2] catch exception result="</span> + flag);</span><br><span class="line">            flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"[test2] finally result="</span> + flag);</span><br><span class="line">            <span class="keyword">return</span> flag;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"[test3] result="</span> + flag);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"[test3] catch exception result="</span> + flag);</span><br><span class="line">            flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"[test3] finally result="</span> + flag);</span><br><span class="line">            <span class="keyword">return</span> flag;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> a = <span class="number">2</span> / <span class="number">0</span>;</span><br><span class="line">            System.out.println(<span class="string">"[test4] result="</span> + flag);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"[test4] catch exception result="</span> + flag);</span><br><span class="line">            flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"[test4] finally result="</span> + flag);</span><br><span class="line">            <span class="keyword">return</span> flag;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>当其中<code>test2()</code>方法分别调用<code>test3()</code>和<code>teset4()</code>，打印顺序会是怎么样的呢，不如先思考一下。</p>
-<p>调用<code>test3()</code>时，打印结果：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[test3] result=true</span><br><span class="line">[test3] finally result=true</span><br><span class="line">[test2] result=true</span><br><span class="line">[test2] finally result=true</span><br><span class="line">[test1] finally result=true</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
-<p>调用<code>test4()</code>时，打印结果：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[test4] catch exception result=true</span><br><span class="line">[test4] finally result=false</span><br><span class="line">[test2] finally result=false</span><br><span class="line">[test1] finally result=false</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
-<p>不知道这段代码的实际执行结果和你所想的有没有出入，众所周知的是，当<code>try{···}</code>块中的代码执行未发生异常，贼执行<code>finally{...}</code>块中的代码，如果执行出现异常，则会先执行<code>catch(){...}</code>中的代码，再执行<code>finally{...}</code>中的代码。但是当这些代码块中出现<code>return</code>、<code>throw</code>则会发生变化。</p>
-<p><strong>当try{···}块或者catch(){…}块中有return、throw时，在return或者throw执行前回优先执行finally{…}代码块中的内容</strong></p>
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>里氏替换原则<code>(Liskov Substitution Principle)</code>由2008年图灵奖得主、美国第一位计算机科学女博士<code>Barbara Liskov</code>教授和卡内基·梅隆大学<code>Jeannette Wing</code>教授于1994年提出。它有如下定义：</p>
 <blockquote>
-<p>特别提醒，<code>finally</code>中禁止使用<code>return</code>，这里使用，只是为了演示用。</p>
+<p>If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T,the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.</p>
+<p>如果对每一个类型为S的对象o1，都有类型为T的对象o2，使得以T定义的所有程序P在所有的对象o1都代换成o2时，程序P的行为没有发生变化，那么类型S是类型T的子类型。</p>
 </blockquote>
-<p>所以当<code>finally</code>中有<code>throw</code>或者<code>return</code>时，它会覆盖<code>try</code>块中和<code>catch</code>块中的<code>throw</code>以及<code>return</code>，从而出现异常屏蔽现象，比如下面这段代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"catch"</span>);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"finally"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>它将打印出：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread "main" java.lang.RuntimeException: finally</span><br><span class="line">	at top.felixu.exception.ExceptionDemo1.main(ExceptionDemo1.java:14)</span><br></pre></td></tr></table></figure>
-<p><code>catch</code>块中的异常就被覆盖了，这种现象还是有可能出现在<code>try-catch-finally</code>捕获处理流相关操作中，在<code>finally</code>中手动关闭流出现异常时，但是在<code>JDK7</code>版本以后，<code>try-with-resource</code>可以帮我们自动关闭流了。在<code>JDK7</code>中，所有的<code>IO</code>类都实现了<code>AutoCloseable</code>接口，并且需要实现其中的<code>close()</code>函数，资源释放过程需要在该函数中完成。那么，编译器在编译时，会自动添加<code>finally</code>代码块，并将<code>close()</code>函数中的资源释放代码加入<code>finally</code>代码块中，从而提高代码可读性。这里就不具体介绍了。</p>
-<h1 id="异常处理约定"><a href="#异常处理约定" class="headerlink" title="异常处理约定"></a>异常处理约定</h1><ol>
-<li>对于非受检异常，我们不要去捕获处理，而是通过测试和<code>review</code>代码来规避此类问题。</li>
-<li>异常不要用来做流程控制，条件控制，因为异常处理的效率比分支处理要低。</li>
-<li>对大块代码的<code>try-catch</code>是不负责的行为，我们要区分稳定代码已经不稳定代码。</li>
-<li>捕获异常是为了处理异常，如果捕获了什么都不处理，不如不捕获，将其抛给其上层调用者。而最上层的调用者必须处理，防止用户看到无法理解的异常信息。</li>
-<li><code>try</code>块中有事物代码，则<code>catch</code>到异常要手动回滚，或者抛出异常，让<code>AOP</code>框架来回滚，否则会吞掉异常，导致异常却未回滚。</li>
-<li>不能在<code>finally</code>中使用<code>return</code>。</li>
-<li>捕获异常必须与所抛出的异常匹配，或者所捕获的异常是抛出异常的父类。</li>
+<p>也可以有另一种定义：</p>
+<blockquote>
+<p>Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.</p>
+<p>所有引用基类的地方必须能透明地使用其子类的对象。</p>
+</blockquote>
+<p>通俗点讲，只要父类能出现的地方子类就可以出现，而且替换为子类也不会产生任何错误或异常，使用者可能根本就不需要知道是父类还是子类。但是，反过来就不行了，有子类出现的地方，父类未必就能适应。比如：我如果说我喜欢动物，那么说我喜欢狗子没有错，因为狗子也是动物嘛，但是要是我说我说我喜欢狗子，你说我喜欢动物可能就不太恰当了，毕竟看到老鼠还是要上脚的。</p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>说到里氏替换原则不得不提的是继承，在面向对象语言中，继承是必不可少的。继承有着众多的优点，当然也有缺点。我们先来看看继承有哪些优缺点：</p>
+<p><strong>优点</strong>：</p>
+<ol>
+<li>代码共享</li>
+<li>提高代码的重用性</li>
+<li>子类形似父类</li>
+<li>提高代码的扩展性</li>
+<li>提高产品或项目的开放性</li>
 </ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li>代码入侵</li>
+<li>降低代码的灵活性</li>
+<li>增强了耦合性</li>
+</ol>
+<p>正是为了最大化优点，减少缺点带来的麻烦，引入了里氏替换原则。里氏替换原则为良好的继承定义了一个规范。</p>
+<h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>里氏替换原则需要注意以下几点：</p>
+<ul>
+<li><p>子类必须完全实现父类的方法。</p>
+<p>一般我们在设计的时候，通常都是定义一个接口或者抽象类，然后子类去具体实现，在调用时之间传入父类或接口，其实这里已经使用了里氏替换原则。在类中调用其他类时务必要使用父类或接口，如果不能使用父类或接口，则说明类的设计已经违背了<code>LSP</code>原则。如果子类不能完整地实现父类的方法，或者父类的某些方法在子类中已经发生畸变，则建议断开父子继承关系，采用依赖、聚集、组合等关系代替继承。</p>
+</li>
+<li><p>子类可以有自己的个性。</p>
+<p>在继承中，子类是可以有自己的行为的，也就是自己的方法和属性。这里要说的是里氏替换原则只可以正着使用(即可以用子类代替父类)，而不能反正用(即使用父类替代子类)。如果使用，可能会出现<code>java.lang.ClassCastException</code>，其实这也就是我们常说的继承体系中，向下转型(downcast)是不安的。里氏替换原则来看的话就是，子类出现的地方未必可以用父类替代。</p>
+</li>
+<li><p>覆盖或实现父类的方法时输入参数可以被放大。</p>
+<p>对于一个方法的输入参数，我们也可以使用里氏替换原则，就是使用父类或者接口。我们来看以下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 父类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Collection <span class="title">doSomething</span><span class="params">(HashMap map)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"invoke father"</span>);</span><br><span class="line">        <span class="keyword">return</span> map.values();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 子类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Collection <span class="title">doSomething</span><span class="params">(Map map)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"invoke son"</span>);</span><br><span class="line">        <span class="keyword">return</span> map.values();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * client</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Father f = <span class="keyword">new</span> Father();</span><br><span class="line">        f.doSomething(<span class="keyword">new</span> HashMap());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invoke father</span><br></pre></td></tr></table></figure>
+<p>根据里氏替换原则，父类的地方可以用子类替换，修改一下<code>Client</code>类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * client</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Son f = <span class="keyword">new</span> Son();</span><br><span class="line">        f.doSomething(<span class="keyword">new</span> HashMap());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invoke father</span><br></pre></td></tr></table></figure>
+<p>这里可以看到，子类的方法没有被执行，那是因为这里是重载(Overload)，而不是重写(Override)，出现这种现象是正常的，要子类方法可以正常执行，应该重写父类的方法。在继承中，即可以重写父类方法，也可以重载父类方法，重载要求入参类型要宽于父类入参类型(对入参使用里氏替换)。</p>
+<p>如果反过来会出现什么情况，我们不妨也来看一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 父类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Collection <span class="title">doSomething</span><span class="params">(Map map)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"invoke father"</span>);</span><br><span class="line">        <span class="keyword">return</span> map.values();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 子类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Collection <span class="title">doSomething</span><span class="params">(HashMap map)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"invoke son"</span>);</span><br><span class="line">        <span class="keyword">return</span> map.values();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * client</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Father f = <span class="keyword">new</span> Father();</span><br><span class="line">        f.doSomething(<span class="keyword">new</span> HashMap());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invoke father</span><br></pre></td></tr></table></figure>
+<p>根据里氏替换原则，父类的地方可以用子类替换，修改一下<code>Client</code>类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * client</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Son f = <span class="keyword">new</span> Son();</span><br><span class="line">        f.doSomething(<span class="keyword">new</span> HashMap());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invoke son</span><br></pre></td></tr></table></figure>
+<p>我们会看到，子类执行了。这样会引起不必要的误会，因为在实际业务中，父类一般是抽象类或者接口，在子类中实现，当传递这样一个子类，会引发业务逻辑的混乱，所以子类中方法的入参类型必须与超类中被覆写的方法的入参类型相同或者更宽松。</p>
+</li>
+<li><p>覆写或实现父类的方法时输出结果可以被缩小。</p>
+<p>即是子类返回值的类型必须小于等于父类返回值的类型。情况与上面类似就不再赘述。</p>
+</li>
+</ul>
+<p>要满足里氏替换原则，我们<strong>应该尽量避免重写或者重载父类已经实现的方法</strong>，这也是里氏替换原则的核心。因为在继承体系中，父类中已实现的方法实际上是在对子类做一定的限制，或者说这是一种规范或者契约，而一旦子类对其进行修改，就会造成与里氏替换原则定义相违背的情况，使用子类替换父类的时候出现了不可预知的意外情况</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>感觉通篇下来都是在说继承，是啊，里氏替换原则本来就是为了让我们更加规范的使用继承，最大化优点嘛。里氏替换原则可以使我们的程序更加健壮，更加稳定，在升级过程中能够有更好的兼容性。在项目中，采用里氏替换原则时，尽量避免子类的“个性”，一旦子类有“个性”，这个子类和父类之间的关系就很难调和了，把子类当做父类使用，子类的“个性”被抹杀——委屈了点；把子类单独作为一个业务来使用，则会让代码间的耦合关系变得扑朔迷离——缺乏类替换的标准。 </p>
+<blockquote>
+<p>参考自《设计模式之禅》</p>
+</blockquote>
 
       
     </div>
@@ -661,7 +693,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+            <a href="/tags/Design-Pattern/" rel="tag"><i class="fa fa-tag"></i> Design Pattern</a>
           
         </div>
       
@@ -670,8 +702,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/10/Java-2018-12-10-Java8新时间API/" rel="next" title="Java8新时间API">
-                <i class="fa fa-chevron-left"></i> Java8新时间API
+              <a href="/2019/01/23/Concurrency-2019-01-23-深入理解volatile/" rel="next" title="深入理解volatile">
+                <i class="fa fa-chevron-left"></i> 深入理解volatile
               </a>
             
           </div>
@@ -680,8 +712,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/21/Spring-2018-12-21-Spring-Validation参数校验/" rel="prev" title="Spring Validation参数校验">
-                Spring Validation参数校验 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/20/Java-2019-02-20-ArrayList源码分析/" rel="prev" title="ArrayList源码分析">
+                ArrayList源码分析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -841,7 +873,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java异常体系"><span class="nav-number">1.</span> <span class="nav-text">Java异常体系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异常处理"><span class="nav-number">2.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异常处理约定"><span class="nav-number">3.</span> <span class="nav-text">异常处理约定</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">3.</span> <span class="nav-text">里氏替换原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
