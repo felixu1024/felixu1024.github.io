@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Concurrrnt Programming," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -100,20 +100,18 @@
 
 
 
-<meta name="description" content="多线程并发中，三大特性没有得到保证是造成我们执行结果错误的本质，那么这三大特性是什么呢。">
-<meta name="keywords" content="Concurrrnt Programming">
+<meta name="description" content="使用JDK自带的keytool工具来生成证书。">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原子性、可见性、有序性">
-<meta property="og:url" content="https://blogs.felixu.top/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/index.html">
+<meta property="og:title" content="使用keytool生成证书">
+<meta property="og:url" content="https://blogs.felixu.top/2019/02/28/Java-2019-02-28-keytool生成证书/index.html">
 <meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="多线程并发中，三大特性没有得到保证是造成我们执行结果错误的本质，那么这三大特性是什么呢。">
+<meta property="og:description" content="使用JDK自带的keytool工具来生成证书。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oss-blog.felixu.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F.jpg">
-<meta property="og:updated_time" content="2019-01-18T09:21:06.696Z">
+<meta property="og:updated_time" content="2019-02-28T02:56:16.612Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原子性、可见性、有序性">
-<meta name="twitter:description" content="多线程并发中，三大特性没有得到保证是造成我们执行结果错误的本质，那么这三大特性是什么呢。">
-<meta name="twitter:image" content="http://oss-blog.felixu.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F.jpg">
+<meta name="twitter:title" content="使用keytool生成证书">
+<meta name="twitter:description" content="使用JDK自带的keytool工具来生成证书。">
 
 
 
@@ -141,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="https://blogs.felixu.top/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/"/>
+  <link rel="canonical" href="https://blogs.felixu.top/2019/02/28/Java-2019-02-28-keytool生成证书/"/>
 
 
 
 
 
-  <title> 原子性、可见性、有序性 | felixu's blog </title>
+  <title> 使用keytool生成证书 | felixu's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -422,7 +420,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/">
+  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2019/02/28/Java-2019-02-28-keytool生成证书/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
@@ -446,7 +444,7 @@
             
             
               
-                原子性、可见性、有序性
+                使用keytool生成证书
               
             
           </h1>
@@ -469,8 +467,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T00:00:00+08:00">
-                2019-01-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-28T00:00:00+08:00">
+                2019-02-28
               </time>
             
 
@@ -492,8 +490,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Concurrrnt-Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Concurrrnt Programming</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -510,8 +508,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/" itemprop="commentCount"></span>
+                <a href="/2019/02/28/Java-2019-02-28-keytool生成证书/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/28/Java-2019-02-28-keytool生成证书/" itemprop="commentCount"></span>
                 </a>
               </span>
             <!--noindex-->
@@ -520,8 +518,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/" itemprop="commentsCount"></span>
+                <a href="/2019/02/28/Java-2019-02-28-keytool生成证书/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2019/02/28/Java-2019-02-28-keytool生成证书/" itemprop="commentsCount"></span>
                 </a>
               </span> -->
               <!--/noindex-->
@@ -532,7 +530,7 @@
 
           
           
-             <span id="/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/" class="leancloud_visitors" data-flag-title="原子性、可见性、有序性">
+             <span id="/2019/02/28/Java-2019-02-28-keytool生成证书/" class="leancloud_visitors" data-flag-title="使用keytool生成证书">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -548,11 +546,11 @@
 
           
               <div class="post-description">
-                  多线程并发中，三大特性没有得到保证是造成我们执行结果错误的本质，那么这三大特性是什么呢。
+                  使用JDK自带的keytool工具来生成证书。
                   
                     </br>
-                    转载请注明出处：https://blogs.felixu.top/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/
-                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2019/01/18/Concurrency-2019-01-18-原子性、可见性、有序性/"  aria-label="复制成功！"></i></span>
+                    转载请注明出处：https://blogs.felixu.top/2019/02/28/Java-2019-02-28-keytool生成证书/
+                    <span class="copy-article-url"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2019/02/28/Java-2019-02-28-keytool生成证书/"  aria-label="复制成功！"></i></span>
                   
               </div>
           
@@ -575,39 +573,51 @@
       
 
       
-        <p>在介绍<a href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java内存模型-JMM/">JMM</a>时提到过，造成并发问题的根本原因是在于对共享变量的操作，而导致并发场景下数据一致性问题的本质在于三个特性没有得到保证，即原子性、可见性、有序性。</p>
-<h1 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h1><p>所谓原子性，我的理解就是，一个或者一组操作是不可被分割的，一旦开始执行，则会一直执行到结束，中间不会有线程切换。</p>
-<p>原子性保证了读取到的某个值是由一个线程写入的，而不是由多个线程同时写入而造成的错误数据。如在32位的<code>JVM</code>中对64位<code>long</code>或<code>double</code>值的写操作是分成两次相邻的32位值写操作，在多线程的环境下，可能会有线程只读到了前32位，这种操作就是非原子性的，非原子性操作会受到多线程的干扰而产生结果错误。这里列举几个操作，来对原子性操作有个印象：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">a++;</span><br><span class="line"><span class="keyword">int</span> b = a;</span><br></pre></td></tr></table></figure>
+        <p>之前项目中用到<code>Spring Cloud OAuth2</code>来做权限认证，当然它可以使用对称加密，也可以使用非对称加密，在使用非对称加密的时候就用到了这里的证书。本来用<code>keytool</code>生成的证书用的好好的，也就没有注意过，直到有一天，在登陆系统的时候，提示证书无效，才知道原来<code>keytool</code>不设置有效期的话，是有默认过期时间的。所以这里就记录一下这个坑。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>keytool</code>是个密钥和证书管理工具，它使用户能够管理自己的公钥/私钥对及相关证书，用于(通过数字签名)自我认证(用户向别的用户/服务认证自己)或数据完整性以及认证服务。它还允许用户存储他们的通信对等者的公钥(以证书形式)。</p>
+<p><code>keytool</code>是个<code>JDK</code>数据证书的管理工具，这个工具一般在<code>JDK/jre/bin/security</code>目录下。</p>
+<p><code>keytool</code>将密钥(key)和证书(certificates)存在一个成为<code>keystore</code>的文件中。</p>
+<p>在<code>keystore</code>中一般会包含两种数据：</p>
 <ul>
-<li><p>第一句，将1赋值给a，只有一个操作，它必然是不可被分割的，所以它是原子性操作。</p>
-</li>
-<li><p>第二句，这是一个举例原子操作典型的一个反例，看似只有一个操作，但是它并不是，它分了3步，首先获取a的值，然后将a加1，最后将结果再赋值给a。这是三步操作，所以如果a作为共享变量的话，在多线程场景下，如果不保证其操作的原子性，就有可能会造成错误的结果。我们可以用<code>CountDownLatch</code>来模拟问题：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   	<span class="keyword">private</span>  <span class="keyword">static</span> CountDownLatch count = <span class="keyword">new</span> CountDownLatch(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                a++;</span><br><span class="line">                count.countDown();</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">        count.await();</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>单线程执行后应该是10，但是结果并不是，基本上全是小于10。</p>
-</li>
-<li><p>第三句，先读取a的值，再赋值给b，同样也不是原子操作。</p>
-</li>
+<li>密钥实体(<code>key entity</code>) — 密钥(<code>secret key</code>)又或者是私钥和配对公钥(采用非对称加密)。</li>
+<li>可信任的证书实体(<code>trusted certificate entries</code>) — 只包含公钥。</li>
 </ul>
-<p>在<code>JMM</code>中定义了8个原子操作，在前面介绍<code>JMM</code>的一副图中出现过，但是当时并没有进行介绍，这里简单介绍一下：</p>
+<h1 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h1><p>一个证书是一个实体的数字签名，还包含这个实体的公钥值。</p>
 <ul>
-<li><strong>lock</strong>：标记一个变量为线程独占状态，作用于主内存。</li>
-<li><strong>unlock</strong>：释放变量的线程独占状态，使其可被其他线程操作，作用于主内存。</li>
-<li><strong>read</strong>：将主内存中的变量读入到工作内存中，以便<code>load</code>到工作内存对应的变量副本中，作用于主内存。</li>
-<li><strong>write</strong>：将工作内存中<code>store</code>传递过来的变量写回到主内存中，作用于主内存。</li>
-<li><strong>load</strong>：将<code>read</code>操作得到的变量值放入到工作内存中的变量副本，作用于工作内存。</li>
-<li><strong>store</strong>：将工作内存中的变量副本传递给<code>write</code>刷新到主内存，作用于工作内存。</li>
-<li><strong>use</strong>：将工作内存中一个变量的值传递给执行引擎，每当虚拟机遇到一个需要使用到变量的值的字节码指令时将会执行这个操作，作用于工作内存。</li>
-<li><strong>assign</strong>：将一个从执行引擎接收到的值赋给工作内存的变量，每当虚拟机遇到一个给变量赋值的字节码指令时执行这个操作，作用于工作内存。</li>
+<li>公钥：是一个详细的实体的数字关联，并有意让所有想同这个实体发生信任关系的其他实体知道，公钥用来检验签名。</li>
+<li>数字签名：是实体信息用实体的私钥签名(加密)后的数据。这条数据可以用这个实体的公钥来检验签名(解密)出实体信息以鉴别实体的身份。</li>
+<li>签名：用实体私钥加密某些消息，从而得到加密后的数据。</li>
+<li>私钥：是一些数字，私钥和公钥存在所有用公钥加密的系统的钥匙对中。公钥用来加密数据，私钥用来计算签名。公钥加密的消息只能用私钥解密，私钥签名的消息只能用公钥检验签名。</li>
+<li>实体：一个实体可以是一个人，一个组织，一个程序，一台计算机，一个商业，一个银行或者其他你想信任的东西。</li>
 </ul>
-<p>基本类型的单次读写操作是原子的。</p>
-<h1 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h1><p>可见性是指，当一个线程对共享变量进行修改之后，其他线程会得知变量值已，而去重新获取新的值。</p>
-<p>多线程场景下共享变量在多线程中如下图所示：</p>
-<p><img src="http://oss-blog.felixu.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F.jpg" alt="多线程共享变量"></p>
-<p>可见性是保证多线程场景下数据一致性和正确性的基石有序性。<code>Java</code>通过一些关键字(如<code>synchronized</code>、<code>volatile</code>等，后面会专门介绍)来保证共享变量的可见性。</p>
-<h1 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h1><p>在介绍<a href="https://blogs.felixu.top/2019/01/17/Concurrency-2019-01-17-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-JMM/">JMM</a>时，说到重排序的时候提到过，从源代码到最后执行的指令集，需要经历编译器的重排序和处理器的重排序，重排序虽然带来了性能上的提升，但是同时也带来了有序性问题。</p>
-<p>所以为了保证有序性，需要合理的禁止重排序。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>多线程问题，归根结底就是解决这三大问题，为了解决这三大问题，<code>Java</code>为我们提供了诸多解决办法，比如锁、<code>synchronized</code>、<code>volatile</code>、<code>final</code>等，后面有时间在慢慢来介绍这些玩意。</p>
+<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1><p>首先生成<code>JKS(Java KeyStore)</code>文件，在我们需要的位置打开终端执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkeypair -alias test -keyalg RSA -keypass password -keystore test.jks -storepass password</span><br></pre></td></tr></table></figure>
+<p>回车之后，会出来让你一堆什么名字啊地址啊啥的信息，按照操作走完后输入<code>y</code>确认，就可以看到已经生成好的<code>JKS</code>了。</p>
+<p>这只是一个简单的示例，它有以下参数：</p>
+<ul>
+<li><code>-alias</code>：证书别名。</li>
+<li><code>-keystore</code>：指定密钥库的名称(cacerts是jre中默认的证书库名称，也可以使用其他名字)。</li>
+<li><code>-storepass</code>：指定密钥库的密码。</li>
+<li><code>-keypass</code>：指定别名条目的密码。</li>
+<li><code>-list</code>：显示密钥库中的证书信息。</li>
+<li><code>-v</code>：显示密钥库中证书详细信息。</li>
+<li><code>-export</code>：将别名指定的证书导出到文件。</li>
+<li><code>-file</code>：指定导出到文件的文件名。</li>
+<li><code>-delete</code>：删除密钥库中某条目。</li>
+<li><code>-import</code>：将已签名数字证书导入密钥库。</li>
+<li><code>-keypasswd</code>：修改密钥库中指定条目口令。</li>
+<li><code>-dname</code>：指定证书拥有者信息。</li>
+<li><code>-keyalg</code>：指定密钥的算法。</li>
+<li><code>-validity</code>：指定创建的证书有效期为多少天，默认不设置的话为90天。</li>
+<li><code>-keysize</code>：指定密钥的长度。</li>
+</ul>
+<p>生成好了之后，需要导出来公钥备用。执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -rfc --keystore test.jks | openssl x509 -inform pem -pubkey</span><br></pre></td></tr></table></figure>
+<p>不过这个需要事先安装好<code>openssl</code>的，具体怎么安装就<code>Google</code>吧。</p>
+<p>回车之后需要输入刚刚密钥库的密码，会得到以下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6LBBkoteUhjeA/nWP7i9</span><br><span class="line">FUVB99Ff9UCBuOhnVZCaFBmlQ7fKTtwebsgn+8FKlo8OV7YDSHXB0MBEvt42fZYz</span><br><span class="line">k9lq7Jkq0SZD/Rc1icoSaYIkcKDSOFSXU4/U1YeJ3EK/Obh0bbD3ZL+YG8mMqACl</span><br><span class="line">7CxyiM8h8G+YfjADmmbanp6rKdgiEp7GD1Bu+JNvOMiAnN9CSzgipLk6xBR26yIJ</span><br><span class="line">oXOhhCixvyfI/yy3ofbfqCicQJcVLReA0+MQETVndKdLug1yS/imBAh2vGf6GSCo</span><br><span class="line">JM0LWr9GrbJTnlL7FPjacB+BbC3TI4rIbI36NVs3OXpKupH46yBzpDXhwk/TYYQj</span><br><span class="line">6QIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIDCzCCAfOgAwIBAgIEGtZIUzANBgkqhkiG9w0BAQsFADA2MQswCQYDVQQGEwJ1</span><br><span class="line">czELMAkGA1UECBMCY2ExCzAJBgNVBAcTAmxhMQ0wCwYDVQQDEwR0ZXN0MB4XDTE2</span><br><span class="line">MDMxNTA4MTAzMFoXDTE2MDYxMzA4MTAzMFowNjELMAkGA1UEBhMCdXMxCzAJBgNV</span><br><span class="line">BAgTAmNhMQswCQYDVQQHEwJsYTENMAsGA1UEAxMEdGVzdDCCASIwDQYJKoZIhvcN</span><br><span class="line">AQEBBQADggEPADCCAQoCggEBAICCtlreMdhLQ5eNQu736TrDKrmTMjsrXjtkbFXj</span><br><span class="line">Cxf4VyHmL4nCq9EkM1ZKHRxAQjIhl0A8+aa4o06t0Rz8tv+ViQQmKu8h4Ey77KTM</span><br><span class="line">urIr1zezXWBOyOaV6Pyh5OJ8/hWuj9y/Pi/dBP96sH+o9wylpwICRUWPAG0mF7dX</span><br><span class="line">eRC4iBtf4BKswtH2ZjYYX6wbccFl65aVA09Cn739EFZj0ccQi10/rRHtbHlhhKnj</span><br><span class="line">iy+b10S6ps2XAXtUWfZEEJuN/mvUJ+YnEkZw30wHrENwq5QFiSpdpHFlNR8CasPn</span><br><span class="line">WUUmdV+JBFzTMsz3TwWxplOjB3YacsCO0imU+5l+AQ51CnkCAwEAAaMhMB8wHQYD</span><br><span class="line">VR0OBBYEFOGefUBGquEX9Ujak34PyRskHk+WMA0GCSqGSIb3DQEBCwUAA4IBAQB3</span><br><span class="line">1eLfNeq45yO1cXNl0C1IQLknP2WXg89AHEbKkUOA1ZKTOizNYJIHW5MYJU/zScu0</span><br><span class="line">yBobhTDe5hDTsATMa9sN5CPOaLJwzpWV/ZC6WyhAWTfljzZC6d2rL3QYrSIRxmsp</span><br><span class="line">/J1Vq9WkesQdShnEGy7GgRgJn4A8CKecHSzqyzXulQ7Zah6GoEUD+vjb+BheP4aN</span><br><span class="line">hiYY1OuXD+HsdKeQqS+7eM5U7WW6dz2Q8mtFJ5qAxjY75T0pPrHwZMlJUhUZ+Q2V</span><br><span class="line">FfweJEaoNB9w9McPe1cAiE+oeejZ0jq0el3/dJsx3rlVqZN+lMhRJJeVHFyeb3XF</span><br><span class="line">lLFCUGhA7hxn2xf3x1JW</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></table></figure>
+<p>需要用到的就是公钥部分了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6LBBkoteUhjeA/nWP7i9</span><br><span class="line">FUVB99Ff9UCBuOhnVZCaFBmlQ7fKTtwebsgn+8FKlo8OV7YDSHXB0MBEvt42fZYz</span><br><span class="line">k9lq7Jkq0SZD/Rc1icoSaYIkcKDSOFSXU4/U1YeJ3EK/Obh0bbD3ZL+YG8mMqACl</span><br><span class="line">7CxyiM8h8G+YfjADmmbanp6rKdgiEp7GD1Bu+JNvOMiAnN9CSzgipLk6xBR26yIJ</span><br><span class="line">oXOhhCixvyfI/yy3ofbfqCicQJcVLReA0+MQETVndKdLug1yS/imBAh2vGf6GSCo</span><br><span class="line">JM0LWr9GrbJTnlL7FPjacB+BbC3TI4rIbI36NVs3OXpKupH46yBzpDXhwk/TYYQj</span><br><span class="line">6QIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -660,7 +670,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Concurrrnt-Programming/" rel="tag"><i class="fa fa-tag"></i> Concurrrnt Programming</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
         </div>
       
@@ -669,8 +679,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/17/Concurrency-2019-01-17-Java内存模型-JMM/" rel="next" title="Java内存模型(JMM)">
-                <i class="fa fa-chevron-left"></i> Java内存模型(JMM)
+              <a href="/2019/02/27/Java-2019-02-27-equals和hashCode/" rel="next" title="equals和hashCode">
+                <i class="fa fa-chevron-left"></i> equals和hashCode
               </a>
             
           </div>
@@ -678,10 +688,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/23/Concurrency-2019-01-23-深入理解volatile/" rel="prev" title="深入理解volatile">
-                深入理解volatile <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -840,7 +846,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原子性"><span class="nav-number">1.</span> <span class="nav-text">原子性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可见性"><span class="nav-number">2.</span> <span class="nav-text">可见性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有序性"><span class="nav-number">3.</span> <span class="nav-text">有序性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#证书"><span class="nav-number">2.</span> <span class="nav-text">证书</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用法"><span class="nav-number">3.</span> <span class="nav-text">用法</span></a></li></ol></div>
             
 
           </div>
