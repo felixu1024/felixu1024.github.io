@@ -36,3 +36,24 @@ function doCopy(ele){
   }
   ele.children[1].innerHTML = "Copied!";
 }
+
+$(function () {
+  $('.btn-copy').bind("click",function () {
+      tips('已复制');
+  })
+
+  $('.copy-article-url').bind("click",function () {
+      tips('已复制');
+  })
+  
+  function tips(text) {
+      $('.popup-dom').remove();
+      var copyHtml = '';
+      copyHtml += '<div class="popup-dom">';
+      copyHtml += '<div class="popup-tips">' + text + '</div>';
+      copyHtml += '</div>';
+      $('body').append(copyHtml);
+      $('.popup-dom').slideToggle();
+      window.setTimeout('$(".popup-dom").slideToggle();', 2000);
+  }
+})
