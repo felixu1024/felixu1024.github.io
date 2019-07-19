@@ -3,17 +3,18 @@
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-globe"></i><span id="sp-copy">点我复制哦～</span>';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="" onclick=doCopy(this) >';
+      copyHtml += '  <i class="fa fa-globe"></i><span class="sp-copy">Copy!</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
+      $(".copy-article-url").before(copyHtml);
       var result = new ClipboardJS('.btn-copy', {
           target: function(trigger) {
               return trigger.nextElementSibling;
           }
       });
       result.on('success', function(e) {
-        console.log(e);
+        // console.log(e);
         result.destroy;
         e.clearSelection();
         // document.getElementById("sp-copy").innerHTML = "已复制～";
@@ -26,4 +27,12 @@
 function showTooltip(elem, msg) {
     elem.setAttribute('class', 'btn-copy tooltipped tooltipped-s');
     elem.setAttribute('aria-label', msg);
+}
+
+function doCopy(ele){
+  let btns = document.getElementsByClassName("sp-copy");
+  for(let i = 0; i < btns.length; i++){
+    btns[i].innerHTML = "Copy!";
+  }
+  ele.children[1].innerHTML = "Copied!";
 }
