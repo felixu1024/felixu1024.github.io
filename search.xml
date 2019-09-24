@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>傻瓜式安装V2Ray</title>
+      <link href="/2019/09/24/essay-2019-09-24-%E5%82%BB%E7%93%9C%E5%BC%8F%E5%AE%89%E8%A3%85V2Ray/"/>
+      <url>/2019/09/24/essay-2019-09-24-%E5%82%BB%E7%93%9C%E5%BC%8F%E5%AE%89%E8%A3%85V2Ray/</url>
+      <content type="html"><![CDATA[<h1 id="购买VPS"><a href="#购买VPS" class="headerlink" title="购买VPS"></a>购买VPS</h1><p>有众多的网站可以购买国外的一些<code>VPS</code>用于搭建我们自己的梯子，这里就不在详细介绍其过程了。</p><p>比如<a href="https://wwww.vultr.com" target="_blank" rel="noopener">Vultr</a>、<a href="https://m.do.co/c/ed93cb8d1263" target="_blank" rel="noopener">Digitalocean</a>等等</p><h1 id="搭建V2Ray"><a href="#搭建V2Ray" class="headerlink" title="搭建V2Ray"></a>搭建V2Ray</h1><ol><li><p><code>VPS</code>购买完成登陆到机器上，不过工具也好，<code>SSH</code>也好，都可以。</p></li><li><p>执行以下命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -s -L https://git.io/v2ray.sh)</span><br></pre></td></tr></table></figure></li><li><p>回车一顿傻瓜式操作</p></li><li><p>等待安装完毕就行了</p></li></ol><p><strong>注意：</strong>建议不要开<code>SS</code>，毕竟那个鬼东西还是走<code>Socks5</code>协议，我开了之后基本一天需要换个端口。</p><h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><code>V2Ray</code>的支持还是比较不错的，各种平台都有相关的客户端，比如</p><ul><li>Mac有V2RayX</li><li>Win有V2RayN</li><li>IOS可以用小火箭，或者是<code>Kitsunbeni</code></li><li>安卓。。。不知道没设备，但是安卓相对来说应该更多</li></ul><h1 id="开启BBR加速"><a href="#开启BBR加速" class="headerlink" title="开启BBR加速"></a>开启BBR加速</h1><p><a href="https://www.noobyy.com/863.html" target="_blank" rel="noopener">See</a></p>]]></content>
+      
+      <categories>
+          
+          <category> Essay </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Essay </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>测试</title>
       <link href="/2019/07/18/essay-2019-07-18-%E6%B5%8B%E8%AF%95/"/>
       <url>/2019/07/18/essay-2019-07-18-%E6%B5%8B%E8%AF%95/</url>
