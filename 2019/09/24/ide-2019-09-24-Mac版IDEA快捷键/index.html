@@ -603,37 +603,43 @@
       
       
         
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
   <div></div>
-
-    <button id="wechatButton" disable="enable" onclick="var qrcode = document.getElementById('WechatQR'); 
-    var qr = document.getElementById('QR');
-    if (qrcode.style.display === 'none') {qrcode.style.display='block';qr.style.display='none'} 
-    else {qrcode.style.display='none';qr.style.display='none'}">
-      <span>添加微信</span>
-    </button>
-
-<!--  --> 
-
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/wxpay.jpeg" alt="felixu WeChat Pay"/>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/alipay.jpeg" alt="felixu Alipay"/>
-        </div>
-      
-    </div>
-    <div id="WechatQR" style="display: none;">
-        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-            <img id="wechat_subscriber_qcode" src="/wechat.jpeg" alt="felixu wechat" style="width: 200px; max-width: 100%;"/>
-            <div>有问题可以扫码添加我的微信</div>
-        </div>
-    </div>
+  
+      <button id="wechatButton" disable="enable" onclick="var qrcode = document.getElementById('WechatQR'); 
+      var qr = document.getElementById('QR');
+      if (qrcode.style.display === 'none') {qrcode.style.display='block';qr.style.display='none'} 
+      else {qrcode.style.display='none';qr.style.display='none'}">
+        <span>添加微信</span>
+      </button>
+  
+   
+      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); 
+      var qrcode = document.getElementById('WechatQR'); 
+      if (qr.style.display === 'none') {qr.style.display='block';qrcode.style.display='none'} 
+      else {qr.style.display='none';qrcode.style.display='none'}">
+        <span>请杯咖啡</span>
+      </button>
+  
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/wxpay.jpg" alt="felixu WeChat Pay"/>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/alipay.jpg" alt="felixu Alipay"/>
+      </div>
+    
   </div>
+  <div id="WechatQR" style="display: none;">
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+          <img id="wechat_subscriber_qcode" src="/wechat.jpeg" alt="felixu wechat" style="width: 200px; max-width: 100%;"/>
+          <div>有问题可以扫码添加我的微信</div>
+      </div>
+  </div>
+</div>
 
 
 
