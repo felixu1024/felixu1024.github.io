@@ -11,8 +11,8 @@
 <script>
     (function(){
         if(''){
-            if (prompt('可能由于文章尚未完成等原因，请输入文章密码访问') !== ''){
-                alert('密码错误！');
+            if (prompt('可能由于文章尚未完成等原因，请输入文章密码访问，如无密码请咨询沙雕博主') !== ''){
+                alert('不知道密码心里没点逼数嘛！');
                 history.back();
             }
         }
@@ -46,6 +46,10 @@
   
   
   <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="stylesheet" href="/lib/live2d/assets/waifu.css"/>
 
 
 
@@ -98,17 +102,17 @@
 
 
 
-<meta name="description" content="而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。">
+<meta name="description" content="做程序猿嘛，也没啥，就是挺秃然的！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="tags">
 <meta property="og:url" content="https://blogs.felixu.top/tags/index.html">
-<meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。">
+<meta property="og:site_name" content="felixu的博客">
+<meta property="og:description" content="做程序猿嘛，也没啥，就是挺秃然的！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-09-10T11:16:00.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。">
+<meta name="twitter:description" content="做程序猿嘛，也没啥，就是挺秃然的！">
 
 
 
@@ -146,7 +150,7 @@
   
 
   
-    tags | felixu's blog
+    tags | felixu的博客
   
 </title>
 </head>
@@ -298,7 +302,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">felixu's blog</span>
+      <span class="site-title">felixu的博客</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -426,10 +430,10 @@
     
       <div class="tag-cloud">
         <div class="tag-cloud-title">
-            目前共计 3 个标签
+            目前共计 1 个标签
         </div>
         <div class="tag-cloud-tags">
-          <a href="/tags/Essay/" style="font-size: 12px; color: #ccc">Essay</a> <a href="/tags/IDE/" style="font-size: 12px; color: #ccc">IDE</a> <a href="/tags/Java-8/" style="font-size: 12px; color: #ccc">Java 8</a>
+          <a href="/tags/Java8/" style="font-size: 12px; color: #ccc">Java8</a>
         </div>
       </div>
     
@@ -467,14 +471,14 @@
                src="/felixu.jpg"
                alt="felixu" />
           <p class="site-author-name" itemprop="name">felixu</p>
-          <p class="site-description motion-element" itemprop="description">而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。</p>
+          <p class="site-description motion-element" itemprop="description">做程序猿嘛，也没啥，就是挺秃然的！</p>
         </div>
         <nav class="site-state motion-element">
         
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -483,7 +487,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -492,7 +496,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -526,9 +530,18 @@
               <span class="links-of-author-item">
                 <a href="https://blog.csdn.net/xufei_0320" target="_blank" title="CSDN">
                   
-                    <i class="fa fa-fw fa-contao"></i>
+                    <i class="fa fa-fw fa-copyright"></i>
                   
                   CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/84a0da787393" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  简书
                 </a>
               </span>
             
@@ -556,6 +569,22 @@
       </div>
     </main>
 
+    
+      <div class="waifu">
+          <div class="waifu-tips"></div>
+          <canvas id="live2d" class="live2d"></canvas>
+          <div class="waifu-tool">
+          <span class="fui-home"></span>
+          <span class="fui-chat"></span>
+          <span class="fui-eye"></span>
+          <span class="fui-user"></span>
+          <span class="fui-photo"></span>
+          <span class="fui-info-circle"></span>
+          <span class="fui-cross"></span>
+          </div>
+      </div>
+  
+
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright" style="text-align: center">
@@ -563,7 +592,7 @@
   
   &copy; 
   <span class="author" itemprop="copyrightHolder">felixu </span>
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   </br>
   <span>备案号:<a href="http://www.miitbeian.gov.cn/">粤ICP备16122004-1号</a></span>
 </div>
@@ -831,9 +860,35 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 
+  
+  <script src="/lib/live2d/assets/waifu-tips.js"></script>
+  <script src="/lib/live2d/assets/live2d.js"></script>
+  <script type="text/javascript">$(document).ready(function(){
+    let live2d_custom = {"enable":true,"modelAPI":"//live2d.fghrsh.net/api/","tipsMessage":"waifu-tips.json","hitokotoAPI":"lwl12.com","modelId":1,"modelTexturesId":53,"showToolMenu":true,"canCloseLive2d":true,"canSwitchModel":true,"canSwitchTextures":true,"canSwitchHitokoto":true,"canTakeScreenshot":false,"canTurnToHomePage":false,"canTurnToAboutPage":false,"modelStorage":true,"modelRandMode":"switch","modelTexturesRandMode":"rand","showHitokoto":true,"showF12Status":true,"showF12Message":false,"showF12OpenMsg":true,"showCopyMessage":true,"showWelcomeMessage":true,"waifuSize":"280x250","waifuTipsSize":"250x70","waifuFontSize":"12px","waifuToolLine":"20px","waifuToolFont":"14px","waifuToolTop":"0px","waifuMinWidth":"768px","waifuEdgeSide":"left:0","waifuDraggable":"unlimited","waifuDraggableRevert":true,"homePageUrl":"/","categoriesPage":"/categories/","archivesPage":"/archives/","tagsPage":"/tags/","aboutPage":"/about/","aboutPageUrl":"https://github.com/edsion1107/theme-next-live2d","screenshotCaptureName":"live2d.png"};
+    for (let key in live2d_custom){
+      console.debug(key+':'+live2d_custom[key]);
+      live2d_settings[key] = live2d_custom[key];
+      }
+    initModel("/lib/live2d/assets/waifu-tips.json");
+  })</script>
 
 </body>
 </html>

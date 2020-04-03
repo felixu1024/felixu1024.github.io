@@ -11,8 +11,8 @@
 <script>
     (function(){
         if(''){
-            if (prompt('可能由于文章尚未完成等原因，请输入文章密码访问') !== ''){
-                alert('密码错误！');
+            if (prompt('可能由于文章尚未完成等原因，请输入文章密码访问，如无密码请咨询沙雕博主') !== ''){
+                alert('不知道密码心里没点逼数嘛！');
                 history.back();
             }
         }
@@ -46,6 +46,10 @@
   
   
   <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="stylesheet" href="/lib/live2d/assets/waifu.css"/>
 
 
 
@@ -98,16 +102,16 @@
 
 
 
-<meta name="description" content="而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。">
+<meta name="description" content="做程序猿嘛，也没啥，就是挺秃然的！">
 <meta property="og:type" content="website">
-<meta property="og:title" content="felixu&#39;s blog">
+<meta property="og:title" content="felixu的博客">
 <meta property="og:url" content="https://blogs.felixu.top/categories/Java/index.html">
-<meta property="og:site_name" content="felixu&#39;s blog">
-<meta property="og:description" content="而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。">
+<meta property="og:site_name" content="felixu的博客">
+<meta property="og:description" content="做程序猿嘛，也没啥，就是挺秃然的！">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="felixu&#39;s blog">
-<meta name="twitter:description" content="而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。">
+<meta name="twitter:title" content="felixu的博客">
+<meta name="twitter:description" content="做程序猿嘛，也没啥，就是挺秃然的！">
 
 
 
@@ -141,7 +145,7 @@
 
 
 
-  <title> 分类: Java | felixu's blog </title>
+  <title> 分类: Java | felixu的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -291,7 +295,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">felixu's blog</span>
+      <span class="site-title">felixu的博客</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -422,9 +426,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2019/10/21/java-2019-10-21-Java-8-新时间-API/" itemprop="url">
+            <a class="post-title-link" href="/2020/04/03/java-2020-04-03-Java8新时间API/" itemprop="url">
               
-                <span itemprop="name">Java 8 新时间 API</span>
+                <span itemprop="name">Java8新时间API</span>
               
             </a>
         
@@ -432,9 +436,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2019-10-21T00:00:00+08:00"
-              content="2019-10-21" >
-          10-21
+              datetime="2020-04-03T00:00:00+08:00"
+              content="2020-04-03" >
+          04-03
         </time>
       </div>
 
@@ -480,14 +484,14 @@
                src="/felixu.jpg"
                alt="felixu" />
           <p class="site-author-name" itemprop="name">felixu</p>
-          <p class="site-description motion-element" itemprop="description">而立之前，梦与理想灼烧你，痛苦来自你想如何。而立之后，真与现实锤炼你，痛苦来着你能如何。</p>
+          <p class="site-description motion-element" itemprop="description">做程序猿嘛，也没啥，就是挺秃然的！</p>
         </div>
         <nav class="site-state motion-element">
         
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -496,7 +500,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -505,7 +509,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -539,9 +543,18 @@
               <span class="links-of-author-item">
                 <a href="https://blog.csdn.net/xufei_0320" target="_blank" title="CSDN">
                   
-                    <i class="fa fa-fw fa-contao"></i>
+                    <i class="fa fa-fw fa-copyright"></i>
                   
                   CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/84a0da787393" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-book"></i>
+                  
+                  简书
                 </a>
               </span>
             
@@ -569,6 +582,22 @@
       </div>
     </main>
 
+    
+      <div class="waifu">
+          <div class="waifu-tips"></div>
+          <canvas id="live2d" class="live2d"></canvas>
+          <div class="waifu-tool">
+          <span class="fui-home"></span>
+          <span class="fui-chat"></span>
+          <span class="fui-eye"></span>
+          <span class="fui-user"></span>
+          <span class="fui-photo"></span>
+          <span class="fui-info-circle"></span>
+          <span class="fui-cross"></span>
+          </div>
+      </div>
+  
+
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright" style="text-align: center">
@@ -576,7 +605,7 @@
   
   &copy; 
   <span class="author" itemprop="copyrightHolder">felixu </span>
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   </br>
   <span>备案号:<a href="http://www.miitbeian.gov.cn/">粤ICP备16122004-1号</a></span>
 </div>
@@ -844,9 +873,35 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 
+  
+  <script src="/lib/live2d/assets/waifu-tips.js"></script>
+  <script src="/lib/live2d/assets/live2d.js"></script>
+  <script type="text/javascript">$(document).ready(function(){
+    let live2d_custom = {"enable":true,"modelAPI":"//live2d.fghrsh.net/api/","tipsMessage":"waifu-tips.json","hitokotoAPI":"lwl12.com","modelId":1,"modelTexturesId":53,"showToolMenu":true,"canCloseLive2d":true,"canSwitchModel":true,"canSwitchTextures":true,"canSwitchHitokoto":true,"canTakeScreenshot":false,"canTurnToHomePage":false,"canTurnToAboutPage":false,"modelStorage":true,"modelRandMode":"switch","modelTexturesRandMode":"rand","showHitokoto":true,"showF12Status":true,"showF12Message":false,"showF12OpenMsg":true,"showCopyMessage":true,"showWelcomeMessage":true,"waifuSize":"280x250","waifuTipsSize":"250x70","waifuFontSize":"12px","waifuToolLine":"20px","waifuToolFont":"14px","waifuToolTop":"0px","waifuMinWidth":"768px","waifuEdgeSide":"left:0","waifuDraggable":"unlimited","waifuDraggableRevert":true,"homePageUrl":"/","categoriesPage":"/categories/","archivesPage":"/archives/","tagsPage":"/tags/","aboutPage":"/about/","aboutPageUrl":"https://github.com/edsion1107/theme-next-live2d","screenshotCaptureName":"live2d.png"};
+    for (let key in live2d_custom){
+      console.debug(key+':'+live2d_custom[key]);
+      live2d_settings[key] = live2d_custom[key];
+      }
+    initModel("/lib/live2d/assets/waifu-tips.json");
+  })</script>
 
 </body>
 </html>
