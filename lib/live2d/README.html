@@ -8,20 +8,16 @@
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="Step-1-→-Go-to-NexT-dir"><a href="#Step-1-→-Go-to-NexT-dir" class="headerlink" title="Step 1 → Go to NexT dir"></a>Step 1 → Go to NexT dir</h3><p>Change dir to NexT directory. There must be layout, source, languages and other directories:</p>
 <pre><code class="bash">$ <span class="built_in">cd</span> themes/next
 $ ls
-bower.json  _config.yml  docs  gulpfile.coffee  languages  layout  LICENSE.md  package.json  README.md  scripts  <span class="built_in">source</span>  <span class="built_in">test</span>
-</code></pre>
+bower.json  _config.yml  docs  gulpfile.coffee  languages  layout  LICENSE.md  package.json  README.md  scripts  <span class="built_in">source</span>  <span class="built_in">test</span></code></pre>
 <h3 id="Step-2-→-Get-module"><a href="#Step-2-→-Get-module" class="headerlink" title="Step 2 → Get module"></a>Step 2 → Get module</h3><p>Install module to source/lib directory:</p>
-<pre><code class="bash">$ git <span class="built_in">clone</span> https://github.com/edsion1107/theme-next-live2d <span class="built_in">source</span>/lib/live2d
-</code></pre>
+<pre><code class="bash">$ git <span class="built_in">clone</span> https://github.com/edsion1107/theme-next-live2d <span class="built_in">source</span>/lib/live2d</code></pre>
 <h3 id="Step-3-→-Set-it-up"><a href="#Step-3-→-Set-it-up" class="headerlink" title="Step 3 → Set it up"></a>Step 3 → Set it up</h3><p>Enable module in NexT _config.yml file:</p>
 <pre><code class="yaml"><span class="attr">live2d:</span>
-<span class="attr">  enable:</span> <span class="literal">true</span>
-</code></pre>
+  <span class="attr">enable:</span> <span class="literal">true</span></code></pre>
 <p>Full configuration : <a href="https://github.com/edsion1107/hexo-theme-next/blob/1eb0223eea037bb2d0e10a749a4758ad2a24b0a5/_config.yml#L596">https://github.com/edsion1107/hexo-theme-next/blob/1eb0223eea037bb2d0e10a749a4758ad2a24b0a5/_config.yml#L596</a></p>
 <h3 id="Step-4-→-修改主题"><a href="#Step-4-→-修改主题" class="headerlink" title="Step 4 → 修改主题"></a>Step 4 → 修改主题</h3><p>因为并非 NexT 官方插件，在合入之前只能通过修改主题来解决了，具体参考：</p>
 <pre><code>https://github.com/edsion1107/hexo-theme-next/commit/0e6b8d61049a795038506b7fd482a7ae5618ecdf
-https://github.com/edsion1107/hexo-theme-next/commit/1eb0223eea037bb2d0e10a749a4758ad2a24b0a5
-</code></pre><p>主要是修改：</p>
+https://github.com/edsion1107/hexo-theme-next/commit/1eb0223eea037bb2d0e10a749a4758ad2a24b0a5</code></pre><p>主要是修改：</p>
 <ul>
 <li>创建<code>layout/_third-party/live2d.swig</code>，引入依赖的js，并根据配置对看板娘进行初始化</li>
 <li>在<code>layout/_partials/head/head.swig</code>中引入所需css</li>
