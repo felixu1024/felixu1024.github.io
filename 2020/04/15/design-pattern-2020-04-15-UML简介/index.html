@@ -90,7 +90,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Concurrency,">
+  <meta name="keywords" content="Design Pattern,">
 
 
 
@@ -106,20 +106,29 @@
 
 
 
-<meta name="description" content="一个线程它也是有生命周期的，那么它从创建到销毁都会经历哪些过程呢，我们一起通过这篇文章来看一下吧。">
-<meta name="keywords" content="Concurrency">
+<meta name="description" content="想必作为一个程序猿，UML 应该都不陌生吧，毕竟随处可见，什么时序图、类图等等，在平常设计方案或者学习一下源码的时候应该都会常常用到。">
+<meta name="keywords" content="Design Pattern">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线程的生命周期">
-<meta property="og:url" content="https://blogs.felixu.top/java-2020-04-06-线程的生命周期.html">
+<meta property="og:title" content="UML类图简介">
+<meta property="og:url" content="https://blogs.felixu.top/2020/04/15/design-pattern-2020-04-15-UML简介/index.html">
 <meta property="og:site_name" content="felixu的博客">
-<meta property="og:description" content="一个线程它也是有生命周期的，那么它从创建到销毁都会经历哪些过程呢，我们一起通过这篇文章来看一下吧。">
+<meta property="og:description" content="想必作为一个程序猿，UML 应该都不陌生吧，毕竟随处可见，什么时序图、类图等等，在平常设计方案或者学习一下源码的时候应该都会常常用到。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2.png">
-<meta property="og:updated_time" content="2020-04-06T12:45:04.047Z">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E7%B1%BB.jpg">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E6%8E%A5%E5%8F%A31.jpg">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E6%8E%A5%E5%8F%A32.jpg">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E5%AE%9E%E7%8E%B0.jpg">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E6%B3%9B%E5%8C%96.jpg">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E4%BE%9D%E8%B5%96.jpg">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E5%8F%8C%E5%90%91%E5%85%B3%E8%81%94.jpg">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E5%8D%95%E5%90%91%E5%85%B3%E8%81%94.jpg">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E8%81%9A%E5%90%88.jpg">
+<meta property="og:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E7%BB%84%E5%90%88.jpg">
+<meta property="og:updated_time" content="2020-04-15T08:04:43.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="线程的生命周期">
-<meta name="twitter:description" content="一个线程它也是有生命周期的，那么它从创建到销毁都会经历哪些过程呢，我们一起通过这篇文章来看一下吧。">
-<meta name="twitter:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2.png">
+<meta name="twitter:title" content="UML类图简介">
+<meta name="twitter:description" content="想必作为一个程序猿，UML 应该都不陌生吧，毕竟随处可见，什么时序图、类图等等，在平常设计方案或者学习一下源码的时候应该都会常常用到。">
+<meta name="twitter:image" content="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E7%B1%BB.jpg">
 
 
 
@@ -147,13 +156,13 @@
 
 
 
-  <link rel="canonical" href="https://blogs.felixu.top/java-2020-04-06-线程的生命周期.html">
+  <link rel="canonical" href="https://blogs.felixu.top/2020/04/15/design-pattern-2020-04-15-UML简介/">
 
 
 
 
 
-  <title> 线程的生命周期 | felixu的博客 </title>
+  <title> UML类图简介 | felixu的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -297,8 +306,7 @@
     <div class="headband"></div>
     <a href="https://github.com/felixu1992" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><meta name="google-site-verification" content="6JbocJSUTY6QCJHHXhxBWYeyWawoobjCJRavv0Nf2Co">
-<div class="site-meta ">
+      <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
@@ -429,7 +437,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/java-2020-04-06-线程的生命周期.html">
+  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2020/04/15/design-pattern-2020-04-15-UML简介/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
@@ -453,7 +461,7 @@
             
             
               
-                线程的生命周期
+                UML类图简介
               
             
           </h2>
@@ -478,8 +486,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-06T00:00:00+08:00">
-                2020-04-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-15T00:00:00+08:00">
+                2020-04-15
               </time>
             
 
@@ -501,8 +509,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Design Pattern</span>
                   </a>
                 </span>
 
@@ -519,8 +527,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/java-2020-04-06-线程的生命周期.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/java-2020-04-06-线程的生命周期.html" itemprop="commentCount"></span>
+                <a href="/2020/04/15/design-pattern-2020-04-15-UML简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/15/design-pattern-2020-04-15-UML简介/" itemprop="commentCount"></span>
                 </a>
               </span>
             <!--noindex-->
@@ -529,8 +537,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/java-2020-04-06-线程的生命周期.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="java-2020-04-06-线程的生命周期.html" itemprop="commentsCount"></span>
+                <a href="/2020/04/15/design-pattern-2020-04-15-UML简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2020/04/15/design-pattern-2020-04-15-UML简介/" itemprop="commentsCount"></span>
                 </a>
               </span> -->
               <!--/noindex-->
@@ -541,7 +549,7 @@
 
           
           
-             <span id="/java-2020-04-06-线程的生命周期.html" class="leancloud_visitors" data-flag-title="线程的生命周期">
+             <span id="/2020/04/15/design-pattern-2020-04-15-UML简介/" class="leancloud_visitors" data-flag-title="UML类图简介">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -557,12 +565,12 @@
 
           
               <div class="post-description">
-                  一个线程它也是有生命周期的，那么它从创建到销毁都会经历哪些过程呢，我们一起通过这篇文章来看一下吧。
+                  想必作为一个程序猿，UML 应该都不陌生吧，毕竟随处可见，什么时序图、类图等等，在平常设计方案或者学习一下源码的时候应该都会常常用到。
                   
                     <br>
-                    转载请注明出处：https://blogs.felixu.top/java-2020-04-06-线程的生命周期.html
+                    转载请注明出处：https://blogs.felixu.top/2020/04/15/design-pattern-2020-04-15-UML简介/
                     <span class="copy-article-url" title="点击复制文章链接" onclick="doCopy(this)">
-                    <i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/java-2020-04-06-线程的生命周期.html">
+                    <i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2020/04/15/design-pattern-2020-04-15-UML简介/">
                     </i>
                     <span class="sp-copy">Copy!</span>
                     </span>
@@ -589,53 +597,76 @@
       
 
       
-        <p>前面介绍了线程相关的一些基本概念，也说了一个线程的创建以及销毁，那么一个线程应该是有生命周期的。这里就来看一下，一个线程一生可能会经历哪些阶段。</p>
-<h1 id="线程的六种状态"><a href="#线程的六种状态" class="headerlink" title="线程的六种状态"></a>线程的六种状态</h1><p>线程的一生可能会经过以下6种状态：</p>
-<ul>
-<li><p><code>NEW</code></p>
-<p>初始化状态，线程被创建，但是还没有调用<code>start</code>方法。</p>
-<p>线程的创建过程其实在前面<a href="[https://blogs.felixu.top/2020/04/04/java-2020-04-04-%E4%BB%8E%E7%BA%BF%E7%A8%8B%E5%88%B0%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/](https://blogs.felixu.top/2020/04/04/java-2020-04-04-从线程到并发编程/)">从线程说起并发问题</a>介绍线程创建的时候已经说过了，这里就不再上代码了，简单说一下使用线程的三种方式：</p>
-<ul>
-<li>实现<code>Runnable</code>接口，重写<code>run</code>方法。</li>
-<li>继承<code>Thread</code>类，重写<code>run</code>方法。</li>
-<li>实现<code>Callable</code>接口，重写<code>call</code>方法，实现带返回值的线程。</li>
-</ul>
-</li>
-<li><p><code>RUNNABLE</code></p>
-<p>运行中状态，其实这里应该是包含两种状态的，一种是就绪状态(即线程调用了<code>start</code>方法，但是不一定会立马运行，还需要等待系统<code>OS</code>的调度)，另一种是运行状态(即正在执行中)。</p>
-</li>
-<li><p><code>BLOCKED</code></p>
-<p>阻塞状态，线程进入等待状态。而阻塞又分为多种情况。</p>
-<ul>
-<li>等待阻塞：线程执行<code>wait</code>方法，<code>JVM</code>将当前线程加入等待队列。</li>
-<li>同步阻塞：与其他线程竞争同步锁时，由于锁已被其他线程获取，进而被<code>JVM</code>加入同步队列。</li>
-<li>其他阻塞：<code>Thread.sleep()</code>、<code>join</code>、<code>IO</code>等操作时，<code>JVM</code>会阻塞直至上述操作结束才会恢复线程。</li>
-</ul>
-</li>
-<li><p><code>WAITTING</code></p>
-<p>等待状态，线程进入等待，需要被唤醒。</p>
-</li>
-<li><p><code>TIME_WAITTING</code></p>
-<p>等待状态，超时以后自动返回。</p>
-</li>
-<li><p><code>TERMINATED</code></p>
-<p>终止状态，线程执行完毕退出。</p>
-</li>
-</ul>
-<h1 id="线程状态的转换"><a href="#线程状态的转换" class="headerlink" title="线程状态的转换"></a>线程状态的转换</h1><p>线程的一生可能会经过以上六个阶段，那么它们之间又是怎么转换的呢，这里贴上流程转换的图：</p>
-<p><img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2.png" alt="线程状态转换"></p>
-<p>在图上可以看到一些操作，等到后面再慢慢介绍这些都是干嘛用的。</p>
-<p>我们也可以通过以下代码来演示一下线程的相关状态：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadStatus</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">"time-waiting"</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">synchronized</span> (ThreadStatus.class) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        ThreadStatus.class.wait();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">"waiting"</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Block(),<span class="string">"Block-01"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Block(),<span class="string">"Block-02"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Block</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Block.class)&#123;</span><br><span class="line">                <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        TimeUnit.SECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码运行起来之后，我们打开控制台，执行<code>jps</code>命令，这个命令可以获得相应<code>Java</code>进程的<code>PID</code>。</p>
-<p>在执行<code>jstack PID</code>(<code>PID</code>是我们上一步拿到的)可以得到下面的<code>dump</code>信息。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">. . . . . .省略部分信息</span><br><span class="line">"Block-02" #16 prio=5 os_prio=31 tid=0x00007ffe1683e000 nid=0xa303 waiting for monitor entry [0x0000700006b83000]</span><br><span class="line">   java.lang.Thread.State: BLOCKED (on object monitor)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus$Block.run(ThreadStatus.java:44)</span><br><span class="line">        - waiting to lock &lt;0x000000076b0cdb00&gt; (a java.lang.Class for top.felixu.chapter1.lifecycle.ThreadStatus$Block)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line"></span><br><span class="line">"Block-01" #14 prio=5 os_prio=31 tid=0x00007ffe1683a000 nid=0xa503 waiting on condition [0x0000700006a80000]</span><br><span class="line">   java.lang.Thread.State: TIMED_WAITING (sleeping)</span><br><span class="line">        at java.lang.Thread.sleep(Native Method)</span><br><span class="line">        at java.lang.Thread.sleep(Thread.java:340)</span><br><span class="line">        at java.util.concurrent.TimeUnit.sleep(TimeUnit.java:386)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus$Block.run(ThreadStatus.java:44)</span><br><span class="line">        - locked &lt;0x000000076b0cdb00&gt; (a java.lang.Class for top.felixu.chapter1.lifecycle.ThreadStatus$Block)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line"></span><br><span class="line">"waiting" #12 prio=5 os_prio=31 tid=0x00007ffe13089000 nid=0xa603 in Object.wait() [0x000070000697d000]</span><br><span class="line">   java.lang.Thread.State: WAITING (on object monitor)</span><br><span class="line">        at java.lang.Object.wait(Native Method)</span><br><span class="line">        - waiting on &lt;0x000000076aeed260&gt; (a java.lang.Class for top.felixu.chapter1.lifecycle.ThreadStatus)</span><br><span class="line">        at java.lang.Object.wait(Object.java:502)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus.lambda$main$1(ThreadStatus.java:26)</span><br><span class="line">        - locked &lt;0x000000076aeed260&gt; (a java.lang.Class for top.felixu.chapter1.lifecycle.ThreadStatus)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus$$Lambda$2/668386784.run(Unknown Source)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line"></span><br><span class="line">"time-waiting" #11 prio=5 os_prio=31 tid=0x00007ffe16839000 nid=0xa803 waiting on condition [0x000070000687a000]</span><br><span class="line">   java.lang.Thread.State: TIMED_WAITING (sleeping)</span><br><span class="line">        at java.lang.Thread.sleep(Native Method)</span><br><span class="line">        at java.lang.Thread.sleep(Thread.java:340)</span><br><span class="line">        at java.util.concurrent.TimeUnit.sleep(TimeUnit.java:386)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus.lambda$main$0(ThreadStatus.java:15)</span><br><span class="line">        at top.felixu.chapter1.lifecycle.ThreadStatus$$Lambda$1/764977973.run(Unknown Source)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:748)</span><br><span class="line">. . . . . .省略部分信息</span><br></pre></td></tr></table></figure>
-
-<p>从上面的<code>dump</code>可以看到线程的大部分状态了，有些状态没法从<code>dump</code>的信息中看出来。</p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>不知道写点啥，拉倒吧，没有结语。</p>
+        <p>讲道理，<code>UML</code>总在接触，但是每次看到实在打不起兴趣好好看，总觉得略显复杂，就没有看下去的欲望，后来发现设计模式越学图越多，拉倒吧，那就记录一下这<code>UML</code>到底是个什么玩意。</p>
+<h1 id="什么是-UML"><a href="#什么是-UML" class="headerlink" title="什么是 UML"></a>什么是 UML</h1><p><strong>统一建模语言</strong>（<code>Unified Modeling Language</code>，缩写 <code>UML</code>）是非专利的第三代<a href="https://zh.wikipedia.org/w/index.php?title=对象建模语言&action=edit&redlink=1" target="_blank" rel="noopener">建模</a>和<a href="https://zh.wikipedia.org/wiki/规约语言" target="_blank" rel="noopener">规约语言</a>。<code>UML</code>是一种开放的方法，用于说明、可视化、构建和编写一个正在开发的、面向对象的、软件密集系统的制品的开放方法。<code>UML</code>展现了一系列最佳工程实践，这些最佳实践在对大规模，复杂系统进行建模方面，特别是在<a href="https://zh.wikipedia.org/wiki/软件架构" target="_blank" rel="noopener">软件架构</a>层次已经被验证有效。</p>
 <blockquote>
-<p>参考自《Java并发编程的艺术》</p>
+<p>摘自维基百科</p>
+</blockquote>
+<p><code>UML</code>是用来设计软件蓝图的可视化建模语言，<code>1997</code> 年被国际对象管理组织(<code>OMG</code>)采纳为面向对象的建模语言的国际标准。它的特点是简单、统一、图形化、能表达软件设计中的动态与静态信息。</p>
+<p>乍一看，觉得还是挺抽象的，其实简单来说，就是用一种图形化的语言来对软件中对象关系进行建模，<code>UML</code>从目标系统的不同角度出发，定义了用例图、类图、对象图、状态图、活动图、时序图、协作图、构件图、部署图等<code>9</code>种图。</p>
+<p>这里只介绍类图，毕竟作为<code>Java coder</code>，其他的也不咋太关心，有兴趣的就自行了解其他的吧。</p>
+<h1 id="类和接口"><a href="#类和接口" class="headerlink" title="类和接口"></a>类和接口</h1><p>我们结合着一个简单的<code>Java</code>类来说</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaCode</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">private</span> Double salary;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> salary;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSalary</span><span class="params">(Double salary)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.salary = salary;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要用<code>UML</code>表示这样一个类，该怎么画呢：</p>
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E7%B1%BB.jpg" alt="UML类" style="zoom:50%;">
+
+<p>这就是一个最简单的<code>UML</code>类图了，下面我们来具体看看图上都有些个啥。</p>
+<h2 id="访问限定符"><a href="#访问限定符" class="headerlink" title="访问限定符"></a>访问限定符</h2><p>可以看到，图上有一些<code>+、-</code>这些是啥呢，这个其实就是类图中用来表示访问限定符的，有以下常用的限定符：</p>
+<ul>
+<li><code>+</code>：表示<code>public</code></li>
+<li><code>-</code>：表示<code>private</code></li>
+<li><code>#</code>：表示<code>protected</code></li>
+<li><code>~</code>：表示<code>default</code></li>
+<li><code>_</code>：表示<code>static</code></li>
+</ul>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>上面这张图，也就对应了一个<code>Java</code>类<code>User</code>，我们可以看到它分了三个部分即</p>
+<ul>
+<li><p>类名：是一个字符串，对应我们的<code>Java</code>类名</p>
+</li>
+<li><p>属性：指类具备的一些属性，也就是我们说的类中的成员变量，它一般用以下格式表示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[可见性] 属性名:类型[=默认值] // 默认值可有可无</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法：也称为操作，它指的是类对象的一些行为，即类的成员方法，它可以这么表示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[可见性] 名称(参数列表):[返回值类型]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>那接口怎么表示呢，我们看这样一个接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">getSalary</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>标准的<code>UML</code>图中我们用一个圆和横线来表示，如下图：</p>
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E6%8E%A5%E5%8F%A31.jpg" alt="UML接口1" style="zoom:50%;">
+
+<p>但是在更多的使用中，我们还会用如下方式：</p>
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E6%8E%A5%E5%8F%A32.jpg" alt="UML接口2" style="zoom:50%;">
+
+<p>这里类似上面的类，只是用<code>&lt;&lt;interface&gt;&gt;</code>来表示接口，同时没有属性列表。</p>
+<h1 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h1><p>在软件系统中，类不是孤立存在的，类与类之间存在各种关系。根据类与类之间的耦合度从弱到强排列，<code>UML</code> 中的类图有以下几种关系：依赖关系、关联关系、聚合关系、组合关系、泛化关系和实现关系。其中泛化和实现的耦合度相等，它们是最强的。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>实现关系便是<code>Java</code>中的类实现接口的这种实现关系，它的表示方法与泛化关系类似，只是它所用的是虚线，比如我们的<code>JavaCoder</code>是一个员工接口<code>Employee</code>的实现，表示如下图：</p>
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E5%AE%9E%E7%8E%B0.jpg" alt="UML实现" style="zoom:50%;">
+
+<h2 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h2><p>泛化关系其实就是我们<code>Java</code>中的继承关系，它的表示方法就是，用实线和空心三角形，由子类指向其被继承的父类，比如<code>JavaCoder</code>是<code>Coder</code>的子类，表示如下图：</p>
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E6%B3%9B%E5%8C%96.jpg" alt="UML泛化" style="zoom:50%;">
+
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>依赖关系是一种较弱的关系，这种关系是指比如在局部变量、方法参数、静态方法调用等等这类方式使用其他类中的某些方法来完成某些功能。比如，作为一个搬砖工的我想加工资了，那么我需要用电脑发个邮件申请，这就可以理解为一种依赖关系。那么如何表示这种关系呢，就是用一个带箭头的虚线，由依赖者指向被依赖者，表示如下图：</p>
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E4%BE%9D%E8%B5%96.jpg" alt="UML依赖" style="zoom:50%;">
+
+<h2 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h2><p>关联关系则强于依赖关系，他表示对象之间的关系是一种引用关系。关联关系又分为一般关联关系、聚合、组合。</p>
+<h3 id="一般关联关系"><a href="#一般关联关系" class="headerlink" title="一般关联关系"></a>一般关联关系</h3><p>一般的关联关系即是对象存在一种引用关系，而这种关系可以是相互的也可以是单向的。就是可以是双向关联关系，也可以是单向关联关系。比如一个咱程序汪属于某个部门，但是并不是每个部门都有程序汪，这可以理解为一种单向关联关系。再比如你今天高兴带了个实习生，那么你们之间相互产生关系，则可以理解为一种双向关联关系。单向关联用实线带箭头，由关联着指向被关联者来表示，而双向关联则是没有箭头的实线来表示，如下图：</p>
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E5%8F%8C%E5%90%91%E5%85%B3%E8%81%94.jpg" alt="UML双向关联" style="zoom:50%;">
+
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E5%8D%95%E5%90%91%E5%85%B3%E8%81%94.jpg" alt="UML单向关联" style="zoom:50%;">
+
+<h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><p>聚合是另一种关联关系，它是一种整体与部分的关系，比如员工之于公司，公司没了换家咱还是那个熟悉的程序汪不是，那么这种关系该如何表示呢，用空心菱形加实线，由部分指向整体，如下图所示：</p>
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E8%81%9A%E5%90%88.jpg" alt="UML聚合" style="zoom:50%;">
+
+<h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><p>组合是一种更强的关联关系，他也是一种部分与整体的关系，但是部分不能脱离整体而存在。比如这天你又想加薪了，准备写邮件申请，总得用手写吧，手总不能自己独立去写吧，不然想想也怪可怕的。他的表示与聚合类似，只是用的为实心菱形。如下图：</p>
+<img src="https://felixu-blog.oss-cn-hangzhou.aliyuncs.com/Design%20Pattern/UML_%E7%BB%84%E5%90%88.jpg" alt="UML组合" style="zoom:50%;">
+
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>这里只是介绍了<code>UML</code>图中的类图，且只是介绍了常用的一些，更多的用法需要再实际使用过程中慢慢积累了。</p>
+<blockquote>
+<p>参考维基百科</p>
 </blockquote>
 
       
@@ -707,7 +738,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Concurrency/" rel="tag"><i class="fa fa-tag"></i> Concurrency</a>
+            <a href="/tags/Design-Pattern/" rel="tag"><i class="fa fa-tag"></i> Design Pattern</a>
           
         </div>
       
@@ -716,8 +747,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/java-2020-04-04-从线程到并发编程.html" rel="next" title="从线程到并发编程">
-                <i class="fa fa-chevron-left"></i> 从线程到并发编程
+              <a href="/2020/04/06/java-2020-04-06-线程的生命周期/" rel="next" title="线程的生命周期">
+                <i class="fa fa-chevron-left"></i> 线程的生命周期
               </a>
             
           </div>
@@ -725,10 +756,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/design-pattern-2020-04-15-UML简介.html" rel="prev" title="UML类图简介">
-                UML类图简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -889,7 +916,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程的六种状态"><span class="nav-number">1.</span> <span class="nav-text">线程的六种状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程状态的转换"><span class="nav-number">2.</span> <span class="nav-text">线程状态的转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-UML"><span class="nav-number">1.</span> <span class="nav-text">什么是 UML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类和接口"><span class="nav-number">2.</span> <span class="nav-text">类和接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#访问限定符"><span class="nav-number">2.1.</span> <span class="nav-text">访问限定符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">2.2.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口"><span class="nav-number">2.3.</span> <span class="nav-text">接口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类图"><span class="nav-number">3.</span> <span class="nav-text">类图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛化"><span class="nav-number">3.2.</span> <span class="nav-text">泛化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">3.3.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联"><span class="nav-number">3.4.</span> <span class="nav-text">关联</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般关联关系"><span class="nav-number">3.4.1.</span> <span class="nav-text">一般关联关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合"><span class="nav-number">3.4.2.</span> <span class="nav-text">聚合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合"><span class="nav-number">3.4.3.</span> <span class="nav-text">组合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
