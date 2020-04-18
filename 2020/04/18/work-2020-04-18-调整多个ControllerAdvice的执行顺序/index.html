@@ -109,14 +109,14 @@
 <meta name="description" content="有时候在项目里面会有多个 @ControllerAdvice 或者 @RestControllerAdvice 的情况，这时候，可能就会出现一个特定的异常被其他的处理掉，从而出现一些奇怪的问题。">
 <meta name="keywords" content="Spring,Spring Boot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="调整多个ControllerAdvice的加载顺序">
-<meta property="og:url" content="https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/index.html">
+<meta property="og:title" content="调整多个ControllerAdvice的执行顺序">
+<meta property="og:url" content="https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/index.html">
 <meta property="og:site_name" content="felixu的博客">
 <meta property="og:description" content="有时候在项目里面会有多个 @ControllerAdvice 或者 @RestControllerAdvice 的情况，这时候，可能就会出现一个特定的异常被其他的处理掉，从而出现一些奇怪的问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-18T12:42:23.315Z">
+<meta property="og:updated_time" content="2020-04-18T12:49:18.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="调整多个ControllerAdvice的加载顺序">
+<meta name="twitter:title" content="调整多个ControllerAdvice的执行顺序">
 <meta name="twitter:description" content="有时候在项目里面会有多个 @ControllerAdvice 或者 @RestControllerAdvice 的情况，这时候，可能就会出现一个特定的异常被其他的处理掉，从而出现一些奇怪的问题。">
 
 
@@ -145,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/">
+  <link rel="canonical" href="https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/">
 
 
 
 
 
-  <title> 调整多个ControllerAdvice的加载顺序 | felixu的博客 </title>
+  <title> 调整多个ControllerAdvice的执行顺序 | felixu的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -426,7 +426,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/">
+  <link itemprop="mainEntityOfPage" href="https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="felixu">
@@ -450,7 +450,7 @@
             
             
               
-                调整多个ControllerAdvice的加载顺序
+                调整多个ControllerAdvice的执行顺序
               
             
           </h2>
@@ -516,8 +516,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/" itemprop="commentCount"></span>
+                <a href="/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/" itemprop="commentCount"></span>
                 </a>
               </span>
             <!--noindex-->
@@ -526,8 +526,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/" itemprop="commentsCount"></span>
+                <a href="/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/" itemprop="commentsCount"></span>
                 </a>
               </span> -->
               <!--/noindex-->
@@ -538,7 +538,7 @@
 
           
           
-             <span id="/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/" class="leancloud_visitors" data-flag-title="调整多个ControllerAdvice的加载顺序">
+             <span id="/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/" class="leancloud_visitors" data-flag-title="调整多个ControllerAdvice的执行顺序">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -557,9 +557,9 @@
                   有时候在项目里面会有多个 @ControllerAdvice 或者 @RestControllerAdvice 的情况，这时候，可能就会出现一个特定的异常被其他的处理掉，从而出现一些奇怪的问题。
                   
                     <br>
-                    转载请注明出处：https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/
+                    转载请注明出处：https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/
                     <span class="copy-article-url" title="点击复制文章链接" onclick="doCopy(this)">
-                    <i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的加载顺序/">
+                    <i class="fa fa-clipboard" data-clipboard-text="https://blogs.felixu.top/2020/04/18/work-2020-04-18-调整多个ControllerAdvice的执行顺序/">
                     </i>
                     <span class="sp-copy">Copy!</span>
                     </span>
